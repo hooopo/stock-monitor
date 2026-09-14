@@ -1,0 +1,742 @@
+[
+  {
+    "name": "申能股份",
+    "code": "600642.SH",
+    "category": "电力/综合能源",
+    "reference_price": 8.58,
+    "buy_price": 8.5,
+    "current_price": 8.58,
+    "price_date": "2026-09-11 15:00:04",
+    "roe": 4.3
+  },
+  {
+    "name": "广州发展",
+    "code": "600098.SH",
+    "category": "电力/综合能源",
+    "reference_price": 6.27,
+    "buy_price": 6.5,
+    "current_price": 6.27,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 3.4155
+  },
+  {
+    "name": "新奥股份",
+    "code": "600803.SH",
+    "category": "电力/综合能源",
+    "reference_price": 19.02,
+    "buy_price": 19.5,
+    "current_price": 19.02,
+    "price_date": "2026-09-11 15:00:01",
+    "roe": 8.18
+  },
+  {
+    "name": "华夏银行",
+    "code": "600015.SH",
+    "category": "银行/股份行",
+    "reference_price": 6.35,
+    "buy_price": 6.1,
+    "current_price": 6.35,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 2.61
+  },
+  {
+    "name": "成都银行",
+    "code": "601838.SH",
+    "category": "银行/城商行",
+    "reference_price": 20.05,
+    "buy_price": 21.0,
+    "current_price": 20.05,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 7.49
+  },
+  {
+    "name": "招商银行",
+    "code": "600036.SH",
+    "category": "银行/股份行",
+    "reference_price": 41.35,
+    "buy_price": 43.0,
+    "current_price": 41.35,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 6.71
+  },
+  {
+    "name": "兴业银行",
+    "code": "601166.SH",
+    "category": "银行/股份行",
+    "reference_price": 18.13,
+    "buy_price": 18.8,
+    "current_price": 18.13,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 4.79
+  },
+  {
+    "name": "中国移动",
+    "code": "600941.SH",
+    "category": "公用事业/通信",
+    "reference_price": 97.72,
+    "buy_price": 101.0,
+    "current_price": 97.72,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 5.6
+  },
+  {
+    "name": "浙能电力",
+    "code": "600023.SH",
+    "category": "电力/火电",
+    "reference_price": 5.02,
+    "buy_price": 4.7,
+    "current_price": 5.02,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 1.97
+  },
+  {
+    "name": "贵阳银行",
+    "code": "601997.SH",
+    "category": "银行/城商行",
+    "reference_price": 5.62,
+    "buy_price": 4.9,
+    "current_price": 5.62,
+    "price_date": "2026-09-11 15:00:03",
+    "roe": 3.6
+  },
+  {
+    "name": "平安银行",
+    "code": "000001.SZ",
+    "category": "银行/股份行",
+    "reference_price": 11.74,
+    "buy_price": 10.6,
+    "current_price": 11.74,
+    "price_date": "2026-09-11 16:30:00",
+    "roe": 5.22
+  },
+  {
+    "name": "伟明环保",
+    "code": "603568.SH",
+    "category": "公用事业/环保",
+    "reference_price": 13.76,
+    "buy_price": 13.8,
+    "current_price": 13.76,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 6.08
+  },
+  {
+    "name": "皖通高速",
+    "code": "600012.SH",
+    "category": "公用事业/高速",
+    "reference_price": 15.78,
+    "buy_price": 15.5,
+    "current_price": 15.78,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 7.6
+  },
+  {
+    "name": "北京银行",
+    "code": "601169.SH",
+    "category": "银行/城商行",
+    "reference_price": 5.59,
+    "buy_price": 5.5,
+    "current_price": 5.59,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 5.3
+  },
+  {
+    "name": "华能国际",
+    "code": "600011.SH",
+    "category": "电力/火电",
+    "reference_price": 6.95,
+    "buy_price": 6.6,
+    "current_price": 6.95,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 8.13
+  },
+  {
+    "name": "粤高速A",
+    "code": "000429.SZ",
+    "category": "公用事业/高速",
+    "reference_price": 12.64,
+    "buy_price": 12.5,
+    "current_price": 12.64,
+    "price_date": "2026-09-11 16:30:00",
+    "roe": 7.41
+  },
+  {
+    "name": "光大银行",
+    "code": "601818.SH",
+    "category": "银行/股份行",
+    "reference_price": 3.02,
+    "buy_price": 2.9,
+    "current_price": 3.02,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 3.28
+  },
+  {
+    "name": "常熟银行",
+    "code": "601128.SH",
+    "category": "银行/农商行",
+    "reference_price": 6.41,
+    "buy_price": 6.4,
+    "current_price": 6.41,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 6.67
+  },
+  {
+    "name": "长江电力",
+    "code": "600900.SH",
+    "category": "电力/水电",
+    "reference_price": 28.45,
+    "buy_price": 28.5,
+    "current_price": 28.45,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 6.55
+  },
+  {
+    "name": "紫金矿业",
+    "code": "601899.SH",
+    "category": "周期/有色",
+    "reference_price": 32.26,
+    "buy_price": 30.0,
+    "current_price": 32.26,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 19.6
+  },
+  {
+    "name": "中国外运",
+    "code": "601598.SH",
+    "category": "公用事业/物流",
+    "reference_price": 6.51,
+    "buy_price": 5.8,
+    "current_price": 6.51,
+    "price_date": "2026-09-11 15:00:05",
+    "roe": 4.12
+  },
+  {
+    "name": "宁波银行",
+    "code": "002142.SZ",
+    "category": "银行/城商行",
+    "reference_price": 35.5,
+    "buy_price": 34.5,
+    "current_price": 35.5,
+    "price_date": "2026-09-11 16:29:15",
+    "roe": 7.12
+  },
+  {
+    "name": "山东高速",
+    "code": "600350.SH",
+    "category": "公用事业/高速",
+    "reference_price": 10.15,
+    "buy_price": 9.5,
+    "current_price": 10.15,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 4.07
+  },
+  {
+    "name": "沪农商行",
+    "code": "601825.SH",
+    "category": "银行/农商行",
+    "reference_price": 8.82,
+    "buy_price": 8.5,
+    "current_price": 8.82,
+    "price_date": "2026-09-11 15:00:04",
+    "roe": 5.38
+  },
+  {
+    "name": "宁波港",
+    "code": "601018.SH",
+    "category": "公用事业/港口",
+    "reference_price": 3.51,
+    "buy_price": 3.2,
+    "current_price": 3.51,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 3.12
+  },
+  {
+    "name": "盐田港",
+    "code": "000088.SZ",
+    "category": "公用事业/港口",
+    "reference_price": 4.58,
+    "buy_price": 4.4,
+    "current_price": 4.58,
+    "price_date": "2026-09-11 16:29:45",
+    "roe": 3.81
+  },
+  {
+    "name": "交通银行",
+    "code": "601328.SH",
+    "category": "银行/六大行",
+    "reference_price": 7.48,
+    "buy_price": 7.3,
+    "current_price": 7.48,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 4.045
+  },
+  {
+    "name": "江苏银行",
+    "code": "600919.SH",
+    "category": "银行/城商行",
+    "reference_price": 12.57,
+    "buy_price": 12.7,
+    "current_price": 12.57,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 7.86
+  },
+  {
+    "name": "南京银行",
+    "code": "601009.SH",
+    "category": "银行/城商行",
+    "reference_price": 12.24,
+    "buy_price": 12.0,
+    "current_price": 12.24,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 7.25
+  },
+  {
+    "name": "渝农商行",
+    "code": "601077.SH",
+    "category": "银行/农商行",
+    "reference_price": 6.7,
+    "buy_price": 6.3,
+    "current_price": 6.7,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 6.0
+  },
+  {
+    "name": "宁沪高速",
+    "code": "600377.SH",
+    "category": "公用事业/高速",
+    "reference_price": 12.6,
+    "buy_price": 12.0,
+    "current_price": 12.6,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 5.86
+  },
+  {
+    "name": "云铝股份",
+    "code": "000807.SZ",
+    "category": "周期/有色",
+    "reference_price": 27.29,
+    "buy_price": 22.5,
+    "current_price": 27.29,
+    "price_date": "2026-09-11 16:30:00",
+    "roe": 21.89
+  },
+  {
+    "name": "川投能源",
+    "code": "600674.SH",
+    "category": "电力/水电",
+    "reference_price": 15.95,
+    "buy_price": 16.0,
+    "current_price": 15.95,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 5.06
+  },
+  {
+    "name": "长沙银行",
+    "code": "601577.SH",
+    "category": "银行/城商行",
+    "reference_price": 9.93,
+    "buy_price": 9.2,
+    "current_price": 9.93,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 6.17
+  },
+  {
+    "name": "江西铜业",
+    "code": "600362.SH",
+    "category": "周期/有色",
+    "reference_price": 45.78,
+    "buy_price": 37.0,
+    "current_price": 45.78,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 10.22
+  },
+  {
+    "name": "招商公路",
+    "code": "001965.SZ",
+    "category": "公用事业/高速",
+    "reference_price": 9.8,
+    "buy_price": 9.2,
+    "current_price": 9.8,
+    "price_date": "2026-09-11 16:29:45",
+    "roe": 3.69
+  },
+  {
+    "name": "云南铜业",
+    "code": "000878.SZ",
+    "category": "周期/有色",
+    "reference_price": 17.18,
+    "buy_price": 14.5,
+    "current_price": 17.18,
+    "price_date": "2026-09-11 16:29:30",
+    "roe": 10.75
+  },
+  {
+    "name": "国电电力",
+    "code": "600795.SH",
+    "category": "电力/综合能源",
+    "reference_price": 5.32,
+    "buy_price": 4.8,
+    "current_price": 5.32,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 4.934
+  },
+  {
+    "name": "中国电信",
+    "code": "601728.SH",
+    "category": "公用事业/通信",
+    "reference_price": 6.29,
+    "buy_price": 6.05,
+    "current_price": 6.29,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 4.2
+  },
+  {
+    "name": "招商港口",
+    "code": "001872.SZ",
+    "category": "公用事业/港口",
+    "reference_price": 23.34,
+    "buy_price": 21.8,
+    "current_price": 23.34,
+    "price_date": "2026-09-11 16:29:00",
+    "roe": 4.25
+  },
+  {
+    "name": "瀚蓝环境",
+    "code": "600323.SH",
+    "category": "公用事业/环保",
+    "reference_price": 29.54,
+    "buy_price": 27.0,
+    "current_price": 29.54,
+    "price_date": "2026-09-11 15:00:03",
+    "roe": 7.93
+  },
+  {
+    "name": "福能股份",
+    "code": "600483.SH",
+    "category": "电力/综合能源",
+    "reference_price": 11.08,
+    "buy_price": 10.5,
+    "current_price": 11.08,
+    "price_date": "2026-09-11 15:00:04",
+    "roe": 4.93
+  },
+  {
+    "name": "中国铝业",
+    "code": "601600.SH",
+    "category": "周期/有色",
+    "reference_price": 9.44,
+    "buy_price": 7.8,
+    "current_price": 9.44,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 14.67
+  },
+  {
+    "name": "首创环保",
+    "code": "600008.SH",
+    "category": "公用事业/环保",
+    "reference_price": 2.79,
+    "buy_price": 2.5,
+    "current_price": 2.79,
+    "price_date": "2026-09-11 15:00:03",
+    "roe": 2.7
+  },
+  {
+    "name": "青岛港",
+    "code": "601298.SH",
+    "category": "公用事业/港口",
+    "reference_price": 9.51,
+    "buy_price": 9.0,
+    "current_price": 9.51,
+    "price_date": "2026-09-11 15:00:04",
+    "roe": 5.86
+  },
+  {
+    "name": "上港集团",
+    "code": "600018.SH",
+    "category": "公用事业/港口",
+    "reference_price": 5.49,
+    "buy_price": 5.1,
+    "current_price": 5.49,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 5.8701
+  },
+  {
+    "name": "中信银行",
+    "code": "601998.SH",
+    "category": "银行/股份行",
+    "reference_price": 8.92,
+    "buy_price": 8.0,
+    "current_price": 8.92,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 4.805
+  },
+  {
+    "name": "唐山港",
+    "code": "601000.SH",
+    "category": "公用事业/港口",
+    "reference_price": 4.53,
+    "buy_price": 4.2,
+    "current_price": 4.53,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 4.63
+  },
+  {
+    "name": "桂冠电力",
+    "code": "600236.SH",
+    "category": "电力/水电",
+    "reference_price": 10.07,
+    "buy_price": 8.8,
+    "current_price": 10.07,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 9.0622
+  },
+  {
+    "name": "邮储银行",
+    "code": "601658.SH",
+    "category": "银行/六大行",
+    "reference_price": 5.46,
+    "buy_price": 5.1,
+    "current_price": 5.46,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 4.8
+  },
+  {
+    "name": "华电国际",
+    "code": "600027.SH",
+    "category": "电力/火电",
+    "reference_price": 4.88,
+    "buy_price": 4.4,
+    "current_price": 4.88,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 5.76
+  },
+  {
+    "name": "工商银行",
+    "code": "601398.SH",
+    "category": "银行/六大行",
+    "reference_price": 8.11,
+    "buy_price": 7.3,
+    "current_price": 8.11,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 4.315
+  },
+  {
+    "name": "中谷物流",
+    "code": "603565.SH",
+    "category": "周期/航运",
+    "reference_price": 11.87,
+    "buy_price": 9.5,
+    "current_price": 11.87,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 9.94
+  },
+  {
+    "name": "洛阳钼业",
+    "code": "603993.SH",
+    "category": "周期/有色",
+    "reference_price": 18.15,
+    "buy_price": 15.5,
+    "current_price": 18.15,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 18.29
+  },
+  {
+    "name": "浦发银行",
+    "code": "600000.SH",
+    "category": "银行/股份行",
+    "reference_price": 9.26,
+    "buy_price": 8.2,
+    "current_price": 9.26,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 3.96
+  },
+  {
+    "name": "中国联通",
+    "code": "600050.SH",
+    "category": "公用事业/通信",
+    "reference_price": 4.21,
+    "buy_price": 3.9,
+    "current_price": 4.21,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 2.41
+  },
+  {
+    "name": "苏州银行",
+    "code": "002966.SZ",
+    "category": "银行/城商行",
+    "reference_price": 9.3,
+    "buy_price": 8.6,
+    "current_price": 9.3,
+    "price_date": "2026-09-11 16:29:00",
+    "roe": 6.12
+  },
+  {
+    "name": "内蒙华电",
+    "code": "600863.SH",
+    "category": "电力/火电",
+    "reference_price": 4.84,
+    "buy_price": 4.3,
+    "current_price": 4.84,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 7.49
+  },
+  {
+    "name": "浙商银行",
+    "code": "601916.SH",
+    "category": "银行/股份行",
+    "reference_price": 2.95,
+    "buy_price": 2.6,
+    "current_price": 2.95,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 4.31
+  },
+  {
+    "name": "农业银行",
+    "code": "601288.SH",
+    "category": "银行/六大行",
+    "reference_price": 6.97,
+    "buy_price": 6.1,
+    "current_price": 6.97,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 5.07
+  },
+  {
+    "name": "上海银行",
+    "code": "601229.SH",
+    "category": "银行/城商行",
+    "reference_price": 9.72,
+    "buy_price": 8.5,
+    "current_price": 9.72,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 5.25
+  },
+  {
+    "name": "大秦铁路",
+    "code": "601006.SH",
+    "category": "公用事业/铁路",
+    "reference_price": 4.8,
+    "buy_price": 4.2,
+    "current_price": 4.8,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 2.57
+  },
+  {
+    "name": "建设银行",
+    "code": "601939.SH",
+    "category": "银行/六大行",
+    "reference_price": 11.02,
+    "buy_price": 9.6,
+    "current_price": 11.02,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 4.76
+  },
+  {
+    "name": "国投电力",
+    "code": "600886.SH",
+    "category": "电力/水电",
+    "reference_price": 14.46,
+    "buy_price": 13.2,
+    "current_price": 14.46,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 5.05
+  },
+  {
+    "name": "中国银行",
+    "code": "601988.SH",
+    "category": "银行/六大行",
+    "reference_price": 6.57,
+    "buy_price": 5.7,
+    "current_price": 6.57,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 4.33
+  },
+  {
+    "name": "中国神华",
+    "code": "601088.SH",
+    "category": "周期/煤炭",
+    "reference_price": 47.51,
+    "buy_price": 42.0,
+    "current_price": 47.51,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 5.83
+  },
+  {
+    "name": "杭州银行",
+    "code": "600926.SH",
+    "category": "银行/城商行",
+    "reference_price": 17.51,
+    "buy_price": 15.8,
+    "current_price": 17.51,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 8.87
+  },
+  {
+    "name": "华能水电",
+    "code": "600025.SH",
+    "category": "电力/水电",
+    "reference_price": 9.83,
+    "buy_price": 8.6,
+    "current_price": 9.83,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 5.91
+  },
+  {
+    "name": "中国广核",
+    "code": "003816.SZ",
+    "category": "电力/核电",
+    "reference_price": 4.33,
+    "buy_price": 3.8,
+    "current_price": 4.33,
+    "price_date": "2026-09-11 16:29:15",
+    "roe": 4.6
+  },
+  {
+    "name": "中国核电",
+    "code": "601985.SH",
+    "category": "电力/核电",
+    "reference_price": 9.05,
+    "buy_price": 8.0,
+    "current_price": 9.05,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 3.05
+  },
+  {
+    "name": "陕西煤业",
+    "code": "601225.SH",
+    "category": "周期/煤炭",
+    "reference_price": 26.05,
+    "buy_price": 22.0,
+    "current_price": 26.05,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 10.9
+  },
+  {
+    "name": "晋控煤业",
+    "code": "601001.SH",
+    "category": "周期/煤炭",
+    "reference_price": 16.63,
+    "buy_price": 12.5,
+    "current_price": 16.63,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 3.79
+  },
+  {
+    "name": "恒源煤电",
+    "code": "600971.SH",
+    "category": "周期/煤炭",
+    "reference_price": 8.62,
+    "buy_price": 6.5,
+    "current_price": 8.62,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 1.36
+  },
+  {
+    "name": "兖矿能源",
+    "code": "600188.SH",
+    "category": "周期/煤炭",
+    "reference_price": 21.38,
+    "buy_price": 16.0,
+    "current_price": 21.38,
+    "price_date": "2026-09-11 15:34:59",
+    "roe": 6.87
+  }
+]
