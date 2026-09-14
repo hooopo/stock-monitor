@@ -412,6 +412,46 @@ tr.hidden { display: none; }
   .stats { grid-template-columns: repeat(6, 1fr); }
   th, td { padding: 14px 18px; }
 }
+
+.disclaimer {
+  margin-top: 16px;
+  background: var(--card);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--yellow);
+}
+.disclaimer-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.disclaimer p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+.disclaimer p:last-child { margin-bottom: 0; }
+.disclaimer strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .disclaimer {
+    margin-top: 24px;
+    padding: 18px 22px;
+    border-left-width: 5px;
+  }
+  .disclaimer-title { font-size: 14px; margin-bottom: 10px; }
+  .disclaimer p { font-size: 13px; line-height: 1.8; margin-bottom: 8px; }
+}
 </style>
 </head>
 <body>
@@ -539,6 +579,14 @@ tr.hidden { display: none; }
 <% end %>
 </tbody>
 </table>
+</div>
+
+<div class="disclaimer">
+  <div class="disclaimer-title">⚠️ 重要提示与免责声明</div>
+  <p><strong>不构成投资建议：</strong>本页面所有内容仅为个人投资记录与研究整理，不构成任何买入或卖出的投资建议、不提供任何收益承诺。股市有风险，入市需谨慎，决策前请独立思考并自行承担风险。</p>
+  <p><strong>不预测短期走势：</strong>价格、ROE 等数据来源于公开网络（新浪行情、东方财富），仅作客观展示，不对任何短期（日/周/月级）涨跌作预测或判断。</p>
+  <p><strong>关于"首仓价"：</strong>表中 <strong>首仓价</strong> 为个人建仓时的折中参考价——综合考虑 <strong>估值安全边际</strong>（如 PB/PE/股息率/ROE 等）与实际市场中 <strong>能够成交买入的价格区间</strong> 两方面因素后给出的<strong>大致估算值</strong>，既非最低点、也非严格的买卖指令，仅作长期价值建仓的心理锚定参考。</p>
+  <p><strong>数据准确性：</strong>行情与财务数据来自第三方接口，可能存在延迟、缺失或错误，请以交易所和上市公司正式公告为准。页面按工作日定时自动更新，手动触发亦可。</p>
 </div>
 </div>
 
