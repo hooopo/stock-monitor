@@ -3,11 +3,7 @@ require "fileutils"
 
 ROOT = File.expand_path("..", __dir__)
 
-puts "=== Step 1/2: 拉取最新价格和ROE ==="
-system("ruby", File.join(ROOT, "scripts/fetch_prices.rb")) || abort("拉取价格失败")
-
-puts
-puts "=== Step 2/2: 生成最新HTML页面 ==="
+puts "=== 生成最新页面 (实时抓取价格+ROE) ==="
 system("ruby", File.join(ROOT, "scripts/generate_page.rb")) || abort("生成页面失败")
 
 puts

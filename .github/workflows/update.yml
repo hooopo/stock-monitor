@@ -4,7 +4,7 @@ on:
   push:
     branches: [main, master]
   schedule:
-    - cron: '0  2 * * 1-5'
+    - cron: '0 2 * * 1-5'
     - cron: '30 3 * * 1-5'
     - cron: '30 5 * * 1-5'
     - cron: '30 7 * * 1-5'
@@ -36,10 +36,7 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: true
 
-      - name: Fetch latest prices and ROE
-        run: bundle exec ruby scripts/fetch_prices.rb
-
-      - name: Generate HTML page
+      - name: Generate page (fetch live prices + ROE)
         run: bundle exec ruby scripts/generate_page.rb
 
       - name: Setup Pages
