@@ -729,7 +729,7 @@ stocks = load_data
 process(stocks)
 stats = calc_stats(stocks)
 categories = stocks.map { |s| s["category"] }.uniq.sort
-generated_at = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+generated_at = Time.now.getlocal("+08:00").strftime("%Y-%m-%d %H:%M:%S (UTC+8)")
 
 template = Erubi::Engine.new(TEMPLATE_ERB, escape: true)
 html = eval(template.src)
