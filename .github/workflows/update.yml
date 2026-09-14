@@ -2,7 +2,10 @@ name: Update Stock Page
 
 on:
   schedule:
-    - cron: '0 8 * * 1-5'
+    - cron: '0  2 * * 1-5'
+    - cron: '30 3 * * 1-5'
+    - cron: '30 5 * * 1-5'
+    - cron: '30 7 * * 1-5'
   workflow_dispatch:
 
 permissions:
