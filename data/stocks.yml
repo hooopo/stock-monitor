@@ -8,7 +8,7 @@
   code: 600098.SH
   category: 电力/综合能源
   reference_price: 6.27
-  buy_price: 6.5
+  buy_price: 5
 - name: 新奥股份
   code: 600803.SH
   category: 电力/综合能源
@@ -58,7 +58,7 @@
   code: 603568.SH
   category: 公用事业/环保
   reference_price: 13.76
-  buy_price: 13.8
+  buy_price: 12.8
 - name: 皖通高速
   code: 600012.SH
   category: 公用事业/高速
@@ -78,7 +78,7 @@
   code: '000429.SZ'
   category: 公用事业/高速
   reference_price: 12.64
-  buy_price: 12.5
+  buy_price: 10.5
 - name: 光大银行
   code: 601818.SH
   category: 银行/股份行
@@ -88,7 +88,7 @@
   code: 601128.SH
   category: 银行/农商行
   reference_price: 6.41
-  buy_price: 6.4
+  buy_price: 6
 - name: 长江电力
   code: 600900.SH
   category: 电力/水电
@@ -98,7 +98,7 @@
   code: 601899.SH
   category: 周期/有色
   reference_price: 32.26
-  buy_price: 30.0
+  buy_price: 28
 - name: 中国外运
   code: 601598.SH
   category: 公用事业/物流
