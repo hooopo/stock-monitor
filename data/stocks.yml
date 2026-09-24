@@ -23,12 +23,12 @@
   code: 601838.SH
   category: 银行/城商行
   reference_price: 20.05
-  buy_price: 21.0
+  buy_price: 18
 - name: 招商银行
   code: 600036.SH
   category: 银行/股份行
   reference_price: 41.35
-  buy_price: 43.0
+  buy_price: 39.5
 - name: 兴业银行
   code: 601166.SH
   category: 银行/股份行
@@ -38,7 +38,7 @@
   code: 600941.SH
   category: 公用事业/通信
   reference_price: 97.72
-  buy_price: 101.0
+  buy_price: 92
 - name: 浙能电力
   code: 600023.SH
   category: 电力/火电
@@ -108,7 +108,7 @@
   code: 002142.SZ
   category: 银行/城商行
   reference_price: 35.5
-  buy_price: 34.5
+  buy_price: 30.0
 - name: 山东高速
   code: 600350.SH
   category: 公用事业/高速
@@ -163,7 +163,7 @@
   code: 600674.SH
   category: 电力/水电
   reference_price: 15.95
-  buy_price: 16.0
+  buy_price: 14.5
 - name: 长沙银行
   code: 601577.SH
   category: 银行/城商行
@@ -193,7 +193,7 @@
   code: 601728.SH
   category: 公用事业/通信
   reference_price: 6.29
-  buy_price: 6.05
+  buy_price: 4.65
 - name: 招商港口
   code: '001872.SZ'
   category: 公用事业/港口
