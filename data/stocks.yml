@@ -3,7 +3,7 @@
   code: 600642.SH
   category: 电力/综合能源
   reference_price: 8.58
-  buy_price: 8.5
+  buy_price: 5.8
 - name: 广州发展
   code: 600098.SH
   category: 电力/综合能源
@@ -13,7 +13,7 @@
   code: 600803.SH
   category: 电力/综合能源
   reference_price: 19.02
-  buy_price: 19.5
+  buy_price: 17.2
 - name: 华夏银行
   code: 600015.SH
   category: 银行/股份行
@@ -33,7 +33,7 @@
   code: 601166.SH
   category: 银行/股份行
   reference_price: 18.13
-  buy_price: 18.8
+  buy_price: 17.3
 - name: 中国移动
   code: 600941.SH
   category: 公用事业/通信
@@ -93,7 +93,7 @@
   code: 600900.SH
   category: 电力/水电
   reference_price: 28.45
-  buy_price: 28.5
+  buy_price: 26.2
 - name: 紫金矿业
   code: 601899.SH
   category: 周期/有色
@@ -138,12 +138,12 @@
   code: 600919.SH
   category: 银行/城商行
   reference_price: 12.57
-  buy_price: 12.7
+  buy_price: 11.2
 - name: 南京银行
   code: 601009.SH
   category: 银行/城商行
   reference_price: 12.24
-  buy_price: 12.0
+  buy_price: 10.8
 - name: 渝农商行
   code: 601077.SH
   category: 银行/农商行
