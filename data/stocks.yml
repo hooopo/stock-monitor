@@ -63,7 +63,7 @@
   code: 600012.SH
   category: 公用事业/高速
   reference_price: 15.78
-  buy_price: 15.5
+  buy_price: 14.7
 - name: 北京银行
   code: 601169.SH
   category: 银行/城商行
@@ -78,7 +78,7 @@
   code: '000429.SZ'
   category: 公用事业/高速
   reference_price: 12.64
-  buy_price: 10.5
+  buy_price: 13.4
 - name: 光大银行
   code: 601818.SH
   category: 银行/股份行
@@ -113,7 +113,7 @@
   code: 600350.SH
   category: 公用事业/高速
   reference_price: 10.15
-  buy_price: 9.5
+  buy_price: 9.2
 - name: 沪农商行
   code: 601825.SH
   category: 银行/农商行
@@ -153,7 +153,7 @@
   code: 600377.SH
   category: 公用事业/高速
   reference_price: 12.6
-  buy_price: 11.8
+  buy_price: 12.25
 - name: 云铝股份
   code: '000807.SZ'
   category: 周期/有色
@@ -263,7 +263,7 @@
   code: 603565.SH
   category: 周期/航运
   reference_price: 11.87
-  buy_price: 9.5
+  buy_price: 10
 - name: 洛阳钼业
   code: 603993.SH
   category: 周期/有色
@@ -393,9 +393,29 @@
   code: 603658.SH
   category: 医药/IVD
   reference_price: 56.0
-  buy_price: 40.0
+  buy_price: 31
 - name: 安琪酵母
   code: 600298.SH
   category: 消费/食品
   reference_price: 46.0
-  buy_price: 33.0
+  buy_price: 35
+- name: 中远海控
+  code: 601919.SH
+  category: 周期/航运
+  reference_price: 19.0
+  buy_price: 15.4
+- name: 宇通客车
+  code: 600066.SH
+  category: 周期/汽车
+  reference_price: 26.0
+  buy_price: 25
+- name: 中国建筑
+  code: 601668.SH
+  category: 周期/建筑
+  reference_price: 7.8
+  buy_price: 5.5
+- name: 格力电器
+  code: 000651.SZ
+  category: 消费/家电
+  reference_price: 52.0
+  buy_price: 38
