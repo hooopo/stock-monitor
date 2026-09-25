@@ -10,7 +10,7 @@
 - name: 新奥股份
   code: 600803.SH
   category: 电力/综合能源
-  buy_price: 17.2
+  buy_price: 18
 - name: 华夏银行
   code: 600015.SH
   category: 银行/股份行
@@ -190,7 +190,7 @@
 - name: 唐山港
   code: 601000.SH
   category: 公用事业/港口
-  buy_price: 4.2
+  buy_price: 4.0
 - name: 桂冠电力
   code: 600236.SH
   category: 电力/水电
@@ -246,7 +246,7 @@
 - name: 大秦铁路
   code: 601006.SH
   category: 公用事业/铁路
-  buy_price: 4.2
+  buy_price: 4.4
 - name: 建设银行
   code: 601939.SH
   category: 银行/六大行
@@ -302,15 +302,15 @@
 - name: 三一重工
   code: 600031.SH
   category: 周期/机械
-  buy_price: 17.5
+  buy_price: 15.5
 - name: 海螺水泥
   code: 600585.SH
   category: 周期/建材
-  buy_price: 22.0
+  buy_price: 16.5
 - name: 中国中免
   code: 601888.SH
   category: 消费/免税
-  buy_price: 50.0
+  buy_price: 47.0
 - name: 安图生物
   code: 603658.SH
   category: 医药/IVD
@@ -330,8 +330,12 @@
 - name: 中国建筑
   code: 601668.SH
   category: 周期/建筑
-  buy_price: 5.5
+  buy_price: 4.2
 - name: 格力电器
   code: 000651.SZ
   category: 消费/家电
   buy_price: 38
+- name: 时代电气
+  code: 03898.HK
+  category: 科技/电子
+  buy_price: 28
