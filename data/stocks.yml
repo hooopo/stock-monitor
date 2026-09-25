@@ -118,7 +118,7 @@
   code: 601825.SH
   category: 银行/农商行
   reference_price: 8.82
-  buy_price: 8.5
+  buy_price: 7.6
 - name: 宁波港
   code: 601018.SH
   category: 公用事业/港口
@@ -128,12 +128,12 @@
   code: '000088.SZ'
   category: 公用事业/港口
   reference_price: 4.58
-  buy_price: 4.4
+  buy_price: 4.88
 - name: 交通银行
   code: 601328.SH
   category: 银行/六大行
   reference_price: 7.48
-  buy_price: 7.3
+  buy_price: 6.5
 - name: 江苏银行
   code: 600919.SH
   category: 银行/城商行
@@ -208,7 +208,7 @@
   code: 600483.SH
   category: 电力/综合能源
   reference_price: 11.08
-  buy_price: 10.5
+  buy_price: 8.5
 - name: 中国铝业
   code: 601600.SH
   category: 周期/有色
@@ -248,7 +248,7 @@
   code: 601658.SH
   category: 银行/六大行
   reference_price: 5.46
-  buy_price: 5.1
+  buy_price: 4.4
 - name: 华电国际
   code: 600027.SH
   category: 电力/火电
@@ -268,7 +268,7 @@
   code: 603993.SH
   category: 周期/有色
   reference_price: 18.15
-  buy_price: 15.5
+  buy_price: 14.5
 - name: 浦发银行
   code: 600000.SH
   category: 银行/股份行
@@ -333,7 +333,7 @@
   code: 600926.SH
   category: 银行/城商行
   reference_price: 17.51
-  buy_price: 15.8
+  buy_price: 15.3
 - name: 华能水电
   code: 600025.SH
   category: 电力/水电
@@ -353,7 +353,7 @@
   code: 601225.SH
   category: 周期/煤炭
   reference_price: 26.05
-  buy_price: 22.0
+  buy_price: 20.0
 - name: 晋控煤业
   code: 601001.SH
   category: 周期/煤炭
