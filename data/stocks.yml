@@ -2,420 +2,336 @@
 - name: 申能股份
   code: 600642.SH
   category: 电力/综合能源
-  reference_price: 8.58
   buy_price: 5.8
 - name: 广州发展
   code: 600098.SH
   category: 电力/综合能源
-  reference_price: 6.27
   buy_price: 5
 - name: 新奥股份
   code: 600803.SH
   category: 电力/综合能源
-  reference_price: 19.02
   buy_price: 17.2
 - name: 华夏银行
   code: 600015.SH
   category: 银行/股份行
-  reference_price: 6.35
   buy_price: 6.1
 - name: 成都银行
   code: 601838.SH
   category: 银行/城商行
-  reference_price: 20.05
   buy_price: 18
 - name: 招商银行
   code: 600036.SH
   category: 银行/股份行
-  reference_price: 41.35
   buy_price: 39.5
 - name: 兴业银行
   code: 601166.SH
   category: 银行/股份行
-  reference_price: 18.13
   buy_price: 17.3
 - name: 中国移动
   code: 600941.SH
   category: 公用事业/通信
-  reference_price: 97.72
   buy_price: 92
 - name: 浙能电力
   code: 600023.SH
   category: 电力/火电
-  reference_price: 5.02
   buy_price: 4.7
 - name: 贵阳银行
   code: 601997.SH
   category: 银行/城商行
-  reference_price: 5.62
   buy_price: 4.9
 - name: 平安银行
   code: 000001.SZ
   category: 银行/股份行
-  reference_price: 11.74
   buy_price: 10.6
 - name: 伟明环保
   code: 603568.SH
   category: 公用事业/环保
-  reference_price: 13.76
   buy_price: 12.8
 - name: 皖通高速
   code: 600012.SH
   category: 公用事业/高速
-  reference_price: 15.78
   buy_price: 14.7
 - name: 北京银行
   code: 601169.SH
   category: 银行/城商行
-  reference_price: 5.59
   buy_price: 5.2
 - name: 华能国际
   code: 600011.SH
   category: 电力/火电
-  reference_price: 6.95
   buy_price: 6.6
 - name: 粤高速A
   code: '000429.SZ'
   category: 公用事业/高速
-  reference_price: 12.64
   buy_price: 13.4
 - name: 光大银行
   code: 601818.SH
   category: 银行/股份行
-  reference_price: 3.02
   buy_price: 2.9
 - name: 常熟银行
   code: 601128.SH
   category: 银行/农商行
-  reference_price: 6.41
   buy_price: 6
 - name: 长江电力
   code: 600900.SH
   category: 电力/水电
-  reference_price: 28.45
   buy_price: 26.2
 - name: 紫金矿业
   code: 601899.SH
   category: 周期/有色
-  reference_price: 32.26
   buy_price: 28
 - name: 中国外运
   code: 601598.SH
   category: 公用事业/物流
-  reference_price: 6.51
   buy_price: 5.8
 - name: 宁波银行
   code: 002142.SZ
   category: 银行/城商行
-  reference_price: 35.5
   buy_price: 30.0
 - name: 山东高速
   code: 600350.SH
   category: 公用事业/高速
-  reference_price: 10.15
   buy_price: 9.2
 - name: 沪农商行
   code: 601825.SH
   category: 银行/农商行
-  reference_price: 8.82
   buy_price: 7.6
 - name: 宁波港
   code: 601018.SH
   category: 公用事业/港口
-  reference_price: 3.51
   buy_price: 3.2
 - name: 盐田港
   code: '000088.SZ'
   category: 公用事业/港口
-  reference_price: 4.58
   buy_price: 4.88
 - name: 交通银行
   code: 601328.SH
   category: 银行/六大行
-  reference_price: 7.48
   buy_price: 6.5
 - name: 江苏银行
   code: 600919.SH
   category: 银行/城商行
-  reference_price: 12.57
   buy_price: 11.2
 - name: 南京银行
   code: 601009.SH
   category: 银行/城商行
-  reference_price: 12.24
   buy_price: 10.8
 - name: 渝农商行
   code: 601077.SH
   category: 银行/农商行
-  reference_price: 6.7
   buy_price: 6.3
 - name: 宁沪高速
   code: 600377.SH
   category: 公用事业/高速
-  reference_price: 12.6
   buy_price: 12.25
 - name: 云铝股份
   code: '000807.SZ'
   category: 周期/有色
-  reference_price: 27.29
   buy_price: 22.5
 - name: 川投能源
   code: 600674.SH
   category: 电力/水电
-  reference_price: 15.95
   buy_price: 14.5
 - name: 长沙银行
   code: 601577.SH
   category: 银行/城商行
-  reference_price: 9.93
   buy_price: 9.2
 - name: 江西铜业
   code: 600362.SH
   category: 周期/有色
-  reference_price: 45.78
   buy_price: 37.0
 - name: 招商公路
   code: '001965.SZ'
   category: 公用事业/高速
-  reference_price: 9.8
   buy_price: 9.2
 - name: 云南铜业
   code: '000878.SZ'
   category: 周期/有色
-  reference_price: 17.18
   buy_price: 14.5
 - name: 国电电力
   code: 600795.SH
   category: 电力/综合能源
-  reference_price: 5.32
   buy_price: 4.8
 - name: 中国电信
   code: 601728.SH
   category: 公用事业/通信
-  reference_price: 6.29
   buy_price: 4.65
 - name: 招商港口
   code: '001872.SZ'
   category: 公用事业/港口
-  reference_price: 23.34
   buy_price: 21.8
 - name: 瀚蓝环境
   code: 600323.SH
   category: 公用事业/环保
-  reference_price: 29.54
   buy_price: 27.0
 - name: 福能股份
   code: 600483.SH
   category: 电力/综合能源
-  reference_price: 11.08
   buy_price: 8.5
 - name: 中国铝业
   code: 601600.SH
   category: 周期/有色
-  reference_price: 9.44
   buy_price: 7.8
 - name: 首创环保
   code: 600008.SH
   category: 公用事业/环保
-  reference_price: 2.79
   buy_price: 2.5
 - name: 青岛港
   code: 601298.SH
   category: 公用事业/港口
-  reference_price: 9.51
   buy_price: 9.0
 - name: 上港集团
   code: 600018.SH
   category: 公用事业/港口
-  reference_price: 5.49
   buy_price: 5.1
 - name: 中信银行
   code: 601998.SH
   category: 银行/股份行
-  reference_price: 8.92
   buy_price: 8.0
 - name: 唐山港
   code: 601000.SH
   category: 公用事业/港口
-  reference_price: 4.53
   buy_price: 4.2
 - name: 桂冠电力
   code: 600236.SH
   category: 电力/水电
-  reference_price: 10.07
   buy_price: 6.5
 - name: 邮储银行
   code: 601658.SH
   category: 银行/六大行
-  reference_price: 5.46
   buy_price: 4.4
 - name: 华电国际
   code: 600027.SH
   category: 电力/火电
-  reference_price: 4.88
   buy_price: 4.4
 - name: 工商银行
   code: 601398.SH
   category: 银行/六大行
-  reference_price: 8.11
   buy_price: 7.3
 - name: 中谷物流
   code: 603565.SH
   category: 周期/航运
-  reference_price: 11.87
   buy_price: 10
 - name: 洛阳钼业
   code: 603993.SH
   category: 周期/有色
-  reference_price: 18.15
   buy_price: 14.5
 - name: 浦发银行
   code: 600000.SH
   category: 银行/股份行
-  reference_price: 9.26
   buy_price: 8.2
 - name: 中国联通
   code: 600050.SH
   category: 公用事业/通信
-  reference_price: 4.21
   buy_price: 3.9
 - name: 苏州银行
   code: '002966.SZ'
   category: 银行/城商行
-  reference_price: 9.3
   buy_price: 8.6
 - name: 内蒙华电
   code: 600863.SH
   category: 电力/火电
-  reference_price: 4.84
   buy_price: 4.3
 - name: 浙商银行
   code: 601916.SH
   category: 银行/股份行
-  reference_price: 2.95
   buy_price: 2.6
 - name: 农业银行
   code: 601288.SH
   category: 银行/六大行
-  reference_price: 6.97
   buy_price: 6.1
 - name: 上海银行
   code: 601229.SH
   category: 银行/城商行
-  reference_price: 9.72
   buy_price: 8.5
 - name: 大秦铁路
   code: 601006.SH
   category: 公用事业/铁路
-  reference_price: 4.8
   buy_price: 4.2
 - name: 建设银行
   code: 601939.SH
   category: 银行/六大行
-  reference_price: 11.02
   buy_price: 9.6
 - name: 国投电力
   code: 600886.SH
   category: 电力/水电
-  reference_price: 14.46
   buy_price: 13.2
 - name: 中国银行
   code: 601988.SH
   category: 银行/六大行
-  reference_price: 6.57
   buy_price: 5.7
 - name: 中国神华
   code: 601088.SH
   category: 周期/煤炭
-  reference_price: 47.51
   buy_price: 42.0
 - name: 杭州银行
   code: 600926.SH
   category: 银行/城商行
-  reference_price: 17.51
   buy_price: 15.3
 - name: 华能水电
   code: 600025.SH
   category: 电力/水电
-  reference_price: 9.83
   buy_price: 8.6
 - name: 中国广核
   code: '003816.SZ'
   category: 电力/核电
-  reference_price: 4.33
   buy_price: 3.8
 - name: 中国核电
   code: 601985.SH
   category: 电力/核电
-  reference_price: 9.05
   buy_price: 8.0
 - name: 陕西煤业
   code: 601225.SH
   category: 周期/煤炭
-  reference_price: 26.05
   buy_price: 20.0
 - name: 晋控煤业
   code: 601001.SH
   category: 周期/煤炭
-  reference_price: 16.63
   buy_price: 12.5
 - name: 恒源煤电
   code: 600971.SH
   category: 周期/煤炭
-  reference_price: 8.62
   buy_price: 6.5
 - name: 兖矿能源
   code: 600188.SH
   category: 周期/煤炭
-  reference_price: 21.38
   buy_price: 16.0
 - name: 腾讯控股
   code: 00700.HK
   category: 科技/互联网
-  reference_price: 420.0
   buy_price: 409
 - name: 三一重工
   code: 600031.SH
   category: 周期/机械
-  reference_price: 25.5
   buy_price: 17.5
 - name: 海螺水泥
   code: 600585.SH
   category: 周期/建材
-  reference_price: 31.0
   buy_price: 22.0
 - name: 中国中免
   code: 601888.SH
   category: 消费/免税
-  reference_price: 72.0
   buy_price: 50.0
 - name: 安图生物
   code: 603658.SH
   category: 医药/IVD
-  reference_price: 56.0
   buy_price: 31
 - name: 安琪酵母
   code: 600298.SH
   category: 消费/食品
-  reference_price: 46.0
   buy_price: 35
 - name: 中远海控
   code: 601919.SH
   category: 周期/航运
-  reference_price: 19.0
   buy_price: 15.4
 - name: 宇通客车
   code: 600066.SH
   category: 周期/汽车
-  reference_price: 26.0
   buy_price: 25
 - name: 中国建筑
   code: 601668.SH
   category: 周期/建筑
-  reference_price: 7.8
   buy_price: 5.5
 - name: 格力电器
   code: 000651.SZ
   category: 消费/家电
-  reference_price: 52.0
   buy_price: 38

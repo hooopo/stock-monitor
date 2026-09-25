@@ -530,21 +530,30 @@ tr.hidden { display: none; }
 <tbody>
 <% stocks.each_with_index do |s, i| %>
 <%
-  nd = s['need_drop_pct'].round(2)
-  nd_abs = [nd.abs, 30].min
-  nd_pct = (nd_abs / 30.0 * 100).round(1)
-  if nd < 0
-    bar_color = 'green'
-    row_class = 'row-below'
-  elsif nd < 5
-    bar_color = 'red'
-    row_class = 'row-near'
-  elsif nd < 10
-    bar_color = 'orange'
-    row_class = 'row-mid'
-  else
+  cur = s['current_price']
+  nd = cur && !s['need_drop_pct'].infinite? ? s['need_drop_pct'].round(2) : nil
+  if nd.nil?
+    nd_abs = 0
+    nd_pct = 0
     bar_color = 'orange'
     row_class = 'row-far'
+    nd_txt = '—'
+  else
+    nd_abs = [nd.abs, 30].min
+    nd_pct = (nd_abs / 30.0 * 100).round(1)
+    if nd < 0
+      bar_color = 'green'
+      row_class = 'row-below'
+    elsif nd < 5
+      bar_color = 'red'
+      row_class = 'row-near'
+    elsif nd < 10
+      bar_color = 'orange'
+      row_class = 'row-mid'
+    else
+      bar_color = 'orange'
+      row_class = 'row-far'
+    end
   end
   r = s['roe'] ? s['roe'].round(2) : nil
 %>
@@ -552,7 +561,7 @@ tr.hidden { display: none; }
   class="<%= row_class %>"
   data-name="<%= s['name'] %> <%= s['code'] %>"
   data-category="<%= s['category'] %>"
-  data-drop="<%= nd %>"
+  data-drop="<%= nd ? nd : 999999 %>"
 >
   <td class="stock-cell">
     <div class="name"><%= s['name'] %></div>
@@ -560,11 +569,15 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat"><%= s['category'] %></span></td>
   <td class="num"><%= '%.2f' % s['buy_price'] %></td>
-  <td class="num"><%= '%.2f' % s['current_price'] %></td>
+  <td class="num"><% if cur %><%= '%.2f' % cur %><% else %><span class="muted">—</span><% end %></td>
   <td class="num">
+    <% if nd %>
     <span class="<%= nd < 0 ? 'neg' : 'pos' %>">
       <%= nd > 0 ? '+' : '' %><%= '%.2f' % nd %>%
     </span>
+    <% else %>
+    <span class="muted">—</span>
+    <% end %>
     <span class="drop-visual"><span class="bar <%= bar_color %>" style="width:<%= nd_pct %>%"></span></span>
   </td>
   <td class="num">
@@ -771,6 +784,10 @@ def load_data
   puts "🌐 正在拉取实时价格 (#{codes.size} 只)..."
   prices = fetch_realtime_prices(codes)
   puts "✅ 获取 #{prices.size} 只实时价格"
+  if prices.size < codes.size
+    miss = codes.size - prices.size
+    puts "⚠️  缺失 #{miss} 只价格"
+  end
 
   puts "📊 正在拉取 ROE 数据..."
   roes = fetch_roe_batch(codes)
@@ -782,8 +799,8 @@ def load_data
       s["current_price"] = prices[code]["current_price"]
       s["price_date"] = "#{prices[code]["date"]} #{prices[code]["time"]}"
     else
-      s["current_price"] ||= s["reference_price"]
-      s["price_date"] ||= "参考价"
+      s["current_price"] = nil
+      s["price_date"] = nil
     end
     s["roe"] = roes[code] if roes[code]
   end
@@ -793,13 +810,12 @@ end
 
 def process(stocks)
   stocks.each do |s|
-    cur = s["current_price"] || s["reference_price"]
+    cur = s["current_price"]
     buy = s["buy_price"]
-    s["current_price"] = cur
-    s["need_drop_pct"] = if buy > 0
+    s["need_drop_pct"] = if cur && buy > 0
                            (cur - buy) / buy * 100.0
                          else
-                           0.0
+                           Float::INFINITY
                          end
   end
 
@@ -807,12 +823,13 @@ def process(stocks)
 end
 
 def calc_stats(stocks)
-  below = stocks.count { |s| s["current_price"] < s["buy_price"] }
-  near = stocks.count { |s| s["need_drop_pct"] >= 0 && s["need_drop_pct"] < 5 }
-  mid = stocks.count { |s| s["need_drop_pct"] >= 5 && s["need_drop_pct"] < 10 }
-  far = stocks.count { |s| s["need_drop_pct"] >= 10 }
+  priced = stocks.select { |s| s["current_price"] }
+  below = priced.count { |s| s["current_price"] < s["buy_price"] }
+  near = priced.count { |s| s["need_drop_pct"] >= 0 && s["need_drop_pct"] < 5 }
+  mid = priced.count { |s| s["need_drop_pct"] >= 5 && s["need_drop_pct"] < 10 }
+  far = priced.count { |s| s["need_drop_pct"] >= 10 && !s["need_drop_pct"].infinite? }
   roes = stocks.map { |s| s["roe"] }.compact
-  drops = stocks.map { |s| s["need_drop_pct"] }
+  drops = priced.map { |s| s["need_drop_pct"] }
 
   avg_roe = roes.empty? ? 0.0 : roes.sum / roes.size
   avg_drop = drops.empty? ? 0.0 : drops.sum / drops.size
