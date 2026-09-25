@@ -243,7 +243,7 @@
   code: 600236.SH
   category: 电力/水电
   reference_price: 10.07
-  buy_price: 8.8
+  buy_price: 6.5
 - name: 邮储银行
   code: 601658.SH
   category: 银行/六大行
@@ -369,3 +369,33 @@
   category: 周期/煤炭
   reference_price: 21.38
   buy_price: 16.0
+- name: 腾讯控股
+  code: 00700.HK
+  category: 科技/互联网
+  reference_price: 420.0
+  buy_price: 409
+- name: 三一重工
+  code: 600031.SH
+  category: 周期/机械
+  reference_price: 25.5
+  buy_price: 17.5
+- name: 海螺水泥
+  code: 600585.SH
+  category: 周期/建材
+  reference_price: 31.0
+  buy_price: 22.0
+- name: 中国中免
+  code: 601888.SH
+  category: 消费/免税
+  reference_price: 72.0
+  buy_price: 50.0
+- name: 安图生物
+  code: 603658.SH
+  category: 医药/IVD
+  reference_price: 56.0
+  buy_price: 40.0
+- name: 安琪酵母
+  code: 600298.SH
+  category: 消费/食品
+  reference_price: 46.0
+  buy_price: 33.0
