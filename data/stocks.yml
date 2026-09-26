@@ -339,3 +339,23 @@
   code: 03898.HK
   category: 科技/电子
   buy_price: 27
+- name: 皖能电力
+  code: 000543.SZ
+  category: 电力/综合能源
+  buy_price: 6.8
+- name: 伊利股份
+  code: 600887.SH
+  category: 消费/食品
+  buy_price: 25.8
+- name: 四川路桥
+  code: 600039.SH
+  category: 周期/建筑
+  buy_price: 8.4
+- name: 海尔智家
+  code: 600690.SH
+  category: 消费/家电
+  buy_price: 19.2
+- name: 中材国际
+  code: 600970.SH
+  category: 周期/建材
+  buy_price: 7.5
