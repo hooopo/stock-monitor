@@ -18,7 +18,7 @@
 - name: 成都银行
   code: 601838.SH
   category: 银行/城商行
-  buy_price: 18
+  buy_price: 18.5
 - name: 招商银行
   code: 600036.SH
   category: 银行/股份行
@@ -30,7 +30,7 @@
 - name: 中国移动
   code: 600941.SH
   category: 公用事业/通信
-  buy_price: 92
+  buy_price: 93.5
 - name: 浙能电力
   code: 600023.SH
   category: 电力/火电
@@ -42,7 +42,7 @@
 - name: 平安银行
   code: 000001.SZ
   category: 银行/股份行
-  buy_price: 10.6
+  buy_price: 10.8
 - name: 伟明环保
   code: 603568.SH
   category: 公用事业/环保
@@ -50,11 +50,11 @@
 - name: 皖通高速
   code: 600012.SH
   category: 公用事业/高速
-  buy_price: 14.7
+  buy_price: 15
 - name: 北京银行
   code: 601169.SH
   category: 银行/城商行
-  buy_price: 5.2
+  buy_price: 5.4
 - name: 华能国际
   code: 600011.SH
   category: 电力/火电
@@ -78,7 +78,7 @@
 - name: 紫金矿业
   code: 601899.SH
   category: 周期/有色
-  buy_price: 28
+  buy_price: 27.5
 - name: 中国外运
   code: 601598.SH
   category: 公用事业/物流
@@ -98,7 +98,7 @@
 - name: 宁波港
   code: 601018.SH
   category: 公用事业/港口
-  buy_price: 3.2
+  buy_price: 3.15
 - name: 盐田港
   code: '000088.SZ'
   category: 公用事业/港口
@@ -162,7 +162,7 @@
 - name: 瀚蓝环境
   code: 600323.SH
   category: 公用事业/环保
-  buy_price: 27.0
+  buy_price: 26.8
 - name: 福能股份
   code: 600483.SH
   category: 电力/综合能源
@@ -226,7 +226,7 @@
 - name: 苏州银行
   code: '002966.SZ'
   category: 银行/城商行
-  buy_price: 8.6
+  buy_price: 8.7
 - name: 内蒙华电
   code: 600863.SH
   category: 电力/火电
@@ -298,7 +298,7 @@
 - name: 腾讯控股
   code: 00700.HK
   category: 科技/互联网
-  buy_price: 409
+  buy_price: 410
 - name: 三一重工
   code: 600031.SH
   category: 周期/机械
