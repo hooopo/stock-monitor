@@ -34,11 +34,11 @@
 - name: 浙能电力
   code: 600023.SH
   category: 电力/火电
-  buy_price: 4.7
+  buy_price: 5
 - name: 贵阳银行
   code: 601997.SH
   category: 银行/城商行
-  buy_price: 4.9
+  buy_price: 5.15
 - name: 平安银行
   code: 000001.SZ
   category: 银行/股份行
@@ -74,7 +74,7 @@
 - name: 长江电力
   code: 600900.SH
   category: 电力/水电
-  buy_price: 26.2
+  buy_price: 26.8
 - name: 紫金矿业
   code: 601899.SH
   category: 周期/有色
@@ -82,7 +82,7 @@
 - name: 中国外运
   code: 601598.SH
   category: 公用事业/物流
-  buy_price: 5.8
+  buy_price: 6.2
 - name: 宁波银行
   code: 002142.SZ
   category: 银行/城商行
@@ -90,11 +90,11 @@
 - name: 山东高速
   code: 600350.SH
   category: 公用事业/高速
-  buy_price: 9.2
+  buy_price: 9.6
 - name: 沪农商行
   code: 601825.SH
   category: 银行/农商行
-  buy_price: 7.6
+  buy_price: 8.2
 - name: 宁波港
   code: 601018.SH
   category: 公用事业/港口
@@ -106,15 +106,15 @@
 - name: 交通银行
   code: 601328.SH
   category: 银行/六大行
-  buy_price: 6.5
+  buy_price: 7.05
 - name: 江苏银行
   code: 600919.SH
   category: 银行/城商行
-  buy_price: 11.2
+  buy_price: 11.6
 - name: 南京银行
   code: 601009.SH
   category: 银行/城商行
-  buy_price: 10.8
+  buy_price: 11.1
 - name: 渝农商行
   code: 601077.SH
   category: 银行/农商行
@@ -126,11 +126,11 @@
 - name: 云铝股份
   code: '000807.SZ'
   category: 周期/有色
-  buy_price: 22.5
+  buy_price: 23.5
 - name: 川投能源
   code: 600674.SH
   category: 电力/水电
-  buy_price: 14.5
+  buy_price: 15
 - name: 长沙银行
   code: 601577.SH
   category: 银行/城商行
@@ -138,7 +138,7 @@
 - name: 江西铜业
   code: 600362.SH
   category: 周期/有色
-  buy_price: 37.0
+  buy_price: 38.0
 - name: 招商公路
   code: '001965.SZ'
   category: 公用事业/高速
@@ -146,11 +146,11 @@
 - name: 云南铜业
   code: '000878.SZ'
   category: 周期/有色
-  buy_price: 14.5
+  buy_price: 14.8
 - name: 国电电力
   code: 600795.SH
   category: 电力/综合能源
-  buy_price: 4.8
+  buy_price: 4.85
 - name: 中国电信
   code: 601728.SH
   category: 公用事业/通信
@@ -170,15 +170,15 @@
 - name: 中国铝业
   code: 601600.SH
   category: 周期/有色
-  buy_price: 7.8
+  buy_price: 8
 - name: 首创环保
   code: 600008.SH
   category: 公用事业/环保
-  buy_price: 2.5
+  buy_price: 2.55
 - name: 青岛港
   code: 601298.SH
   category: 公用事业/港口
-  buy_price: 9.0
+  buy_price: 9.1
 - name: 上港集团
   code: 600018.SH
   category: 公用事业/港口
@@ -186,11 +186,11 @@
 - name: 中信银行
   code: 601998.SH
   category: 银行/股份行
-  buy_price: 8.0
+  buy_price: 8.35
 - name: 唐山港
   code: 601000.SH
   category: 公用事业/港口
-  buy_price: 4.0
+  buy_price: 4.15
 - name: 桂冠电力
   code: 600236.SH
   category: 电力/水电
@@ -202,11 +202,11 @@
 - name: 华电国际
   code: 600027.SH
   category: 电力/火电
-  buy_price: 4.4
+  buy_price: 4.45
 - name: 工商银行
   code: 601398.SH
   category: 银行/六大行
-  buy_price: 7.3
+  buy_price: 7.55
 - name: 中谷物流
   code: 603565.SH
   category: 周期/航运
@@ -218,7 +218,7 @@
 - name: 浦发银行
   code: 600000.SH
   category: 银行/股份行
-  buy_price: 8.2
+  buy_price: 8.4
 - name: 中国联通
   code: 600050.SH
   category: 公用事业/通信
@@ -230,19 +230,19 @@
 - name: 内蒙华电
   code: 600863.SH
   category: 电力/火电
-  buy_price: 4.3
+  buy_price: 4.45
 - name: 浙商银行
   code: 601916.SH
   category: 银行/股份行
-  buy_price: 2.6
+  buy_price: 2.7
 - name: 农业银行
   code: 601288.SH
   category: 银行/六大行
-  buy_price: 6.1
+  buy_price: 6.4
 - name: 上海银行
   code: 601229.SH
   category: 银行/城商行
-  buy_price: 8.5
+  buy_price: 8.9
 - name: 大秦铁路
   code: 601006.SH
   category: 公用事业/铁路
@@ -250,35 +250,35 @@
 - name: 建设银行
   code: 601939.SH
   category: 银行/六大行
-  buy_price: 9.6
+  buy_price: 10.2
 - name: 国投电力
   code: 600886.SH
   category: 电力/水电
-  buy_price: 13.2
+  buy_price: 13.8
 - name: 中国银行
   code: 601988.SH
   category: 银行/六大行
-  buy_price: 5.7
+  buy_price: 6.15
 - name: 中国神华
   code: 601088.SH
   category: 周期/煤炭
-  buy_price: 42.0
+  buy_price: 44.0
 - name: 杭州银行
   code: 600926.SH
   category: 银行/城商行
-  buy_price: 15.3
+  buy_price: 15.8
 - name: 华能水电
   code: 600025.SH
   category: 电力/水电
-  buy_price: 8.6
+  buy_price: 9
 - name: 中国广核
   code: '003816.SZ'
   category: 电力/核电
-  buy_price: 3.8
+  buy_price: 3.9
 - name: 中国核电
   code: 601985.SH
   category: 电力/核电
-  buy_price: 8.0
+  buy_price: 8.25
 - name: 陕西煤业
   code: 601225.SH
   category: 周期/煤炭
@@ -302,7 +302,7 @@
 - name: 三一重工
   code: 600031.SH
   category: 周期/机械
-  buy_price: 15.5
+  buy_price: 15.8
 - name: 海螺水泥
   code: 600585.SH
   category: 周期/建材
@@ -310,7 +310,7 @@
 - name: 中国中免
   code: 601888.SH
   category: 消费/免税
-  buy_price: 47.0
+  buy_price: 49
 - name: 安图生物
   code: 603658.SH
   category: 医药/IVD
@@ -318,7 +318,7 @@
 - name: 安琪酵母
   code: 600298.SH
   category: 消费/食品
-  buy_price: 35
+  buy_price: 36
 - name: 中远海控
   code: 601919.SH
   category: 周期/航运
