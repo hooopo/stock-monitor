@@ -14,7 +14,7 @@
 - name: 华夏银行
   code: 600015.SH
   category: 银行/股份行
-  buy_price: 6.1
+  buy_price: 6.2
 - name: 成都银行
   code: 601838.SH
   category: 银行/城商行
@@ -22,11 +22,11 @@
 - name: 招商银行
   code: 600036.SH
   category: 银行/股份行
-  buy_price: 39.5
+  buy_price: 40.3
 - name: 兴业银行
   code: 601166.SH
   category: 银行/股份行
-  buy_price: 17.3
+  buy_price: 17.7
 - name: 中国移动
   code: 600941.SH
   category: 公用事业/通信
@@ -46,7 +46,7 @@
 - name: 伟明环保
   code: 603568.SH
   category: 公用事业/环保
-  buy_price: 12.8
+  buy_price: 12.6
 - name: 皖通高速
   code: 600012.SH
   category: 公用事业/高速
@@ -58,19 +58,19 @@
 - name: 华能国际
   code: 600011.SH
   category: 电力/火电
-  buy_price: 6.6
+  buy_price: 6.5
 - name: 粤高速A
   code: '000429.SZ'
   category: 公用事业/高速
-  buy_price: 13.4
+  buy_price: 12
 - name: 光大银行
   code: 601818.SH
   category: 银行/股份行
-  buy_price: 2.9
+  buy_price: 2.95
 - name: 常熟银行
   code: 601128.SH
   category: 银行/农商行
-  buy_price: 6
+  buy_price: 5.85
 - name: 长江电力
   code: 600900.SH
   category: 电力/水电
@@ -102,7 +102,7 @@
 - name: 盐田港
   code: '000088.SZ'
   category: 公用事业/港口
-  buy_price: 4.88
+  buy_price: 4.25
 - name: 交通银行
   code: 601328.SH
   category: 银行/六大行
@@ -118,11 +118,11 @@
 - name: 渝农商行
   code: 601077.SH
   category: 银行/农商行
-  buy_price: 6.3
+  buy_price: 6.35
 - name: 宁沪高速
   code: 600377.SH
   category: 公用事业/高速
-  buy_price: 12.25
+  buy_price: 12
 - name: 云铝股份
   code: '000807.SZ'
   category: 周期/有色
@@ -134,7 +134,7 @@
 - name: 长沙银行
   code: 601577.SH
   category: 银行/城商行
-  buy_price: 9.2
+  buy_price: 9.3
 - name: 江西铜业
   code: 600362.SH
   category: 周期/有色
@@ -182,7 +182,7 @@
 - name: 上港集团
   code: 600018.SH
   category: 公用事业/港口
-  buy_price: 5.1
+  buy_price: 5
 - name: 中信银行
   code: 601998.SH
   category: 银行/股份行
@@ -306,7 +306,7 @@
 - name: 海螺水泥
   code: 600585.SH
   category: 周期/建材
-  buy_price: 16.5
+  buy_price: 16
 - name: 中国中免
   code: 601888.SH
   category: 消费/免税
@@ -330,7 +330,7 @@
 - name: 中国建筑
   code: 601668.SH
   category: 周期/建筑
-  buy_price: 4.2
+  buy_price: 4.18
 - name: 格力电器
   code: 000651.SZ
   category: 消费/家电
@@ -338,4 +338,4 @@
 - name: 时代电气
   code: 03898.HK
   category: 科技/电子
-  buy_price: 28
+  buy_price: 27
