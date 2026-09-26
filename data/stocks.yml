@@ -382,7 +382,7 @@
 - name: 宁德时代
   code: 300750.SZ
   category: 科技/新能源
-  buy_price: 300
+  buy_price: 290
 - name: 百济神州
   code: 688235.SH
   category: 医药/创新药
@@ -394,7 +394,7 @@
 - name: 迈瑞医疗
   code: 300760.SZ
   category: 医药/器械
-  buy_price: 180
+  buy_price: 150
 - name: 寒武纪
   code: 688256.SH
   category: 科技/AI芯片
