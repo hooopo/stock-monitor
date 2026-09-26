@@ -2,11 +2,11 @@
 - name: 申能股份
   code: 600642.SH
   category: 电力/综合能源
-  buy_price: 5.8
+  buy_price: 8.3
 - name: 广州发展
   code: 600098.SH
   category: 电力/综合能源
-  buy_price: 5
+  buy_price: 5.9
 - name: 新奥股份
   code: 600803.SH
   category: 电力/综合能源
@@ -86,7 +86,7 @@
 - name: 宁波银行
   code: 002142.SZ
   category: 银行/城商行
-  buy_price: 30.0
+  buy_price: 31.0
 - name: 山东高速
   code: 600350.SH
   category: 公用事业/高速
@@ -154,7 +154,7 @@
 - name: 中国电信
   code: 601728.SH
   category: 公用事业/通信
-  buy_price: 4.65
+  buy_price: 5.75
 - name: 招商港口
   code: '001872.SZ'
   category: 公用事业/港口
@@ -166,7 +166,7 @@
 - name: 福能股份
   code: 600483.SH
   category: 电力/综合能源
-  buy_price: 8.5
+  buy_price: 9.7
 - name: 中国铝业
   code: 601600.SH
   category: 周期/有色
@@ -194,11 +194,11 @@
 - name: 桂冠电力
   code: 600236.SH
   category: 电力/水电
-  buy_price: 6.5
+  buy_price: 8.3
 - name: 邮储银行
   code: 601658.SH
   category: 银行/六大行
-  buy_price: 4.4
+  buy_price: 4.95
 - name: 华电国际
   code: 600027.SH
   category: 电力/火电
@@ -210,11 +210,11 @@
 - name: 中谷物流
   code: 603565.SH
   category: 周期/航运
-  buy_price: 10
+  buy_price: 12.5
 - name: 洛阳钼业
   code: 603993.SH
   category: 周期/有色
-  buy_price: 14.5
+  buy_price: 15
 - name: 浦发银行
   code: 600000.SH
   category: 银行/股份行
@@ -282,19 +282,19 @@
 - name: 陕西煤业
   code: 601225.SH
   category: 周期/煤炭
-  buy_price: 20.0
+  buy_price: 23
 - name: 晋控煤业
   code: 601001.SH
   category: 周期/煤炭
-  buy_price: 12.5
+  buy_price: 15.5
 - name: 恒源煤电
   code: 600971.SH
   category: 周期/煤炭
-  buy_price: 6.5
+  buy_price: 7.5
 - name: 兖矿能源
   code: 600188.SH
   category: 周期/煤炭
-  buy_price: 16.0
+  buy_price: 17.5
 - name: 腾讯控股
   code: 00700.HK
   category: 科技/互联网
