@@ -745,10 +745,14 @@ def fetch_realtime_prices(codes)
   results
 end
 
-def fetch_roe_batch(codes)
+def fetch_roe_a_share(codes)
   results = {}
   conn = Faraday.new(url: "https://emweb.securities.eastmoney.com") do |f|
     f.adapter Faraday.default_adapter
+    f.headers["User-Agent"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36"
+    f.ssl[:verify] = false
+    f.options[:timeout] = 10
+    f.options[:open_timeout] = 6
   end
 
   codes.each do |code|
@@ -758,8 +762,13 @@ def fetch_roe_batch(codes)
     begin
       url = "/PC_HSF10/NewFinanceAnalysis/ZYZBAjaxNew"
       params = { "type" => "0", "code" => secid }
-      resp = conn.get(url, params)
-      if resp.success?
+      resp = nil
+      2.times do
+        resp = conn.get(url, params)
+        break if resp.success?
+        sleep 0.4
+      end
+      if resp&.success?
         data = JSON.parse(resp.body) rescue {}
         roe = nil
         if data["data"] && data["data"].is_a?(Array) && !data["data"].empty?
@@ -768,13 +777,123 @@ def fetch_roe_batch(codes)
         end
         results[code] = roe.to_f if roe && roe.to_f != 0
       end
-    rescue => e
-      # skip individual errors
+    rescue StandardError
+      # skip individual errors (SSL/timeout/etc)
     end
     sleep 0.15
   end
 
   results
+end
+
+def fetch_roe_hk(codes)
+  results = {}
+  ut_token = "fa5fd1943c7b386f172d6893dbbd1d0c"
+  return results if codes.empty?
+
+  $stderr.puts "[ROE:HK] start fetching #{codes.size} stocks via push2 f167"
+
+  # ===== Method 1: Faraday (fast, shared conn) =====
+  conn = Faraday.new(url: "https://push2.eastmoney.com") do |f|
+    f.adapter Faraday.default_adapter
+    f.headers["User-Agent"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36"
+    f.ssl[:verify] = false
+    f.options[:timeout] = 10
+    f.options[:open_timeout] = 6
+  end
+
+  codes.each do |code|
+    num = code.split(".").first
+    secid = "116.#{num}"
+    begin
+      resp = nil
+      2.times do
+        resp = conn.get("/api/qt/stock/get", {
+          "secid" => secid,
+          "fields" => "f167",
+          "ut" => ut_token
+        })
+        break if resp.success?
+        sleep 0.4
+      end
+      if resp&.success?
+        data = JSON.parse(resp.body) rescue {}
+        dd = data["data"]
+        if dd && dd["f167"]
+          roe_ttm = dd["f167"].to_f / 100.0
+          results[code] = roe_ttm if roe_ttm != 0
+        end
+      end
+    rescue StandardError
+      # skip per-stock errors
+    end
+    sleep 0.08
+  end
+
+  # ===== Method 2: shell curl fallback (bypasses Ruby OpenSSL EOF bugs on some macOS/Ruby 3.4) =====
+  if results.size < codes.size * 0.5
+    $stderr.puts "[ROE:HK] Faraday got #{results.size}/#{codes.size} — trying curl fallback for missing #{codes.size - results.size}..."
+    missing = codes.reject { |c| results.key?(c) }
+    missing.each do |code|
+      num = code.split(".").first
+      secid = "116.#{num}"
+      out = `curl -sS --max-time 14 --retry 1 \
+        -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/129.0 Safari/537.36' \
+        -H 'Accept: application/json,text/plain,*/*' \
+        --compressed \
+        'https://push2.eastmoney.com/api/qt/stock/get?secid=#{secid}&fields=f167&ut=#{ut_token}' 2>/dev/null`
+      next unless $?.success? && !out.to_s.strip.empty?
+      begin
+        dd = JSON.parse(out)["data"]
+        if dd && dd["f167"]
+          roe_ttm = dd["f167"].to_f / 100.0
+          results[code] = roe_ttm if roe_ttm != 0
+        end
+      rescue StandardError
+        # ignore parse errors
+      end
+      sleep 0.06
+    end
+  end
+
+  $stderr.puts "[ROE:HK] done: got #{results.size}/#{codes.size}"
+  results
+end
+
+def fetch_roe_batch(codes)
+  a_codes = codes.select { |c| c.end_with?(".SH", ".SZ") }
+  hk_codes = codes.select { |c| c.end_with?(".HK") }
+
+  a_result = {}
+  hk_result = {}
+  Thread.report_on_exception = true
+
+  threads = []
+  threads << Thread.new do
+    Thread.current.name = "roe-a-share"
+    begin
+      a_result = fetch_roe_a_share(a_codes)
+    rescue StandardError => e
+      $stderr.puts "[ROE:A] thread FAILED: #{e.class} #{e.message[0..200]}"
+      a_result = {}
+    end
+  end unless a_codes.empty?
+
+  threads << Thread.new do
+    Thread.current.name = "roe-hk"
+    begin
+      hk_result = fetch_roe_hk(hk_codes)
+    rescue StandardError => e
+      $stderr.puts "[ROE:HK] thread FAILED: #{e.class} #{e.message[0..200]}\n#{e.backtrace.first(5).join("\n")}"
+      hk_result = {}
+    end
+  end unless hk_codes.empty?
+
+  threads.each(&:join)
+
+  $stderr.puts "[ROE:summary] A=#{a_result.size}/#{a_codes.size}  H=#{hk_result.size}/#{hk_codes.size}  total=#{a_result.size + hk_result.size}"
+
+  a_result.merge(hk_result)
 end
 
 def load_data
@@ -791,7 +910,9 @@ def load_data
 
   puts "📊 正在拉取 ROE 数据..."
   roes = fetch_roe_batch(codes)
-  puts "✅ 获取 #{roes.size} 只 ROE"
+  a_n  = roes.count { |c, _| c.end_with?(".SH", ".SZ") }
+  h_n  = roes.count { |c, _| c.end_with?(".HK") }
+  puts "✅ 获取 #{roes.size} 只 ROE (A股 #{a_n}/112, 港股 #{h_n}/40)"
 
   stocks.each do |s|
     code = s["code"]
