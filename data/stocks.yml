@@ -6,7 +6,7 @@
 - name: 广州发展
   code: 600098.SH
   category: 电力/综合能源
-  buy_price: 5.9
+  buy_price: 5.6
 - name: 新奥股份
   code: 600803.SH
   category: 电力/综合能源
@@ -26,15 +26,15 @@
 - name: 兴业银行
   code: 601166.SH
   category: 银行/股份行
-  buy_price: 17.7
+  buy_price: 17.3
 - name: 中国移动
   code: 600941.SH
   category: 公用事业/通信
-  buy_price: 93.5
+  buy_price: 96
 - name: 浙能电力
   code: 600023.SH
   category: 电力/火电
-  buy_price: 5
+  buy_price: 4.4
 - name: 贵阳银行
   code: 601997.SH
   category: 银行/城商行
@@ -50,7 +50,7 @@
 - name: 皖通高速
   code: 600012.SH
   category: 公用事业/高速
-  buy_price: 15
+  buy_price: 15.2
 - name: 北京银行
   code: 601169.SH
   category: 银行/城商行
@@ -58,7 +58,7 @@
 - name: 华能国际
   code: 600011.SH
   category: 电力/火电
-  buy_price: 6.5
+  buy_price: 6.3
 - name: 粤高速A
   code: '000429.SZ'
   category: 公用事业/高速
@@ -154,7 +154,7 @@
 - name: 中国电信
   code: 601728.SH
   category: 公用事业/通信
-  buy_price: 5.75
+  buy_price: 5.9
 - name: 招商港口
   code: '001872.SZ'
   category: 公用事业/港口
@@ -198,7 +198,7 @@
 - name: 邮储银行
   code: 601658.SH
   category: 银行/六大行
-  buy_price: 4.95
+  buy_price: 4.8
 - name: 华电国际
   code: 600027.SH
   category: 电力/火电
@@ -214,7 +214,7 @@
 - name: 洛阳钼业
   code: 603993.SH
   category: 周期/有色
-  buy_price: 15
+  buy_price: 15.5
 - name: 浦发银行
   code: 600000.SH
   category: 银行/股份行
@@ -246,7 +246,7 @@
 - name: 大秦铁路
   code: 601006.SH
   category: 公用事业/铁路
-  buy_price: 4.4
+  buy_price: 4.1
 - name: 建设银行
   code: 601939.SH
   category: 银行/六大行
@@ -286,7 +286,7 @@
 - name: 晋控煤业
   code: 601001.SH
   category: 周期/煤炭
-  buy_price: 15.5
+  buy_price: 14
 - name: 恒源煤电
   code: 600971.SH
   category: 周期/煤炭
@@ -306,7 +306,7 @@
 - name: 海螺水泥
   code: 600585.SH
   category: 周期/建材
-  buy_price: 16
+  buy_price: 15.5
 - name: 中国中免
   code: 601888.SH
   category: 消费/免税
@@ -314,7 +314,7 @@
 - name: 安图生物
   code: 603658.SH
   category: 医药/IVD
-  buy_price: 31
+  buy_price: 26.5
 - name: 安琪酵母
   code: 600298.SH
   category: 消费/食品
@@ -382,7 +382,7 @@
 - name: 宁德时代
   code: 300750.SZ
   category: 科技/新能源
-  buy_price: 290
+  buy_price: 310
 - name: 百济神州
   code: 688235.SH
   category: 医药/创新药
