@@ -382,7 +382,7 @@
 - name: 宁德时代
   code: 300750.SZ
   category: 科技/新能源
-  buy_price: 310
+  buy_price: 270
 - name: 百济神州
   code: 688235.SH
   category: 医药/创新药
@@ -602,7 +602,7 @@
 - name: 宁德时代
   code: 03750.HK
   category: 科技/新能源
-  buy_price: 390
+  buy_price: 340
 - name: 江苏恒瑞医药
   code: 01276.HK
   category: 医药/创新药
