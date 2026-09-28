@@ -682,6 +682,20 @@ tr.hidden { display: none; }
 
 <script>
 (function() {
+  // ============================================================
+  //  Cloudflare Workers Proxy (REQUIRED for GitHub Pages mode)
+  // ============================================================
+  //  After you run `npx wrangler@latest deploy` in this repo,
+  //  replace the string below with your real workers.dev URL
+  //  (no trailing slash), e.g.  "https://stock-quote-proxy.foo.workers.dev"
+  //
+  //  If you leave it empty (""), GitHub Pages mode will try the
+  //  built-in qt.gtimg.cn direct path as a fallback.
+  //
+  //  Also overrideable per-page load in DevTools console:
+  //    window.STOCK_PROXY_BASE = "https://YOUR.workers.dev";
+  const DEFAULT_PROXY_BASE = "https://stock-quote-proxy.hooopo.workers.dev";
+
   const searchInput = document.getElementById('searchInput');
   const categoryFilter = document.getElementById('categoryFilter');
   const dropFilter = document.getElementById('dropFilter');
@@ -800,45 +814,91 @@ tr.hidden { display: none; }
     return "";
   }
 
+  function codeToQQ(code) {
+    const parts = code.split(".");
+    const num = parts[0];
+    const mkt = parts[1];
+    if (mkt === "SH") return "sh" + num;
+    if (mkt === "SZ") return "sz" + num;
+    if (mkt === "HK") return "r_hk" + num;
+    return "";
+  }
+
   function mockPriceFor(row) {
     const buy = parseFloat(row.dataset.buy) || 10;
     const fixedJitter = (Math.abs(
-      Array.from(row.dataset.code || "").reduce((a, c) => a * 131 + c.charCodeAt(0), 7)
+      Array.from(row.dataset.code || "").reduce(function(a, c) { return a * 131 + c.charCodeAt(0); }, 7)
     ) % 1000) / 1000.0;
     const scenarios = [-0.22, -0.08, -0.03, 0.02, 0.06, 0.12, 0.25, 0.55];
     const s = scenarios[Math.floor(fixedJitter * scenarios.length)];
     return Math.max(0.01, buy * (1.0 + s));
   }
 
-  function sinaBatchFetch(sinaCodes) {
-    if (window.STOCK_MOCK_REFRESH === true) {
-      const rows = Array.from(document.querySelectorAll('#stockTable tbody tr'));
-      const rowMap = {}; rows.forEach(r => rowMap[r.dataset.code] = r);
-      const out = {};
-      sinaCodes.forEach(sc => {
-        const tail = sc.slice(2);
-        let code;
-        if (sc.startsWith("sh") || sc.startsWith("sz")) code = (sc.startsWith("sh") ? tail + ".SH" : tail + ".SZ");
-        else if (sc.startsWith("hk")) code = tail + ".HK";
-        else code = "";
-        const row = rowMap[code];
-        if (row) out[sc] = mockPriceFor(row);
-      });
-      return new Promise(r => setTimeout(() => r(out), 700));
+  function resolveProxyBase() {
+    const WS = String.fromCharCode(47);
+    const lastSlash = function(s) { while (s.length > 0 && s.charAt(s.length - 1) === WS) { s = s.substring(0, s.length - 1); } return s; };
+    if (typeof window.STOCK_PROXY_BASE === "string" && window.STOCK_PROXY_BASE.length > 0) {
+      return lastSlash(window.STOCK_PROXY_BASE);
     }
-    return new Promise((resolve) => {
+    if (typeof DEFAULT_PROXY_BASE === "string" && DEFAULT_PROXY_BASE.length > 0) {
+      return lastSlash(DEFAULT_PROXY_BASE);
+    }
+    return "";
+  }
+
+  function proxyBatchFetch(codes) {
+    // Worker endpoint: GET ${proxyBase}/?list=sh,sz,r_hk  -> JSON { qq_key: price }
+    return new Promise(function(resolve) {
+      const base = resolveProxyBase();
+      if (!base) { resolve({}); return; }
+      const qqList = codes.map(codeToQQ).filter(function(x){ return x && x.length > 0; }).join(",");
+      if (!qqList) { resolve({}); return; }
+      const url = base + "/?list=" + encodeURIComponent(qqList) + "&_t=" + Date.now();
+      const xhr = new XMLHttpRequest();
+      let settled = false;
+      const finish = function(obj) {
+        if (settled) return;
+        settled = true;
+        // Worker returns JSON with QQ-style keys (shNNNNNN / szNNNNNN / r_hkNNNNN).
+        // Downstream consumers want Sina-style keys (shNNNNNN / szNNNNNN / hkNNNNN).
+        const out = {};
+        codes.forEach(function(code) {
+          const qq = codeToQQ(code);
+          const sc = codeToSina(code);
+          const p = obj && obj[qq];
+          if (typeof p === "number" && p > 0) out[sc] = p;
+        });
+        resolve(out);
+      };
+      xhr.open("GET", url, true);
+      xhr.timeout = 15000;
+      xhr.responseType = "json";
+      xhr.onload = function() {
+        try {
+          const body = (typeof xhr.response === "object" && xhr.response !== null) ? xhr.response : {};
+          finish(body || {});
+        } catch(e) { finish({}); }
+      };
+      xhr.onerror = function() { finish({}); };
+      xhr.ontimeout = function() { finish({}); };
+      try { xhr.send(null); } catch(e) { finish({}); }
+    });
+  }
+
+  function sinaBatchFetch(sinaCodes) {
+    return new Promise(function(resolve) {
       const list = sinaCodes.join(",");
       const script = document.createElement("script");
       const stamp = Date.now() + "_" + Math.floor(Math.random() * 1e6);
       script.src = "/api/sina?list=" + encodeURIComponent(list) + "&rn=" + stamp;
-      script.onerror = () => {
+      script.onerror = function() {
         try { document.head.removeChild(script); } catch(e) {}
         resolve({});
       };
-      const done = () => {
+      const done = function() {
         try { document.head.removeChild(script); } catch(e) {}
         const out = {};
-        sinaCodes.forEach(sc => {
+        sinaCodes.forEach(function(sc) {
           const key = "hq_str_" + sc;
           if (typeof window[key] === "string" && window[key].length > 0) {
             try {
@@ -862,6 +922,62 @@ tr.hidden { display: none; }
     });
   }
 
+  function qqBatchFetch(codes) {
+    return new Promise(function(resolve) {
+      const qqList = codes.map(codeToQQ).filter(function(x){ return x; }).join(",");
+      if (!qqList) { resolve({}); return; }
+      const url = "https://qt.gtimg.cn/q=" + encodeURIComponent(qqList);
+      const xhr = new XMLHttpRequest();
+      let settled = false;
+      const finish = function(result) {
+        if (settled) return;
+        settled = true;
+        const out = {};
+        codes.forEach(function(code, i) {
+          const qq = codeToQQ(code);
+          const p = result[qq];
+          if (p && p > 0) {
+            const sc = codeToSina(code);
+            out[sc] = p;
+          }
+        });
+        resolve(out);
+      };
+      xhr.open("GET", url, true);
+      xhr.timeout = 12000;
+      xhr.responseType = "arraybuffer";
+      xhr.onload = function() {
+        if (settled) return;
+        const raw = xhr.response;
+        if (!raw || raw.byteLength === 0) { finish({}); return; }
+        let text = "";
+        try { text = new TextDecoder("gbk").decode(new Uint8Array(raw)); }
+        catch(e) {
+          try { text = new TextDecoder("utf-8", {fatal:false}).decode(new Uint8Array(raw)); }
+          catch(e2) { finish({}); return; }
+        }
+        const result = {};
+        const sep = new RegExp(String.fromCharCode(10) + "|;", "g");
+        const lines = text.split(sep);
+        lines.forEach(function(line) {
+          const QU = String.fromCharCode(34);
+          const re = new RegExp("v_(r_hk[0-9]+|[sh]z[0-9]+)=" + QU + "([^" + QU + "]*)" + QU);
+          const m = line.match(re);
+          if (!m) return;
+          const key = m[1];
+          const fields = m[2].split("~");
+          const p = parseFloat(fields[3] || "0");
+          if (p > 0) result[key] = p;
+        });
+        finish(result);
+      };
+      xhr.ontimeout = function() { finish({}); };
+      xhr.onerror = function() { finish({}); };
+      try { xhr.send(null); }
+      catch(e) { finish({}); }
+    });
+  }
+
   async function refreshPrices() {
     if (refreshBtn.disabled) return;
     refreshBtn.disabled = true;
@@ -869,25 +985,83 @@ tr.hidden { display: none; }
     refreshBtn.classList.remove("done");
 
     const rowMap = {};
-    rows.forEach(r => { rowMap[r.dataset.code] = r; });
-    const pairs = rows.map(r => [codeToSina(r.dataset.code), r.dataset.code]).filter(x => x[0]);
-    const codeMap = {}; pairs.forEach(p => codeMap[p[0]] = p[1]);
-    const sinaList = pairs.map(p => p[0]);
+    rows.forEach(function(r) { rowMap[r.dataset.code] = r; });
+    const pairs = rows.map(function(r){ return [codeToSina(r.dataset.code), r.dataset.code]; }).filter(function(x){ return x[0]; });
+    const codeMap = {}; pairs.forEach(function(p) { codeMap[p[0]] = p[1]; });
+    const codeList = pairs.map(function(p) { return p[1]; });
+    const sinaList = pairs.map(function(p) { return p[0]; });
     const BATCH = 50;
     const batches = [];
-    for (let i = 0; i < sinaList.length; i += BATCH) batches.push(sinaList.slice(i, i + BATCH));
+    for (let i = 0; i < sinaList.length; i += BATCH) batches.push({ sina: sinaList.slice(i, i + BATCH), codes: codeList.slice(i, i + BATCH) });
 
     let okCount = 0;
     try {
       for (let i = 0; i < batches.length; i++) {
         refreshBtn.textContent = "刷新中 " + (i + 1) + "/" + batches.length + " ...";
-        const res = await sinaBatchFetch(batches[i]);
-        Object.keys(res).forEach(sc => {
+        const batch = batches[i];
+        let res;
+        if (window.STOCK_MOCK_REFRESH === true) {
+          const rr = {};
+          batch.codes.forEach(function(code) {
+            const sc = codeToSina(code);
+            const row = rowMap[code];
+            if (row) rr[sc] = mockPriceFor(row);
+          });
+          await new Promise(function(r){ setTimeout(function(){ r(); }, 400); });
+          res = rr;
+        } else {
+          // Priority order:
+          //   (A) local-like host + NOT github.io -> try local server.rb /api/sina first
+          //       if <50% coverage, merge qq direct
+          //   (B) github.io or STOCK_FORCE_DIRECT
+          //       (B1) if Cloudflare proxy configured -> proxyBatchFetch
+          //       (B2) if proxy 0 hits (or proxy not configured at all) -> qqBatchFetch fallback
+          const isLocalLike = location.protocol.indexOf("http") === 0 &&
+            location.hostname &&
+            location.hostname.toLowerCase().indexOf("github.io") === -1;
+          if (window.STOCK_FORCE_DIRECT === true || !isLocalLike) {
+            // GitHub Pages / forced direct branch
+            const base = resolveProxyBase();
+            if (base.length > 0) {
+              // (B1) Cloudflare proxy
+              const proxied = await proxyBatchFetch(batch.codes);
+              const got = Object.keys(proxied).length;
+              if (got >= Math.max(1, Math.floor(batch.codes.length * 0.5))) {
+                res = proxied;
+              } else {
+                const qq = await qqBatchFetch(batch.codes);
+                res = Object.assign({}, proxied, qq);
+              }
+            } else {
+              // (B2) no proxy configured -> direct qt.gtimg.cn CORS fallback
+              res = await qqBatchFetch(batch.codes);
+            }
+          } else {
+            // (A) local server branch
+            const local = await sinaBatchFetch(batch.sina);
+            const got = Object.keys(local).length;
+            const need = batch.sina.length;
+            if (got >= Math.max(1, Math.floor(need * 0.5))) {
+              res = local;
+            } else {
+              const base = resolveProxyBase();
+              if (base.length > 0) {
+                const proxied = await proxyBatchFetch(batch.codes);
+                res = Object.assign({}, local, proxied);
+              }
+              if (!res || Object.keys(res || {}).length < Math.max(1, Math.floor(need * 0.5))) {
+                const qq = await qqBatchFetch(batch.codes);
+                res = Object.assign({}, local || {}, res || {}, qq);
+              }
+            }
+          }
+        }
+        Object.keys(res).forEach(function(sc) {
           const code = codeMap[sc];
           const row = rowMap[code];
           if (row && updateRowPrice(row, res[sc])) okCount++;
         });
-        if (i < batches.length - 1) await new Promise(r => setTimeout(r, 350));
+        if (i < batches.length - 1) await new Promise(function(r){ setTimeout(function(){ r(); }, 300); });
       }
     } catch(e) {}
 
@@ -895,7 +1069,7 @@ tr.hidden { display: none; }
     applyFilters();
 
     const now = new Date();
-    const pad = n => String(n).padStart(2, "0");
+    const pad = function(n) { return String(n).padStart(2, "0"); };
     const tz = -now.getTimezoneOffset() / 60;
     const tzStr = (tz >= 0 ? "+" : "") + tz + ":00";
     updateTimeEl.textContent = "更新时间: " +
@@ -904,7 +1078,8 @@ tr.hidden { display: none; }
       " (UTC" + tzStr + ") · 前端已刷新 " + okCount + "/" + rows.length;
     refreshBtn.classList.add("done");
     refreshBtn.textContent = "✅ 刷新完成 " + okCount + "/" + rows.length;
-    setTimeout(() => {
+    window.__LAST_REFRESH = { okCount: okCount, total: rows.length, time: Date.now() };
+    setTimeout(function() {
       refreshBtn.textContent = origText;
       refreshBtn.classList.remove("done");
       refreshBtn.disabled = false;
@@ -924,7 +1099,17 @@ tr.hidden { display: none; }
     rows.forEach(r => tbody.appendChild(r));
 
     headers.forEach(h => {
-      h.textContent = h.textContent.replace(/ [↓↑]$/, '');
+      // Strip trailing arrow ↓/↑ if present (avoid regex literal to keep ERB output stable)
+      let t = h.textContent;
+      const LWS = String.fromCharCode(32);
+      const lastSpace = t.lastIndexOf(LWS);
+      if (lastSpace !== -1 && lastSpace === t.length - 2) {
+        const last = t.charAt(t.length - 1);
+        if (last === String.fromCharCode(8595) || last === String.fromCharCode(8593)) {
+          t = t.substring(0, lastSpace);
+        }
+      }
+      h.textContent = t;
       if (h.dataset.sort === currentSort.key) {
         h.textContent += currentSort.dir === 'asc' ? ' ↓' : ' ↑';
         h.classList.add('sorted');

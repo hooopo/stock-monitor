@@ -1,0 +1,14 @@
+name = "stock-quote-proxy"
+main = "src/index.js"
+compatibility_date = "2024-09-25"
+
+# Usage:
+#   1) Create a Cloudflare account at https://dash.cloudflare.com/
+#   2) Install wrangler:  npm i -g wrangler   (or:  npx wrangler@latest)
+#   3) Login once:        wrangler login
+#   4) Deploy once:       wrangler deploy
+#   5) Copy the returned *.workers.dev URL (or custom route) into
+#      scripts/generate_page.rb `const STOCK_PROXY = "https://YOUR.workers.dev";`
+#
+# Optional: set a custom route/domain on Cloudflare dashboard
+# routes = [{ pattern = "quotes.example.com/*", zone_name = "example.com", custom_domain = true }]
