@@ -14,6 +14,7 @@ GEM
     net-http (0.9.1)
       uri (>= 0.11.1)
     uri (1.1.1)
+    webrick (1.9.2)
     yaml (0.4.0)
 
 PLATFORMS
@@ -24,6 +25,7 @@ DEPENDENCIES
   csv
   erubi
   faraday (~> 2.0)
+  webrick
   yaml
 
 CHECKSUMS
@@ -36,6 +38,7 @@ CHECKSUMS
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
   net-http (0.9.1) sha256=25ba0b67c63e89df626ed8fac771d0ad24ad151a858af2cc8e6a716ca4336996
   uri (1.1.1) sha256=379fa58d27ffb1387eaada68c749d1426738bd0f654d812fcc07e7568f5c57c6
+  webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
   yaml (0.4.0) sha256=240e69d1e6ce3584d6085978719a0faa6218ae426e034d8f9b02fb54d3471942
 
 BUNDLED WITH

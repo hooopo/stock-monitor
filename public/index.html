@@ -249,6 +249,25 @@ body {
   transform: rotate(45deg);
 }
 
+.refresh-btn {
+  padding: 0 14px;
+  min-height: 38px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s, transform 0.05s;
+  flex-shrink: 0;
+}
+.refresh-btn:hover { filter: brightness(1.05); }
+.refresh-btn:active { transform: translateY(1px); }
+.refresh-btn:disabled { opacity: 0.6; cursor: wait; filter: grayscale(0.3); }
+.refresh-btn.done { background: #16a34a; border-color: #16a34a; }
+
 .table-wrap {
   background: var(--card);
   border-radius: var(--radius-md);
@@ -494,7 +513,11 @@ tr.hidden { display: none; }
 <div class="container">
 <div class="header">
   <h1>📈 股票监控榜</h1>
-  <div class="meta">更新时间: 2026-09-28 11:21:35 (UTC+8) &nbsp;·&nbsp; 共 156 只股票</div>
+  <div class="meta">
+    <span id="updateTime">更新时间: 2026-09-28 11:55:07 (UTC+8)</span>
+    &nbsp;·&nbsp;
+    共 156 只股票
+  </div>
 </div>
 
 <div class="stats">
@@ -504,29 +527,30 @@ tr.hidden { display: none; }
   </div>
   <div class="stat-card">
     <div class="label">需跌0-5%</div>
-    <div class="value">29</div>
+    <div class="value">28</div>
   </div>
   <div class="stat-card">
     <div class="label">需跌5-10%</div>
-    <div class="value">70</div>
+    <div class="value">69</div>
   </div>
   <div class="stat-card">
     <div class="label">需跌>10%</div>
-    <div class="value">56</div>
+    <div class="value">58</div>
   </div>
   <div class="stat-card">
     <div class="label">平均需跌幅</div>
-    <div class="value">20.01%</div>
+    <div class="value">20.09%</div>
   </div>
   <div class="stat-card">
     <div class="label">平均ROE</div>
-    <div class="value green">6.16%</div>
+    <div class="value green">7.06%</div>
   </div>
 </div>
 
 <div class="filter-bar">
   <input type="text" id="searchInput" placeholder="🔍 搜索名称/代码/分类...">
   <div class="row">
+    <button id="refreshBtn" class="refresh-btn">🔄 刷新现价</button>
     <label class="chk">
       <input type="checkbox" id="showHK" style="display:none">
       <span class="chk-box" id="hkBox"></span>
@@ -618,9 +642,11 @@ tr.hidden { display: none; }
 <tr
   class="row-below stock-row"
   data-market="A"
+  data-code="600015.SH"
+  data-buy="6.2"
   data-name="华夏银行 600015.SH"
   data-category="银行/股份行"
-  data-drop="-0.32"
+  data-drop="-0.48"
 >
   <td class="stock-cell">
     <div class="name">华夏银行</div>
@@ -628,12 +654,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">银行/股份行</span></td>
   <td class="num">6.20</td>
-  <td class="num">6.18</td>
+  <td class="num">6.17</td>
   <td class="num">
     <span class="neg">
-      -0.32%
+      -0.48%
     </span>
-    <span class="drop-visual"><span class="bar green" style="width:1.1%"></span></span>
+    <span class="drop-visual"><span class="bar green" style="width:1.6%"></span></span>
   </td>
   <td class="num">
       <span class="roe-low">
@@ -644,6 +670,8 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="600970.SH"
+  data-buy="7.5"
   data-name="中材国际 600970.SH"
   data-category="周期/建材"
   data-drop="0.4"
@@ -670,9 +698,11 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="000651.SZ"
+  data-buy="38"
   data-name="格力电器 000651.SZ"
   data-category="消费/家电"
-  data-drop="0.71"
+  data-drop="0.82"
 >
   <td class="stock-cell">
     <div class="name">格力电器</div>
@@ -680,12 +710,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">消费/家电</span></td>
   <td class="num">38.00</td>
-  <td class="num">38.27</td>
+  <td class="num">38.31</td>
   <td class="num">
     <span class="pos">
-      +0.71%
+      +0.82%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:2.4%"></span></span>
+    <span class="drop-visual"><span class="bar red" style="width:2.7%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -696,9 +726,11 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="600036.SH"
+  data-buy="40.3"
   data-name="招商银行 600036.SH"
   data-category="银行/股份行"
-  data-drop="0.87"
+  data-drop="0.92"
 >
   <td class="stock-cell">
     <div class="name">招商银行</div>
@@ -706,12 +738,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">银行/股份行</span></td>
   <td class="num">40.30</td>
-  <td class="num">40.65</td>
+  <td class="num">40.67</td>
   <td class="num">
     <span class="pos">
-      +0.87%
+      +0.92%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:2.9%"></span></span>
+    <span class="drop-visual"><span class="bar red" style="width:3.1%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -722,61 +754,11 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
-  data-name="中国建筑 601668.SH"
-  data-category="周期/建筑"
-  data-drop="0.96"
->
-  <td class="stock-cell">
-    <div class="name">中国建筑</div>
-    <div class="code">601668.SH</div>
-  </td>
-  <td><span class="cat">周期/建筑</span></td>
-  <td class="num">4.18</td>
-  <td class="num">4.22</td>
-  <td class="num">
-    <span class="pos">
-      +0.96%
-    </span>
-    <span class="drop-visual"><span class="bar red" style="width:3.2%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-low">
-        4.61%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-near stock-row"
-  data-market="A"
-  data-name="北京银行 601169.SH"
-  data-category="银行/城商行"
-  data-drop="1.11"
->
-  <td class="stock-cell">
-    <div class="name">北京银行</div>
-    <div class="code">601169.SH</div>
-  </td>
-  <td><span class="cat">银行/城商行</span></td>
-  <td class="num">5.40</td>
-  <td class="num">5.46</td>
-  <td class="num">
-    <span class="pos">
-      +1.11%
-    </span>
-    <span class="drop-visual"><span class="bar red" style="width:3.7%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        5.30%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-near stock-row"
-  data-market="A"
+  data-code="601818.SH"
+  data-buy="2.95"
   data-name="光大银行 601818.SH"
   data-category="银行/股份行"
-  data-drop="1.36"
+  data-drop="1.02"
 >
   <td class="stock-cell">
     <div class="name">光大银行</div>
@@ -784,12 +766,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">银行/股份行</span></td>
   <td class="num">2.95</td>
-  <td class="num">2.99</td>
+  <td class="num">2.98</td>
   <td class="num">
     <span class="pos">
-      +1.36%
+      +1.02%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:4.5%"></span></span>
+    <span class="drop-visual"><span class="bar red" style="width:3.4%"></span></span>
   </td>
   <td class="num">
       <span class="roe-low">
@@ -800,9 +782,67 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="601668.SH"
+  data-buy="4.18"
+  data-name="中国建筑 601668.SH"
+  data-category="周期/建筑"
+  data-drop="1.2"
+>
+  <td class="stock-cell">
+    <div class="name">中国建筑</div>
+    <div class="code">601668.SH</div>
+  </td>
+  <td><span class="cat">周期/建筑</span></td>
+  <td class="num">4.18</td>
+  <td class="num">4.23</td>
+  <td class="num">
+    <span class="pos">
+      +1.20%
+    </span>
+    <span class="drop-visual"><span class="bar red" style="width:4.0%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-low">
+        4.61%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-near stock-row"
+  data-market="A"
+  data-code="601169.SH"
+  data-buy="5.4"
+  data-name="北京银行 601169.SH"
+  data-category="银行/城商行"
+  data-drop="1.3"
+>
+  <td class="stock-cell">
+    <div class="name">北京银行</div>
+    <div class="code">601169.SH</div>
+  </td>
+  <td><span class="cat">银行/城商行</span></td>
+  <td class="num">5.40</td>
+  <td class="num">5.47</td>
+  <td class="num">
+    <span class="pos">
+      +1.30%
+    </span>
+    <span class="drop-visual"><span class="bar red" style="width:4.3%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        5.30%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-near stock-row"
+  data-market="A"
+  data-code="600039.SH"
+  data-buy="8.4"
   data-name="四川路桥 600039.SH"
   data-category="周期/建筑"
-  data-drop="1.79"
+  data-drop="1.55"
 >
   <td class="stock-cell">
     <div class="name">四川路桥</div>
@@ -810,12 +850,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">周期/建筑</span></td>
   <td class="num">8.40</td>
-  <td class="num">8.55</td>
+  <td class="num">8.53</td>
   <td class="num">
     <span class="pos">
-      +1.79%
+      +1.55%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:6.0%"></span></span>
+    <span class="drop-visual"><span class="bar red" style="width:5.2%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -826,9 +866,11 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="600941.SH"
+  data-buy="96"
   data-name="中国移动 600941.SH"
   data-category="公用事业/通信"
-  data-drop="2.09"
+  data-drop="1.92"
 >
   <td class="stock-cell">
     <div class="name">中国移动</div>
@@ -836,12 +878,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">公用事业/通信</span></td>
   <td class="num">96.00</td>
-  <td class="num">98.01</td>
+  <td class="num">97.84</td>
   <td class="num">
     <span class="pos">
-      +2.09%
+      +1.92%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:7.0%"></span></span>
+    <span class="drop-visual"><span class="bar red" style="width:6.4%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -852,9 +894,11 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="600012.SH"
+  data-buy="15.2"
   data-name="皖通高速 600012.SH"
   data-category="公用事业/高速"
-  data-drop="2.24"
+  data-drop="2.17"
 >
   <td class="stock-cell">
     <div class="name">皖通高速</div>
@@ -862,12 +906,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">公用事业/高速</span></td>
   <td class="num">15.20</td>
-  <td class="num">15.54</td>
+  <td class="num">15.53</td>
   <td class="num">
     <span class="pos">
-      +2.24%
+      +2.17%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:7.5%"></span></span>
+    <span class="drop-visual"><span class="bar red" style="width:7.2%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -878,6 +922,8 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="HK"
+  data-code="00177.HK"
+  data-buy="10.4"
   data-name="江苏宁沪高速公路 00177.HK"
   data-category="交运/高速"
   data-drop="2.31"
@@ -896,14 +942,42 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar red" style="width:7.7%"></span></span>
   </td>
   <td class="num">
+      <span style="color:var(--text-muted)">—</span>
+  </td>
+</tr>
+<tr
+  class="row-near stock-row"
+  data-market="A"
+  data-code="002508.SZ"
+  data-buy="16"
+  data-name="老板电器 002508.SZ"
+  data-category="消费/家电"
+  data-drop="2.75"
+>
+  <td class="stock-cell">
+    <div class="name">老板电器</div>
+    <div class="code">002508.SZ</div>
+  </td>
+  <td><span class="cat">消费/家电</span></td>
+  <td class="num">16.00</td>
+  <td class="num">16.44</td>
+  <td class="num">
+    <span class="pos">
+      +2.75%
+    </span>
+    <span class="drop-visual"><span class="bar red" style="width:9.2%"></span></span>
+  </td>
+  <td class="num">
       <span class="roe-low">
-        1.12%
+        4.91%
       </span>
   </td>
 </tr>
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="601166.SH"
+  data-buy="17.3"
   data-name="兴业银行 601166.SH"
   data-category="银行/股份行"
   data-drop="2.83"
@@ -929,33 +1003,9 @@ tr.hidden { display: none; }
 </tr>
 <tr
   class="row-near stock-row"
-  data-market="A"
-  data-name="老板电器 002508.SZ"
-  data-category="消费/家电"
-  data-drop="2.88"
->
-  <td class="stock-cell">
-    <div class="name">老板电器</div>
-    <div class="code">002508.SZ</div>
-  </td>
-  <td><span class="cat">消费/家电</span></td>
-  <td class="num">16.00</td>
-  <td class="num">16.46</td>
-  <td class="num">
-    <span class="pos">
-      +2.88%
-    </span>
-    <span class="drop-visual"><span class="bar red" style="width:9.6%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-low">
-        4.91%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-near stock-row"
   data-market="HK"
+  data-code="03898.HK"
+  data-buy="27"
   data-name="时代电气 03898.HK"
   data-category="科技/电子"
   data-drop="3.04"
@@ -974,12 +1024,16 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar red" style="width:10.1%"></span></span>
   </td>
   <td class="num">
-      <span style="color:var(--text-muted)">—</span>
+      <span class="roe-low">
+        0.77%
+      </span>
   </td>
 </tr>
 <tr
   class="row-near stock-row"
   data-market="HK"
+  data-code="02638.HK"
+  data-buy="6.0"
   data-name="港灯电力投资 02638.HK"
   data-category="电力/公用"
   data-drop="3.33"
@@ -998,67 +1052,19 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar red" style="width:11.1%"></span></span>
   </td>
   <td class="num">
-      <span style="color:var(--text-muted)">—</span>
-  </td>
-</tr>
-<tr
-  class="row-near stock-row"
-  data-market="A"
-  data-name="成都银行 601838.SH"
-  data-category="银行/城商行"
-  data-drop="3.41"
->
-  <td class="stock-cell">
-    <div class="name">成都银行</div>
-    <div class="code">601838.SH</div>
-  </td>
-  <td><span class="cat">银行/城商行</span></td>
-  <td class="num">18.50</td>
-  <td class="num">19.13</td>
-  <td class="num">
-    <span class="pos">
-      +3.41%
-    </span>
-    <span class="drop-visual"><span class="bar red" style="width:11.4%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        7.49%
+      <span class="roe-low">
+        1.09%
       </span>
   </td>
 </tr>
 <tr
   class="row-near stock-row"
   data-market="A"
-  data-name="中国中免 601888.SH"
-  data-category="消费/免税"
-  data-drop="3.57"
->
-  <td class="stock-cell">
-    <div class="name">中国中免</div>
-    <div class="code">601888.SH</div>
-  </td>
-  <td><span class="cat">消费/免税</span></td>
-  <td class="num">49.00</td>
-  <td class="num">50.75</td>
-  <td class="num">
-    <span class="pos">
-      +3.57%
-    </span>
-    <span class="drop-visual"><span class="bar red" style="width:11.9%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        5.46%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-near stock-row"
-  data-market="A"
+  data-code="000429.SZ"
+  data-buy="12"
   data-name="粤高速A 000429.SZ"
   data-category="公用事业/高速"
-  data-drop="3.58"
+  data-drop="3.5"
 >
   <td class="stock-cell">
     <div class="name">粤高速A</div>
@@ -1066,12 +1072,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">公用事业/高速</span></td>
   <td class="num">12.00</td>
-  <td class="num">12.43</td>
+  <td class="num">12.42</td>
   <td class="num">
     <span class="pos">
-      +3.58%
+      +3.50%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:11.9%"></span></span>
+    <span class="drop-visual"><span class="bar red" style="width:11.7%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -1082,9 +1088,39 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="601838.SH"
+  data-buy="18.5"
+  data-name="成都银行 601838.SH"
+  data-category="银行/城商行"
+  data-drop="3.51"
+>
+  <td class="stock-cell">
+    <div class="name">成都银行</div>
+    <div class="code">601838.SH</div>
+  </td>
+  <td><span class="cat">银行/城商行</span></td>
+  <td class="num">18.50</td>
+  <td class="num">19.15</td>
+  <td class="num">
+    <span class="pos">
+      +3.51%
+    </span>
+    <span class="drop-visual"><span class="bar red" style="width:11.7%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        7.49%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-near stock-row"
+  data-market="A"
+  data-code="601577.SH"
+  data-buy="9.3"
   data-name="长沙银行 601577.SH"
   data-category="银行/城商行"
-  data-drop="3.76"
+  data-drop="3.55"
 >
   <td class="stock-cell">
     <div class="name">长沙银行</div>
@@ -1092,12 +1128,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">银行/城商行</span></td>
   <td class="num">9.30</td>
-  <td class="num">9.65</td>
+  <td class="num">9.63</td>
   <td class="num">
     <span class="pos">
-      +3.76%
+      +3.55%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:12.5%"></span></span>
+    <span class="drop-visual"><span class="bar red" style="width:11.8%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -1108,6 +1144,64 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="601888.SH"
+  data-buy="49"
+  data-name="中国中免 601888.SH"
+  data-category="消费/免税"
+  data-drop="3.67"
+>
+  <td class="stock-cell">
+    <div class="name">中国中免</div>
+    <div class="code">601888.SH</div>
+  </td>
+  <td><span class="cat">消费/免税</span></td>
+  <td class="num">49.00</td>
+  <td class="num">50.80</td>
+  <td class="num">
+    <span class="pos">
+      +3.67%
+    </span>
+    <span class="drop-visual"><span class="bar red" style="width:12.2%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        5.46%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-near stock-row"
+  data-market="A"
+  data-code="603288.SH"
+  data-buy="32"
+  data-name="海天味业 603288.SH"
+  data-category="消费/食品"
+  data-drop="3.84"
+>
+  <td class="stock-cell">
+    <div class="name">海天味业</div>
+    <div class="code">603288.SH</div>
+  </td>
+  <td><span class="cat">消费/食品</span></td>
+  <td class="num">32.00</td>
+  <td class="num">33.23</td>
+  <td class="num">
+    <span class="pos">
+      +3.84%
+    </span>
+    <span class="drop-visual"><span class="bar red" style="width:12.8%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-high">
+        10.07%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-near stock-row"
+  data-market="A"
+  data-code="002415.SZ"
+  data-buy="31"
   data-name="海康威视 002415.SZ"
   data-category="科技/安防"
   data-drop="3.97"
@@ -1134,9 +1228,11 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="600803.SH"
+  data-buy="18"
   data-name="新奥股份 600803.SH"
   data-category="电力/综合能源"
-  data-drop="4.11"
+  data-drop="4.17"
 >
   <td class="stock-cell">
     <div class="name">新奥股份</div>
@@ -1144,12 +1240,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">电力/综合能源</span></td>
   <td class="num">18.00</td>
-  <td class="num">18.74</td>
+  <td class="num">18.75</td>
   <td class="num">
     <span class="pos">
-      +4.11%
+      +4.17%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:13.7%"></span></span>
+    <span class="drop-visual"><span class="bar red" style="width:13.9%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -1160,61 +1256,39 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
-  data-name="海天味业 603288.SH"
-  data-category="消费/食品"
-  data-drop="4.19"
+  data-code="601728.SH"
+  data-buy="5.9"
+  data-name="中国电信 601728.SH"
+  data-category="公用事业/通信"
+  data-drop="4.41"
 >
   <td class="stock-cell">
-    <div class="name">海天味业</div>
-    <div class="code">603288.SH</div>
+    <div class="name">中国电信</div>
+    <div class="code">601728.SH</div>
   </td>
-  <td><span class="cat">消费/食品</span></td>
-  <td class="num">32.00</td>
-  <td class="num">33.34</td>
+  <td><span class="cat">公用事业/通信</span></td>
+  <td class="num">5.90</td>
+  <td class="num">6.16</td>
   <td class="num">
     <span class="pos">
-      +4.19%
+      +4.41%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:14.0%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-high">
-        10.07%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-near stock-row"
-  data-market="A"
-  data-name="首创环保 600008.SH"
-  data-category="公用事业/环保"
-  data-drop="4.31"
->
-  <td class="stock-cell">
-    <div class="name">首创环保</div>
-    <div class="code">600008.SH</div>
-  </td>
-  <td><span class="cat">公用事业/环保</span></td>
-  <td class="num">2.55</td>
-  <td class="num">2.66</td>
-  <td class="num">
-    <span class="pos">
-      +4.31%
-    </span>
-    <span class="drop-visual"><span class="bar red" style="width:14.4%"></span></span>
+    <span class="drop-visual"><span class="bar red" style="width:14.7%"></span></span>
   </td>
   <td class="num">
       <span class="roe-low">
-        2.70%
+        4.20%
       </span>
   </td>
 </tr>
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="600887.SH"
+  data-buy="25.8"
   data-name="伊利股份 600887.SH"
   data-category="消费/食品"
-  data-drop="4.34"
+  data-drop="4.42"
 >
   <td class="stock-cell">
     <div class="name">伊利股份</div>
@@ -1222,12 +1296,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">消费/食品</span></td>
   <td class="num">25.80</td>
-  <td class="num">26.92</td>
+  <td class="num">26.94</td>
   <td class="num">
     <span class="pos">
-      +4.34%
+      +4.42%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:14.5%"></span></span>
+    <span class="drop-visual"><span class="bar red" style="width:14.7%"></span></span>
   </td>
   <td class="num">
       <span class="roe-high">
@@ -1238,9 +1312,11 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="600066.SH"
+  data-buy="25"
   data-name="宇通客车 600066.SH"
   data-category="周期/汽车"
-  data-drop="4.44"
+  data-drop="4.52"
 >
   <td class="stock-cell">
     <div class="name">宇通客车</div>
@@ -1248,12 +1324,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">周期/汽车</span></td>
   <td class="num">25.00</td>
-  <td class="num">26.11</td>
+  <td class="num">26.13</td>
   <td class="num">
     <span class="pos">
-      +4.44%
+      +4.52%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:14.8%"></span></span>
+    <span class="drop-visual"><span class="bar red" style="width:15.1%"></span></span>
   </td>
   <td class="num">
       <span class="roe-high">
@@ -1264,6 +1340,8 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="601128.SH"
+  data-buy="5.85"
   data-name="常熟银行 601128.SH"
   data-category="银行/农商行"
   data-drop="4.79"
@@ -1290,6 +1368,8 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="601916.SH"
+  data-buy="2.7"
   data-name="浙商银行 601916.SH"
   data-category="银行/股份行"
   data-drop="4.81"
@@ -1316,9 +1396,39 @@ tr.hidden { display: none; }
 <tr
   class="row-near stock-row"
   data-market="A"
+  data-code="601825.SH"
+  data-buy="8.2"
+  data-name="沪农商行 601825.SH"
+  data-category="银行/农商行"
+  data-drop="4.88"
+>
+  <td class="stock-cell">
+    <div class="name">沪农商行</div>
+    <div class="code">601825.SH</div>
+  </td>
+  <td><span class="cat">银行/农商行</span></td>
+  <td class="num">8.20</td>
+  <td class="num">8.60</td>
+  <td class="num">
+    <span class="pos">
+      +4.88%
+    </span>
+    <span class="drop-visual"><span class="bar red" style="width:16.3%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        5.38%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="000001.SZ"
+  data-buy="10.8"
   data-name="平安银行 000001.SZ"
   data-category="银行/股份行"
-  data-drop="4.81"
+  data-drop="5.0"
 >
   <td class="stock-cell">
     <div class="name">平安银行</div>
@@ -1326,12 +1436,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">银行/股份行</span></td>
   <td class="num">10.80</td>
-  <td class="num">11.32</td>
+  <td class="num">11.34</td>
   <td class="num">
     <span class="pos">
-      +4.81%
+      +5.00%
     </span>
-    <span class="drop-visual"><span class="bar red" style="width:16.0%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:16.7%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -1340,60 +1450,10 @@ tr.hidden { display: none; }
   </td>
 </tr>
 <tr
-  class="row-near stock-row"
-  data-market="A"
-  data-name="中国电信 601728.SH"
-  data-category="公用事业/通信"
-  data-drop="4.92"
->
-  <td class="stock-cell">
-    <div class="name">中国电信</div>
-    <div class="code">601728.SH</div>
-  </td>
-  <td><span class="cat">公用事业/通信</span></td>
-  <td class="num">5.90</td>
-  <td class="num">6.19</td>
-  <td class="num">
-    <span class="pos">
-      +4.92%
-    </span>
-    <span class="drop-visual"><span class="bar red" style="width:16.4%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-low">
-        4.20%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-near stock-row"
-  data-market="A"
-  data-name="伟明环保 603568.SH"
-  data-category="公用事业/环保"
-  data-drop="4.92"
->
-  <td class="stock-cell">
-    <div class="name">伟明环保</div>
-    <div class="code">603568.SH</div>
-  </td>
-  <td><span class="cat">公用事业/环保</span></td>
-  <td class="num">12.60</td>
-  <td class="num">13.22</td>
-  <td class="num">
-    <span class="pos">
-      +4.92%
-    </span>
-    <span class="drop-visual"><span class="bar red" style="width:16.4%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        6.08%
-      </span>
-  </td>
-</tr>
-<tr
   class="row-mid stock-row"
   data-market="HK"
+  data-code="01816.HK"
+  data-buy="2.8"
   data-name="中国广核电力 01816.HK"
   data-category="电力/公用"
   data-drop="5.0"
@@ -1412,17 +1472,73 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:16.7%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        1.08%
+      <span style="color:var(--text-muted)">—</span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="603568.SH"
+  data-buy="12.6"
+  data-name="伟明环保 603568.SH"
+  data-category="公用事业/环保"
+  data-drop="5.08"
+>
+  <td class="stock-cell">
+    <div class="name">伟明环保</div>
+    <div class="code">603568.SH</div>
+  </td>
+  <td><span class="cat">公用事业/环保</span></td>
+  <td class="num">12.60</td>
+  <td class="num">13.24</td>
+  <td class="num">
+    <span class="pos">
+      +5.08%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:16.9%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        6.08%
       </span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600008.SH"
+  data-buy="2.55"
+  data-name="首创环保 600008.SH"
+  data-category="公用事业/环保"
+  data-drop="5.1"
+>
+  <td class="stock-cell">
+    <div class="name">首创环保</div>
+    <div class="code">600008.SH</div>
+  </td>
+  <td><span class="cat">公用事业/环保</span></td>
+  <td class="num">2.55</td>
+  <td class="num">2.68</td>
+  <td class="num">
+    <span class="pos">
+      +5.10%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:17.0%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-low">
+        2.70%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="601318.SH"
+  data-buy="50"
   data-name="中国平安 601318.SH"
   data-category="金融/保险"
-  data-drop="5.1"
+  data-drop="5.14"
 >
   <td class="stock-cell">
     <div class="name">中国平安</div>
@@ -1430,12 +1546,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">金融/保险</span></td>
   <td class="num">50.00</td>
-  <td class="num">52.55</td>
+  <td class="num">52.57</td>
   <td class="num">
     <span class="pos">
-      +5.10%
+      +5.14%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:17.0%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:17.1%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -1446,35 +1562,39 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="沪农商行 601825.SH"
-  data-category="银行/农商行"
-  data-drop="5.12"
+  data-code="600350.SH"
+  data-buy="9.6"
+  data-name="山东高速 600350.SH"
+  data-category="公用事业/高速"
+  data-drop="5.31"
 >
   <td class="stock-cell">
-    <div class="name">沪农商行</div>
-    <div class="code">601825.SH</div>
+    <div class="name">山东高速</div>
+    <div class="code">600350.SH</div>
   </td>
-  <td><span class="cat">银行/农商行</span></td>
-  <td class="num">8.20</td>
-  <td class="num">8.62</td>
+  <td><span class="cat">公用事业/高速</span></td>
+  <td class="num">9.60</td>
+  <td class="num">10.11</td>
   <td class="num">
     <span class="pos">
-      +5.12%
+      +5.31%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:17.1%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:17.7%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-mid">
-        5.38%
+      <span class="roe-low">
+        4.07%
       </span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="300124.SZ"
+  data-buy="50"
   data-name="汇川技术 300124.SZ"
   data-category="周期/机械"
-  data-drop="5.24"
+  data-drop="5.34"
 >
   <td class="stock-cell">
     <div class="name">汇川技术</div>
@@ -1482,12 +1602,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">周期/机械</span></td>
   <td class="num">50.00</td>
-  <td class="num">52.62</td>
+  <td class="num">52.67</td>
   <td class="num">
     <span class="pos">
-      +5.24%
+      +5.34%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:17.5%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:17.8%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -1498,9 +1618,11 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600690.SH"
+  data-buy="19.2"
   data-name="海尔智家 600690.SH"
   data-category="消费/家电"
-  data-drop="5.26"
+  data-drop="5.36"
 >
   <td class="stock-cell">
     <div class="name">海尔智家</div>
@@ -1508,12 +1630,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">消费/家电</span></td>
   <td class="num">19.20</td>
-  <td class="num">20.21</td>
+  <td class="num">20.23</td>
   <td class="num">
     <span class="pos">
-      +5.26%
+      +5.36%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:17.5%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:17.9%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -1524,87 +1646,11 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="迈瑞医疗 300760.SZ"
-  data-category="医药/器械"
-  data-drop="5.3"
->
-  <td class="stock-cell">
-    <div class="name">迈瑞医疗</div>
-    <div class="code">300760.SZ</div>
-  </td>
-  <td><span class="cat">医药/器械</span></td>
-  <td class="num">150.00</td>
-  <td class="num">157.95</td>
-  <td class="num">
-    <span class="pos">
-      +5.30%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:17.7%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-high">
-        12.01%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
-  data-name="中国联通 600050.SH"
-  data-category="公用事业/通信"
-  data-drop="5.38"
->
-  <td class="stock-cell">
-    <div class="name">中国联通</div>
-    <div class="code">600050.SH</div>
-  </td>
-  <td><span class="cat">公用事业/通信</span></td>
-  <td class="num">3.90</td>
-  <td class="num">4.11</td>
-  <td class="num">
-    <span class="pos">
-      +5.38%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:17.9%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-low">
-        2.41%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
-  data-name="云南铜业 000878.SZ"
-  data-category="周期/有色"
-  data-drop="5.41"
->
-  <td class="stock-cell">
-    <div class="name">云南铜业</div>
-    <div class="code">000878.SZ</div>
-  </td>
-  <td><span class="cat">周期/有色</span></td>
-  <td class="num">14.80</td>
-  <td class="num">15.60</td>
-  <td class="num">
-    <span class="pos">
-      +5.41%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:18.0%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-high">
-        10.75%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
+  data-code="000543.SZ"
+  data-buy="6.8"
   data-name="皖能电力 000543.SZ"
   data-category="电力/综合能源"
-  data-drop="5.44"
+  data-drop="5.59"
 >
   <td class="stock-cell">
     <div class="name">皖能电力</div>
@@ -1612,12 +1658,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">电力/综合能源</span></td>
   <td class="num">6.80</td>
-  <td class="num">7.17</td>
+  <td class="num">7.18</td>
   <td class="num">
     <span class="pos">
-      +5.44%
+      +5.59%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:18.1%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:18.6%"></span></span>
   </td>
   <td class="num">
       <span class="roe-low">
@@ -1628,9 +1674,67 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="300760.SZ"
+  data-buy="150"
+  data-name="迈瑞医疗 300760.SZ"
+  data-category="医药/器械"
+  data-drop="5.62"
+>
+  <td class="stock-cell">
+    <div class="name">迈瑞医疗</div>
+    <div class="code">300760.SZ</div>
+  </td>
+  <td><span class="cat">医药/器械</span></td>
+  <td class="num">150.00</td>
+  <td class="num">158.43</td>
+  <td class="num">
+    <span class="pos">
+      +5.62%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:18.7%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-high">
+        12.01%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="600050.SH"
+  data-buy="3.9"
+  data-name="中国联通 600050.SH"
+  data-category="公用事业/通信"
+  data-drop="5.64"
+>
+  <td class="stock-cell">
+    <div class="name">中国联通</div>
+    <div class="code">600050.SH</div>
+  </td>
+  <td><span class="cat">公用事业/通信</span></td>
+  <td class="num">3.90</td>
+  <td class="num">4.12</td>
+  <td class="num">
+    <span class="pos">
+      +5.64%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:18.8%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-low">
+        2.41%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="601077.SH"
+  data-buy="6.35"
   data-name="渝农商行 601077.SH"
   data-category="银行/农商行"
-  data-drop="5.51"
+  data-drop="5.67"
 >
   <td class="stock-cell">
     <div class="name">渝农商行</div>
@@ -1638,12 +1742,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">银行/农商行</span></td>
   <td class="num">6.35</td>
-  <td class="num">6.70</td>
+  <td class="num">6.71</td>
   <td class="num">
     <span class="pos">
-      +5.51%
+      +5.67%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:18.4%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:18.9%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -1654,32 +1758,36 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="山东高速 600350.SH"
-  data-category="公用事业/高速"
-  data-drop="5.52"
+  data-code="000878.SZ"
+  data-buy="14.8"
+  data-name="云南铜业 000878.SZ"
+  data-category="周期/有色"
+  data-drop="5.68"
 >
   <td class="stock-cell">
-    <div class="name">山东高速</div>
-    <div class="code">600350.SH</div>
+    <div class="name">云南铜业</div>
+    <div class="code">000878.SZ</div>
   </td>
-  <td><span class="cat">公用事业/高速</span></td>
-  <td class="num">9.60</td>
-  <td class="num">10.13</td>
+  <td><span class="cat">周期/有色</span></td>
+  <td class="num">14.80</td>
+  <td class="num">15.64</td>
   <td class="num">
     <span class="pos">
-      +5.52%
+      +5.68%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:18.4%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:18.9%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        4.07%
+      <span class="roe-high">
+        10.75%
       </span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="HK"
+  data-code="00728.HK"
+  data-buy="4.15"
   data-name="中国电信 00728.HK"
   data-category="通信/运营商"
   data-drop="5.78"
@@ -1698,14 +1806,42 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:19.3%"></span></span>
   </td>
   <td class="num">
+      <span style="color:var(--text-muted)">—</span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="601598.SH"
+  data-buy="6.2"
+  data-name="中国外运 601598.SH"
+  data-category="公用事业/物流"
+  data-drop="5.81"
+>
+  <td class="stock-cell">
+    <div class="name">中国外运</div>
+    <div class="code">601598.SH</div>
+  </td>
+  <td><span class="cat">公用事业/物流</span></td>
+  <td class="num">6.20</td>
+  <td class="num">6.56</td>
+  <td class="num">
+    <span class="pos">
+      +5.81%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:19.4%"></span></span>
+  </td>
+  <td class="num">
       <span class="roe-low">
-        0.75%
+        4.12%
       </span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="601997.SH"
+  data-buy="5.15"
   data-name="贵阳银行 601997.SH"
   data-category="银行/城商行"
   data-drop="5.83"
@@ -1732,9 +1868,11 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600298.SH"
+  data-buy="36"
   data-name="安琪酵母 600298.SH"
   data-category="消费/食品"
-  data-drop="5.86"
+  data-drop="5.83"
 >
   <td class="stock-cell">
     <div class="name">安琪酵母</div>
@@ -1742,12 +1880,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">消费/食品</span></td>
   <td class="num">36.00</td>
-  <td class="num">38.11</td>
+  <td class="num">38.10</td>
   <td class="num">
     <span class="pos">
-      +5.86%
+      +5.83%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:19.5%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:19.4%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -1758,6 +1896,8 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="HK"
+  data-code="00902.HK"
+  data-buy="5.3"
   data-name="华能国际电力股份 00902.HK"
   data-category="电力/公用"
   data-drop="5.94"
@@ -1776,40 +1916,14 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:19.8%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        1.13%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="盐田港 000088.SZ"
-  data-category="公用事业/港口"
-  data-drop="6.12"
->
-  <td class="stock-cell">
-    <div class="name">盐田港</div>
-    <div class="code">000088.SZ</div>
-  </td>
-  <td><span class="cat">公用事业/港口</span></td>
-  <td class="num">4.25</td>
-  <td class="num">4.51</td>
-  <td class="num">
-    <span class="pos">
-      +6.12%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:20.4%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-low">
-        3.81%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
+  data-code="600919.SH"
+  data-buy="11.6"
   data-name="江苏银行 600919.SH"
   data-category="银行/城商行"
   data-drop="6.21"
@@ -1836,6 +1950,8 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="300015.SZ"
+  data-buy="7.4"
   data-name="爱尔眼科 300015.SZ"
   data-category="医药/医疗服务"
   data-drop="6.22"
@@ -1862,6 +1978,36 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600276.SH"
+  data-buy="42"
+  data-name="恒瑞医药 600276.SH"
+  data-category="医药/创新药"
+  data-drop="6.24"
+>
+  <td class="stock-cell">
+    <div class="name">恒瑞医药</div>
+    <div class="code">600276.SH</div>
+  </td>
+  <td><span class="cat">医药/创新药</span></td>
+  <td class="num">42.00</td>
+  <td class="num">44.62</td>
+  <td class="num">
+    <span class="pos">
+      +6.24%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:20.8%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        8.04%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="600642.SH"
+  data-buy="8.3"
   data-name="申能股份 600642.SH"
   data-category="电力/综合能源"
   data-drop="6.27"
@@ -1887,7 +2033,37 @@ tr.hidden { display: none; }
 </tr>
 <tr
   class="row-mid stock-row"
+  data-market="A"
+  data-code="000088.SZ"
+  data-buy="4.25"
+  data-name="盐田港 000088.SZ"
+  data-category="公用事业/港口"
+  data-drop="6.35"
+>
+  <td class="stock-cell">
+    <div class="name">盐田港</div>
+    <div class="code">000088.SZ</div>
+  </td>
+  <td><span class="cat">公用事业/港口</span></td>
+  <td class="num">4.25</td>
+  <td class="num">4.52</td>
+  <td class="num">
+    <span class="pos">
+      +6.35%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:21.2%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-low">
+        3.81%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
   data-market="HK"
+  data-code="02016.HK"
+  data-buy="2.2"
   data-name="浙商银行 02016.HK"
   data-category="银行"
   data-drop="6.36"
@@ -1906,17 +2082,45 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:21.2%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        0.31%
+      <span style="color:var(--text-muted)">—</span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="002966.SZ"
+  data-buy="8.7"
+  data-name="苏州银行 002966.SZ"
+  data-category="银行/城商行"
+  data-drop="6.44"
+>
+  <td class="stock-cell">
+    <div class="name">苏州银行</div>
+    <div class="code">002966.SZ</div>
+  </td>
+  <td><span class="cat">银行/城商行</span></td>
+  <td class="num">8.70</td>
+  <td class="num">9.26</td>
+  <td class="num">
+    <span class="pos">
+      +6.44%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:21.5%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        6.12%
       </span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="601899.SH"
+  data-buy="27.5"
   data-name="紫金矿业 601899.SH"
   data-category="周期/有色"
-  data-drop="6.36"
+  data-drop="6.47"
 >
   <td class="stock-cell">
     <div class="name">紫金矿业</div>
@@ -1924,12 +2128,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">周期/有色</span></td>
   <td class="num">27.50</td>
-  <td class="num">29.25</td>
+  <td class="num">29.28</td>
   <td class="num">
     <span class="pos">
-      +6.36%
+      +6.47%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:21.2%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:21.6%"></span></span>
   </td>
   <td class="num">
       <span class="roe-high">
@@ -1939,59 +2143,9 @@ tr.hidden { display: none; }
 </tr>
 <tr
   class="row-mid stock-row"
-  data-market="A"
-  data-name="恒瑞医药 600276.SH"
-  data-category="医药/创新药"
-  data-drop="6.38"
->
-  <td class="stock-cell">
-    <div class="name">恒瑞医药</div>
-    <div class="code">600276.SH</div>
-  </td>
-  <td><span class="cat">医药/创新药</span></td>
-  <td class="num">42.00</td>
-  <td class="num">44.68</td>
-  <td class="num">
-    <span class="pos">
-      +6.38%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:21.3%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        8.04%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
-  data-name="中国外运 601598.SH"
-  data-category="公用事业/物流"
-  data-drop="6.45"
->
-  <td class="stock-cell">
-    <div class="name">中国外运</div>
-    <div class="code">601598.SH</div>
-  </td>
-  <td><span class="cat">公用事业/物流</span></td>
-  <td class="num">6.20</td>
-  <td class="num">6.60</td>
-  <td class="num">
-    <span class="pos">
-      +6.45%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:21.5%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-low">
-        4.12%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
   data-market="HK"
+  data-code="00700.HK"
+  data-buy="410"
   data-name="腾讯控股 00700.HK"
   data-category="科技/互联网"
   data-drop="6.49"
@@ -2016,6 +2170,8 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="001965.SZ"
+  data-buy="9.2"
   data-name="招商公路 001965.SZ"
   data-category="公用事业/高速"
   data-drop="6.52"
@@ -2042,35 +2198,11 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="苏州银行 002966.SZ"
-  data-category="银行/城商行"
-  data-drop="6.55"
->
-  <td class="stock-cell">
-    <div class="name">苏州银行</div>
-    <div class="code">002966.SZ</div>
-  </td>
-  <td><span class="cat">银行/城商行</span></td>
-  <td class="num">8.70</td>
-  <td class="num">9.27</td>
-  <td class="num">
-    <span class="pos">
-      +6.55%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:21.8%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        6.12%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
+  data-code="600309.SH"
+  data-buy="65"
   data-name="万华化学 600309.SH"
   data-category="周期/化工"
-  data-drop="6.55"
+  data-drop="6.6"
 >
   <td class="stock-cell">
     <div class="name">万华化学</div>
@@ -2078,12 +2210,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">周期/化工</span></td>
   <td class="num">65.00</td>
-  <td class="num">69.26</td>
+  <td class="num">69.29</td>
   <td class="num">
     <span class="pos">
-      +6.55%
+      +6.60%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:21.8%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:22.0%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -2094,32 +2226,8 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="中远海控 601919.SH"
-  data-category="周期/航运"
-  data-drop="6.56"
->
-  <td class="stock-cell">
-    <div class="name">中远海控</div>
-    <div class="code">601919.SH</div>
-  </td>
-  <td><span class="cat">周期/航运</span></td>
-  <td class="num">15.40</td>
-  <td class="num">16.41</td>
-  <td class="num">
-    <span class="pos">
-      +6.56%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:21.9%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        5.70%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
+  data-code="600900.SH"
+  data-buy="26.8"
   data-name="长江电力 600900.SH"
   data-category="电力/水电"
   data-drop="6.6"
@@ -2145,7 +2253,37 @@ tr.hidden { display: none; }
 </tr>
 <tr
   class="row-mid stock-row"
+  data-market="A"
+  data-code="601919.SH"
+  data-buy="15.4"
+  data-name="中远海控 601919.SH"
+  data-category="周期/航运"
+  data-drop="6.62"
+>
+  <td class="stock-cell">
+    <div class="name">中远海控</div>
+    <div class="code">601919.SH</div>
+  </td>
+  <td><span class="cat">周期/航运</span></td>
+  <td class="num">15.40</td>
+  <td class="num">16.42</td>
+  <td class="num">
+    <span class="pos">
+      +6.62%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:22.1%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        5.70%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
   data-market="HK"
+  data-code="06818.HK"
+  data-buy="2.6"
   data-name="光大银行 06818.HK"
   data-category="银行"
   data-drop="6.73"
@@ -2164,17 +2302,17 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:22.4%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        0.28%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600547.SH"
+  data-buy="24.5"
   data-name="山东黄金 600547.SH"
   data-category="黄金有色"
-  data-drop="6.82"
+  data-drop="6.78"
 >
   <td class="stock-cell">
     <div class="name">山东黄金</div>
@@ -2182,12 +2320,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">黄金有色</span></td>
   <td class="num">24.50</td>
-  <td class="num">26.17</td>
+  <td class="num">26.16</td>
   <td class="num">
     <span class="pos">
-      +6.82%
+      +6.78%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:22.7%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:22.6%"></span></span>
   </td>
   <td class="num">
       <span class="roe-high">
@@ -2198,6 +2336,8 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="HK"
+  data-code="06690.HK"
+  data-buy="18.5"
   data-name="海尔智家 06690.HK"
   data-category="消费/家电"
   data-drop="6.86"
@@ -2216,66 +2356,14 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:22.9%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        1.37%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
-  data-name="杭州银行 600926.SH"
-  data-category="银行/城商行"
-  data-drop="6.9"
->
-  <td class="stock-cell">
-    <div class="name">杭州银行</div>
-    <div class="code">600926.SH</div>
-  </td>
-  <td><span class="cat">银行/城商行</span></td>
-  <td class="num">15.80</td>
-  <td class="num">16.89</td>
-  <td class="num">
-    <span class="pos">
-      +6.90%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:23.0%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        8.87%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
-  data-name="内蒙华电 600863.SH"
-  data-category="电力/火电"
-  data-drop="6.97"
->
-  <td class="stock-cell">
-    <div class="name">内蒙华电</div>
-    <div class="code">600863.SH</div>
-  </td>
-  <td><span class="cat">电力/火电</span></td>
-  <td class="num">4.45</td>
-  <td class="num">4.76</td>
-  <td class="num">
-    <span class="pos">
-      +6.97%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:23.2%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        7.49%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="HK"
+  data-code="00941.HK"
+  data-buy="73.3"
   data-name="中国移动 00941.HK"
   data-category="通信/运营商"
   data-drop="7.03"
@@ -2294,40 +2382,70 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:23.4%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        1.03%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="联影医疗 688271.SH"
-  data-category="医药/器械"
-  data-drop="7.06"
+  data-code="600926.SH"
+  data-buy="15.8"
+  data-name="杭州银行 600926.SH"
+  data-category="银行/城商行"
+  data-drop="7.09"
 >
   <td class="stock-cell">
-    <div class="name">联影医疗</div>
-    <div class="code">688271.SH</div>
+    <div class="name">杭州银行</div>
+    <div class="code">600926.SH</div>
   </td>
-  <td><span class="cat">医药/器械</span></td>
-  <td class="num">98.00</td>
-  <td class="num">104.92</td>
+  <td><span class="cat">银行/城商行</span></td>
+  <td class="num">15.80</td>
+  <td class="num">16.92</td>
   <td class="num">
     <span class="pos">
-      +7.06%
+      +7.09%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:23.5%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:23.6%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        4.12%
+      <span class="roe-mid">
+        8.87%
       </span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600863.SH"
+  data-buy="4.45"
+  data-name="内蒙华电 600863.SH"
+  data-category="电力/火电"
+  data-drop="7.19"
+>
+  <td class="stock-cell">
+    <div class="name">内蒙华电</div>
+    <div class="code">600863.SH</div>
+  </td>
+  <td><span class="cat">电力/火电</span></td>
+  <td class="num">4.45</td>
+  <td class="num">4.77</td>
+  <td class="num">
+    <span class="pos">
+      +7.19%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:24.0%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        7.49%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="601229.SH"
+  data-buy="8.9"
   data-name="上海银行 601229.SH"
   data-category="银行/城商行"
   data-drop="7.19"
@@ -2354,9 +2472,11 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600377.SH"
+  data-buy="12"
   data-name="宁沪高速 600377.SH"
   data-category="公用事业/高速"
-  data-drop="7.25"
+  data-drop="7.33"
 >
   <td class="stock-cell">
     <div class="name">宁沪高速</div>
@@ -2364,12 +2484,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">公用事业/高速</span></td>
   <td class="num">12.00</td>
-  <td class="num">12.87</td>
+  <td class="num">12.88</td>
   <td class="num">
     <span class="pos">
-      +7.25%
+      +7.33%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:24.2%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:24.4%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -2380,6 +2500,8 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="601328.SH"
+  data-buy="7.05"
   data-name="交通银行 601328.SH"
   data-category="银行/六大行"
   data-drop="7.38"
@@ -2406,9 +2528,39 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="688271.SH"
+  data-buy="98"
+  data-name="联影医疗 688271.SH"
+  data-category="医药/器械"
+  data-drop="7.55"
+>
+  <td class="stock-cell">
+    <div class="name">联影医疗</div>
+    <div class="code">688271.SH</div>
+  </td>
+  <td><span class="cat">医药/器械</span></td>
+  <td class="num">98.00</td>
+  <td class="num">105.40</td>
+  <td class="num">
+    <span class="pos">
+      +7.55%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:25.2%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-low">
+        4.12%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="600018.SH"
+  data-buy="5"
   data-name="上港集团 600018.SH"
   data-category="公用事业/港口"
-  data-drop="7.4"
+  data-drop="7.8"
 >
   <td class="stock-cell">
     <div class="name">上港集团</div>
@@ -2416,12 +2568,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">公用事业/港口</span></td>
   <td class="num">5.00</td>
-  <td class="num">5.37</td>
+  <td class="num">5.39</td>
   <td class="num">
     <span class="pos">
-      +7.40%
+      +7.80%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:24.7%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:26.0%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -2432,32 +2584,8 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="江西铜业 600362.SH"
-  data-category="周期/有色"
-  data-drop="7.66"
->
-  <td class="stock-cell">
-    <div class="name">江西铜业</div>
-    <div class="code">600362.SH</div>
-  </td>
-  <td><span class="cat">周期/有色</span></td>
-  <td class="num">38.00</td>
-  <td class="num">40.91</td>
-  <td class="num">
-    <span class="pos">
-      +7.66%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:25.5%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-high">
-        10.22%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
+  data-code="601988.SH"
+  data-buy="6.15"
   data-name="中国银行 601988.SH"
   data-category="银行/六大行"
   data-drop="7.8"
@@ -2484,9 +2612,39 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600362.SH"
+  data-buy="38.0"
+  data-name="江西铜业 600362.SH"
+  data-category="周期/有色"
+  data-drop="7.89"
+>
+  <td class="stock-cell">
+    <div class="name">江西铜业</div>
+    <div class="code">600362.SH</div>
+  </td>
+  <td><span class="cat">周期/有色</span></td>
+  <td class="num">38.00</td>
+  <td class="num">41.00</td>
+  <td class="num">
+    <span class="pos">
+      +7.89%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:26.3%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-high">
+        10.22%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="601288.SH"
+  data-buy="6.4"
   data-name="农业银行 601288.SH"
   data-category="银行/六大行"
-  data-drop="7.81"
+  data-drop="7.97"
 >
   <td class="stock-cell">
     <div class="name">农业银行</div>
@@ -2494,12 +2652,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">银行/六大行</span></td>
   <td class="num">6.40</td>
-  <td class="num">6.90</td>
+  <td class="num">6.91</td>
   <td class="num">
     <span class="pos">
-      +7.81%
+      +7.97%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:26.0%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:26.6%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -2510,87 +2668,11 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="宁德时代 300750.SZ"
-  data-category="科技/新能源"
-  data-drop="7.85"
->
-  <td class="stock-cell">
-    <div class="name">宁德时代</div>
-    <div class="code">300750.SZ</div>
-  </td>
-  <td><span class="cat">科技/新能源</span></td>
-  <td class="num">270.00</td>
-  <td class="num">291.19</td>
-  <td class="num">
-    <span class="pos">
-      +7.85%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:26.2%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-high">
-        12.08%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
-  data-name="洛阳钼业 603993.SH"
-  data-category="周期/有色"
-  data-drop="7.87"
->
-  <td class="stock-cell">
-    <div class="name">洛阳钼业</div>
-    <div class="code">603993.SH</div>
-  </td>
-  <td><span class="cat">周期/有色</span></td>
-  <td class="num">15.50</td>
-  <td class="num">16.72</td>
-  <td class="num">
-    <span class="pos">
-      +7.87%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:26.2%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-high">
-        18.29%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
-  data-name="云铝股份 000807.SZ"
-  data-category="周期/有色"
-  data-drop="7.87"
->
-  <td class="stock-cell">
-    <div class="name">云铝股份</div>
-    <div class="code">000807.SZ</div>
-  </td>
-  <td><span class="cat">周期/有色</span></td>
-  <td class="num">23.50</td>
-  <td class="num">25.35</td>
-  <td class="num">
-    <span class="pos">
-      +7.87%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:26.2%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-high">
-        21.89%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
+  data-code="688235.SH"
+  data-buy="240"
   data-name="百济神州 688235.SH"
   data-category="医药/创新药"
-  data-drop="7.88"
+  data-drop="7.97"
 >
   <td class="stock-cell">
     <div class="name">百济神州</div>
@@ -2598,12 +2680,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">医药/创新药</span></td>
   <td class="num">240.00</td>
-  <td class="num">258.92</td>
+  <td class="num">259.13</td>
   <td class="num">
     <span class="pos">
-      +7.88%
+      +7.97%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:26.3%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:26.6%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -2614,110 +2696,92 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="中信银行 601998.SH"
-  data-category="银行/股份行"
-  data-drop="7.9"
+  data-code="603993.SH"
+  data-buy="15.5"
+  data-name="洛阳钼业 603993.SH"
+  data-category="周期/有色"
+  data-drop="8.06"
 >
   <td class="stock-cell">
-    <div class="name">中信银行</div>
-    <div class="code">601998.SH</div>
+    <div class="name">洛阳钼业</div>
+    <div class="code">603993.SH</div>
   </td>
-  <td><span class="cat">银行/股份行</span></td>
-  <td class="num">8.35</td>
-  <td class="num">9.01</td>
+  <td><span class="cat">周期/有色</span></td>
+  <td class="num">15.50</td>
+  <td class="num">16.75</td>
   <td class="num">
     <span class="pos">
-      +7.90%
+      +8.06%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:26.3%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:26.9%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        4.81%
+      <span class="roe-high">
+        18.29%
       </span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="建设银行 601939.SH"
-  data-category="银行/六大行"
-  data-drop="8.04"
+  data-code="300750.SZ"
+  data-buy="270"
+  data-name="宁德时代 300750.SZ"
+  data-category="科技/新能源"
+  data-drop="8.08"
 >
   <td class="stock-cell">
-    <div class="name">建设银行</div>
-    <div class="code">601939.SH</div>
+    <div class="name">宁德时代</div>
+    <div class="code">300750.SZ</div>
   </td>
-  <td><span class="cat">银行/六大行</span></td>
-  <td class="num">10.20</td>
-  <td class="num">11.02</td>
+  <td><span class="cat">科技/新能源</span></td>
+  <td class="num">270.00</td>
+  <td class="num">291.81</td>
   <td class="num">
     <span class="pos">
-      +8.04%
+      +8.08%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:26.8%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:26.9%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        4.76%
+      <span class="roe-high">
+        12.08%
       </span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="瀚蓝环境 600323.SH"
-  data-category="公用事业/环保"
-  data-drop="8.1"
+  data-code="000807.SZ"
+  data-buy="23.5"
+  data-name="云铝股份 000807.SZ"
+  data-category="周期/有色"
+  data-drop="8.09"
 >
   <td class="stock-cell">
-    <div class="name">瀚蓝环境</div>
-    <div class="code">600323.SH</div>
+    <div class="name">云铝股份</div>
+    <div class="code">000807.SZ</div>
   </td>
-  <td><span class="cat">公用事业/环保</span></td>
-  <td class="num">26.80</td>
-  <td class="num">28.97</td>
+  <td><span class="cat">周期/有色</span></td>
+  <td class="num">23.50</td>
+  <td class="num">25.40</td>
   <td class="num">
     <span class="pos">
-      +8.10%
+      +8.09%
     </span>
     <span class="drop-visual"><span class="bar orange" style="width:27.0%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-mid">
-        7.93%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
-  data-name="中国铝业 601600.SH"
-  data-category="周期/有色"
-  data-drop="8.13"
->
-  <td class="stock-cell">
-    <div class="name">中国铝业</div>
-    <div class="code">601600.SH</div>
-  </td>
-  <td><span class="cat">周期/有色</span></td>
-  <td class="num">8.00</td>
-  <td class="num">8.65</td>
-  <td class="num">
-    <span class="pos">
-      +8.13%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:27.1%"></span></span>
-  </td>
-  <td class="num">
       <span class="roe-high">
-        14.67%
+        21.89%
       </span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="601298.SH"
+  data-buy="9.1"
   data-name="青岛港 601298.SH"
   data-category="公用事业/港口"
   data-drop="8.13"
@@ -2744,6 +2808,36 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="601939.SH"
+  data-buy="10.2"
+  data-name="建设银行 601939.SH"
+  data-category="银行/六大行"
+  data-drop="8.14"
+>
+  <td class="stock-cell">
+    <div class="name">建设银行</div>
+    <div class="code">601939.SH</div>
+  </td>
+  <td><span class="cat">银行/六大行</span></td>
+  <td class="num">10.20</td>
+  <td class="num">11.03</td>
+  <td class="num">
+    <span class="pos">
+      +8.14%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:27.1%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-low">
+        4.76%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="601000.SH"
+  data-buy="4.15"
   data-name="唐山港 601000.SH"
   data-category="公用事业/港口"
   data-drop="8.19"
@@ -2769,33 +2863,9 @@ tr.hidden { display: none; }
 </tr>
 <tr
   class="row-mid stock-row"
-  data-market="A"
-  data-name="工商银行 601398.SH"
-  data-category="银行/六大行"
-  data-drop="8.21"
->
-  <td class="stock-cell">
-    <div class="name">工商银行</div>
-    <div class="code">601398.SH</div>
-  </td>
-  <td><span class="cat">银行/六大行</span></td>
-  <td class="num">7.55</td>
-  <td class="num">8.17</td>
-  <td class="num">
-    <span class="pos">
-      +8.21%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:27.4%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-low">
-        4.32%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
   data-market="HK"
+  data-code="00002.HK"
+  data-buy="70.5"
   data-name="中电控股 00002.HK"
   data-category="电力/公用"
   data-drop="8.23"
@@ -2820,6 +2890,64 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600323.SH"
+  data-buy="26.8"
+  data-name="瀚蓝环境 600323.SH"
+  data-category="公用事业/环保"
+  data-drop="8.25"
+>
+  <td class="stock-cell">
+    <div class="name">瀚蓝环境</div>
+    <div class="code">600323.SH</div>
+  </td>
+  <td><span class="cat">公用事业/环保</span></td>
+  <td class="num">26.80</td>
+  <td class="num">29.01</td>
+  <td class="num">
+    <span class="pos">
+      +8.25%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:27.5%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        7.93%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="601600.SH"
+  data-buy="8"
+  data-name="中国铝业 601600.SH"
+  data-category="周期/有色"
+  data-drop="8.25"
+>
+  <td class="stock-cell">
+    <div class="name">中国铝业</div>
+    <div class="code">601600.SH</div>
+  </td>
+  <td><span class="cat">周期/有色</span></td>
+  <td class="num">8.00</td>
+  <td class="num">8.66</td>
+  <td class="num">
+    <span class="pos">
+      +8.25%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:27.5%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-high">
+        14.67%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="601018.SH"
+  data-buy="3.15"
   data-name="宁波港 601018.SH"
   data-category="公用事业/港口"
   data-drop="8.25"
@@ -2846,17 +2974,47 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="南京银行 601009.SH"
-  data-category="银行/城商行"
+  data-code="601398.SH"
+  data-buy="7.55"
+  data-name="工商银行 601398.SH"
+  data-category="银行/六大行"
+  data-drop="8.34"
+>
+  <td class="stock-cell">
+    <div class="name">工商银行</div>
+    <div class="code">601398.SH</div>
+  </td>
+  <td><span class="cat">银行/六大行</span></td>
+  <td class="num">7.55</td>
+  <td class="num">8.18</td>
+  <td class="num">
+    <span class="pos">
+      +8.34%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:27.8%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-low">
+        4.32%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="601998.SH"
+  data-buy="8.35"
+  data-name="中信银行 601998.SH"
+  data-category="银行/股份行"
   data-drop="8.38"
 >
   <td class="stock-cell">
-    <div class="name">南京银行</div>
-    <div class="code">601009.SH</div>
+    <div class="name">中信银行</div>
+    <div class="code">601998.SH</div>
   </td>
-  <td><span class="cat">银行/城商行</span></td>
-  <td class="num">11.10</td>
-  <td class="num">12.03</td>
+  <td><span class="cat">银行/股份行</span></td>
+  <td class="num">8.35</td>
+  <td class="num">9.05</td>
   <td class="num">
     <span class="pos">
       +8.38%
@@ -2864,14 +3022,16 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:27.9%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-mid">
-        7.25%
+      <span class="roe-low">
+        4.81%
       </span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600585.SH"
+  data-buy="15.5"
   data-name="海螺水泥 600585.SH"
   data-category="周期/建材"
   data-drop="8.39"
@@ -2897,7 +3057,37 @@ tr.hidden { display: none; }
 </tr>
 <tr
   class="row-mid stock-row"
+  data-market="A"
+  data-code="601009.SH"
+  data-buy="11.1"
+  data-name="南京银行 601009.SH"
+  data-category="银行/城商行"
+  data-drop="8.47"
+>
+  <td class="stock-cell">
+    <div class="name">南京银行</div>
+    <div class="code">601009.SH</div>
+  </td>
+  <td><span class="cat">银行/城商行</span></td>
+  <td class="num">11.10</td>
+  <td class="num">12.04</td>
+  <td class="num">
+    <span class="pos">
+      +8.47%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:28.2%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        7.25%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
   data-market="HK"
+  data-code="00006.HK"
+  data-buy="54.5"
   data-name="电能实业 00006.HK"
   data-category="电力/公用"
   data-drop="8.53"
@@ -2922,6 +3112,8 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600031.SH"
+  data-buy="15.8"
   data-name="三一重工 600031.SH"
   data-category="周期/机械"
   data-drop="8.67"
@@ -2948,35 +3140,11 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="中国核电 601985.SH"
-  data-category="电力/核电"
-  data-drop="8.73"
->
-  <td class="stock-cell">
-    <div class="name">中国核电</div>
-    <div class="code">601985.SH</div>
-  </td>
-  <td><span class="cat">电力/核电</span></td>
-  <td class="num">8.25</td>
-  <td class="num">8.97</td>
-  <td class="num">
-    <span class="pos">
-      +8.73%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:29.1%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-low">
-        3.05%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
+  data-code="600000.SH"
+  data-buy="8.4"
   data-name="浦发银行 600000.SH"
   data-category="银行/股份行"
-  data-drop="8.93"
+  data-drop="8.81"
 >
   <td class="stock-cell">
     <div class="name">浦发银行</div>
@@ -2984,12 +3152,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">银行/股份行</span></td>
   <td class="num">8.40</td>
-  <td class="num">9.15</td>
+  <td class="num">9.14</td>
   <td class="num">
     <span class="pos">
-      +8.93%
+      +8.81%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:29.8%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:29.4%"></span></span>
   </td>
   <td class="num">
       <span class="roe-low">
@@ -2999,7 +3167,37 @@ tr.hidden { display: none; }
 </tr>
 <tr
   class="row-mid stock-row"
+  data-market="A"
+  data-code="601985.SH"
+  data-buy="8.25"
+  data-name="中国核电 601985.SH"
+  data-category="电力/核电"
+  data-drop="8.85"
+>
+  <td class="stock-cell">
+    <div class="name">中国核电</div>
+    <div class="code">601985.SH</div>
+  </td>
+  <td><span class="cat">电力/核电</span></td>
+  <td class="num">8.25</td>
+  <td class="num">8.98</td>
+  <td class="num">
+    <span class="pos">
+      +8.85%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:29.5%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-low">
+        3.05%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
   data-market="HK"
+  data-code="00995.HK"
+  data-buy="14.0"
   data-name="安徽皖通高速公路 00995.HK"
   data-category="交运/高速"
   data-drop="9.0"
@@ -3018,14 +3216,42 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:30.0%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        1.81%
+      <span style="color:var(--text-muted)">—</span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="600025.SH"
+  data-buy="9"
+  data-name="华能水电 600025.SH"
+  data-category="电力/水电"
+  data-drop="9.11"
+>
+  <td class="stock-cell">
+    <div class="name">华能水电</div>
+    <div class="code">600025.SH</div>
+  </td>
+  <td><span class="cat">电力/水电</span></td>
+  <td class="num">9.00</td>
+  <td class="num">9.82</td>
+  <td class="num">
+    <span class="pos">
+      +9.11%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:30.4%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        5.91%
       </span>
   </td>
 </tr>
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600011.SH"
+  data-buy="6.3"
   data-name="华能国际 600011.SH"
   data-category="电力/火电"
   data-drop="9.21"
@@ -3052,87 +3278,11 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
-  data-name="华能水电 600025.SH"
-  data-category="电力/水电"
-  data-drop="9.22"
->
-  <td class="stock-cell">
-    <div class="name">华能水电</div>
-    <div class="code">600025.SH</div>
-  </td>
-  <td><span class="cat">电力/水电</span></td>
-  <td class="num">9.00</td>
-  <td class="num">9.83</td>
-  <td class="num">
-    <span class="pos">
-      +9.22%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:30.7%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        5.91%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
-  data-name="华电国际 600027.SH"
-  data-category="电力/火电"
-  data-drop="9.44"
->
-  <td class="stock-cell">
-    <div class="name">华电国际</div>
-    <div class="code">600027.SH</div>
-  </td>
-  <td><span class="cat">电力/火电</span></td>
-  <td class="num">4.45</td>
-  <td class="num">4.87</td>
-  <td class="num">
-    <span class="pos">
-      +9.44%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:31.5%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        5.76%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
-  data-name="中国广核 003816.SZ"
-  data-category="电力/核电"
-  data-drop="9.49"
->
-  <td class="stock-cell">
-    <div class="name">中国广核</div>
-    <div class="code">003816.SZ</div>
-  </td>
-  <td><span class="cat">电力/核电</span></td>
-  <td class="num">3.90</td>
-  <td class="num">4.27</td>
-  <td class="num">
-    <span class="pos">
-      +9.49%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:31.6%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-low">
-        4.60%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-mid stock-row"
-  data-market="A"
+  data-code="300347.SZ"
+  data-buy="52"
   data-name="泰格医药 300347.SZ"
   data-category="医药/CRO"
-  data-drop="9.69"
+  data-drop="9.37"
 >
   <td class="stock-cell">
     <div class="name">泰格医药</div>
@@ -3140,12 +3290,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">医药/CRO</span></td>
   <td class="num">52.00</td>
-  <td class="num">57.04</td>
+  <td class="num">56.87</td>
   <td class="num">
     <span class="pos">
-      +9.69%
+      +9.37%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:32.3%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:31.2%"></span></span>
   </td>
   <td class="num">
       <span class="roe-low">
@@ -3156,9 +3306,39 @@ tr.hidden { display: none; }
 <tr
   class="row-mid stock-row"
   data-market="A"
+  data-code="600027.SH"
+  data-buy="4.45"
+  data-name="华电国际 600027.SH"
+  data-category="电力/火电"
+  data-drop="9.66"
+>
+  <td class="stock-cell">
+    <div class="name">华电国际</div>
+    <div class="code">600027.SH</div>
+  </td>
+  <td><span class="cat">电力/火电</span></td>
+  <td class="num">4.45</td>
+  <td class="num">4.88</td>
+  <td class="num">
+    <span class="pos">
+      +9.66%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:32.2%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        5.76%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-mid stock-row"
+  data-market="A"
+  data-code="601088.SH"
+  data-buy="44.0"
   data-name="中国神华 601088.SH"
   data-category="周期/煤炭"
-  data-drop="9.73"
+  data-drop="9.77"
 >
   <td class="stock-cell">
     <div class="name">中国神华</div>
@@ -3166,12 +3346,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">周期/煤炭</span></td>
   <td class="num">44.00</td>
-  <td class="num">48.28</td>
+  <td class="num">48.30</td>
   <td class="num">
     <span class="pos">
-      +9.73%
+      +9.77%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:32.4%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:32.6%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -3180,11 +3360,41 @@ tr.hidden { display: none; }
   </td>
 </tr>
 <tr
-  class="row-mid stock-row"
+  class="row-far stock-row"
   data-market="A"
+  data-code="003816.SZ"
+  data-buy="3.9"
+  data-name="中国广核 003816.SZ"
+  data-category="电力/核电"
+  data-drop="10.0"
+>
+  <td class="stock-cell">
+    <div class="name">中国广核</div>
+    <div class="code">003816.SZ</div>
+  </td>
+  <td><span class="cat">电力/核电</span></td>
+  <td class="num">3.90</td>
+  <td class="num">4.29</td>
+  <td class="num">
+    <span class="pos">
+      +10.00%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:33.3%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-low">
+        4.60%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-far stock-row"
+  data-market="A"
+  data-code="600674.SH"
+  data-buy="15"
   data-name="川投能源 600674.SH"
   data-category="电力/水电"
-  data-drop="9.73"
+  data-drop="10.13"
 >
   <td class="stock-cell">
     <div class="name">川投能源</div>
@@ -3192,12 +3402,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">电力/水电</span></td>
   <td class="num">15.00</td>
-  <td class="num">16.46</td>
+  <td class="num">16.52</td>
   <td class="num">
     <span class="pos">
-      +9.73%
+      +10.13%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:32.4%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:33.8%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -3208,9 +3418,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="001872.SZ"
+  data-buy="21.8"
   data-name="招商港口 001872.SZ"
   data-category="公用事业/港口"
-  data-drop="10.14"
+  data-drop="10.28"
 >
   <td class="stock-cell">
     <div class="name">招商港口</div>
@@ -3218,12 +3430,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">公用事业/港口</span></td>
   <td class="num">21.80</td>
-  <td class="num">24.01</td>
+  <td class="num">24.04</td>
   <td class="num">
     <span class="pos">
-      +10.14%
+      +10.28%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:33.8%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:34.3%"></span></span>
   </td>
   <td class="num">
       <span class="roe-low">
@@ -3234,35 +3446,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
-  data-name="国投电力 600886.SH"
-  data-category="电力/水电"
-  data-drop="10.65"
->
-  <td class="stock-cell">
-    <div class="name">国投电力</div>
-    <div class="code">600886.SH</div>
-  </td>
-  <td><span class="cat">电力/水电</span></td>
-  <td class="num">13.80</td>
-  <td class="num">15.27</td>
-  <td class="num">
-    <span class="pos">
-      +10.65%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:35.5%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        5.05%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-far stock-row"
-  data-market="A"
+  data-code="600971.SH"
+  data-buy="7.5"
   data-name="恒源煤电 600971.SH"
   data-category="周期/煤炭"
-  data-drop="10.67"
+  data-drop="10.53"
 >
   <td class="stock-cell">
     <div class="name">恒源煤电</div>
@@ -3270,12 +3458,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">周期/煤炭</span></td>
   <td class="num">7.50</td>
-  <td class="num">8.30</td>
+  <td class="num">8.29</td>
   <td class="num">
     <span class="pos">
-      +10.67%
+      +10.53%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:35.6%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:35.1%"></span></span>
   </td>
   <td class="num">
       <span class="roe-low">
@@ -3285,7 +3473,37 @@ tr.hidden { display: none; }
 </tr>
 <tr
   class="row-far stock-row"
+  data-market="A"
+  data-code="600886.SH"
+  data-buy="13.8"
+  data-name="国投电力 600886.SH"
+  data-category="电力/水电"
+  data-drop="10.87"
+>
+  <td class="stock-cell">
+    <div class="name">国投电力</div>
+    <div class="code">600886.SH</div>
+  </td>
+  <td><span class="cat">电力/水电</span></td>
+  <td class="num">13.80</td>
+  <td class="num">15.30</td>
+  <td class="num">
+    <span class="pos">
+      +10.87%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:36.2%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        5.05%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-far stock-row"
   data-market="HK"
+  data-code="01658.HK"
+  data-buy="4.8"
   data-name="邮储银行 01658.HK"
   data-category="银行"
   data-drop="10.94"
@@ -3304,14 +3522,14 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:36.5%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        0.54%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="601658.SH"
+  data-buy="4.8"
   data-name="邮储银行 601658.SH"
   data-category="银行/六大行"
   data-drop="11.04"
@@ -3337,7 +3555,65 @@ tr.hidden { display: none; }
 </tr>
 <tr
   class="row-far stock-row"
+  data-market="A"
+  data-code="603565.SH"
+  data-buy="10.3"
+  data-name="中谷物流 603565.SH"
+  data-category="周期/航运"
+  data-drop="11.07"
+>
+  <td class="stock-cell">
+    <div class="name">中谷物流</div>
+    <div class="code">603565.SH</div>
+  </td>
+  <td><span class="cat">周期/航运</span></td>
+  <td class="num">10.30</td>
+  <td class="num">11.44</td>
+  <td class="num">
+    <span class="pos">
+      +11.07%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:36.9%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        9.94%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-far stock-row"
+  data-market="A"
+  data-code="600795.SH"
+  data-buy="4.85"
+  data-name="国电电力 600795.SH"
+  data-category="电力/综合能源"
+  data-drop="11.13"
+>
+  <td class="stock-cell">
+    <div class="name">国电电力</div>
+    <div class="code">600795.SH</div>
+  </td>
+  <td><span class="cat">电力/综合能源</span></td>
+  <td class="num">4.85</td>
+  <td class="num">5.39</td>
+  <td class="num">
+    <span class="pos">
+      +11.13%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:37.1%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-low">
+        4.93%
+      </span>
+  </td>
+</tr>
+<tr
+  class="row-far stock-row"
   data-market="HK"
+  data-code="06198.HK"
+  data-buy="6.8"
   data-name="青岛港国际 06198.HK"
   data-category="交运/港口"
   data-drop="11.25"
@@ -3356,95 +3632,17 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:37.5%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        0.91%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="A"
-  data-name="中谷物流 603565.SH"
-  data-category="周期/航运"
-  data-drop="11.26"
->
-  <td class="stock-cell">
-    <div class="name">中谷物流</div>
-    <div class="code">603565.SH</div>
-  </td>
-  <td><span class="cat">周期/航运</span></td>
-  <td class="num">10.30</td>
-  <td class="num">11.46</td>
-  <td class="num">
-    <span class="pos">
-      +11.26%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:37.5%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        9.94%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-far stock-row"
-  data-market="A"
-  data-name="国电电力 600795.SH"
-  data-category="电力/综合能源"
-  data-drop="11.34"
->
-  <td class="stock-cell">
-    <div class="name">国电电力</div>
-    <div class="code">600795.SH</div>
-  </td>
-  <td><span class="cat">电力/综合能源</span></td>
-  <td class="num">4.85</td>
-  <td class="num">5.40</td>
-  <td class="num">
-    <span class="pos">
-      +11.34%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:37.8%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-low">
-        4.93%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-far stock-row"
-  data-market="A"
-  data-name="广州发展 600098.SH"
-  data-category="电力/综合能源"
-  data-drop="11.43"
->
-  <td class="stock-cell">
-    <div class="name">广州发展</div>
-    <div class="code">600098.SH</div>
-  </td>
-  <td><span class="cat">电力/综合能源</span></td>
-  <td class="num">5.60</td>
-  <td class="num">6.24</td>
-  <td class="num">
-    <span class="pos">
-      +11.43%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:38.1%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-low">
-        3.42%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-far stock-row"
-  data-market="A"
+  data-code="000933.SZ"
+  data-buy="22.5"
   data-name="神火股份 000933.SZ"
   data-category="周期/煤炭铝电"
-  data-drop="11.56"
+  data-drop="11.6"
 >
   <td class="stock-cell">
     <div class="name">神火股份</div>
@@ -3452,12 +3650,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">周期/煤炭铝电</span></td>
   <td class="num">22.50</td>
-  <td class="num">25.10</td>
+  <td class="num">25.11</td>
   <td class="num">
     <span class="pos">
-      +11.56%
+      +11.60%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:38.5%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:38.7%"></span></span>
   </td>
   <td class="num">
       <span class="roe-high">
@@ -3468,32 +3666,36 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
-  data-name="桂冠电力 600236.SH"
-  data-category="电力/水电"
-  data-drop="11.81"
+  data-code="600098.SH"
+  data-buy="5.6"
+  data-name="广州发展 600098.SH"
+  data-category="电力/综合能源"
+  data-drop="11.79"
 >
   <td class="stock-cell">
-    <div class="name">桂冠电力</div>
-    <div class="code">600236.SH</div>
+    <div class="name">广州发展</div>
+    <div class="code">600098.SH</div>
   </td>
-  <td><span class="cat">电力/水电</span></td>
-  <td class="num">8.30</td>
-  <td class="num">9.28</td>
+  <td><span class="cat">电力/综合能源</span></td>
+  <td class="num">5.60</td>
+  <td class="num">6.26</td>
   <td class="num">
     <span class="pos">
-      +11.81%
+      +11.79%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:39.4%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:39.3%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-mid">
-        9.06%
+      <span class="roe-low">
+        3.42%
       </span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="03618.HK"
+  data-buy="5.6"
   data-name="重庆农村商业银行 03618.HK"
   data-category="银行"
   data-drop="11.88"
@@ -3512,17 +3714,45 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:39.6%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        0.44%
+      <span style="color:var(--text-muted)">—</span>
+  </td>
+</tr>
+<tr
+  class="row-far stock-row"
+  data-market="A"
+  data-code="600236.SH"
+  data-buy="8.3"
+  data-name="桂冠电力 600236.SH"
+  data-category="电力/水电"
+  data-drop="12.29"
+>
+  <td class="stock-cell">
+    <div class="name">桂冠电力</div>
+    <div class="code">600236.SH</div>
+  </td>
+  <td><span class="cat">电力/水电</span></td>
+  <td class="num">8.30</td>
+  <td class="num">9.32</td>
+  <td class="num">
+    <span class="pos">
+      +12.29%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:41.0%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        9.06%
       </span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="601225.SH"
+  data-buy="23"
   data-name="陕西煤业 601225.SH"
   data-category="周期/煤炭"
-  data-drop="12.48"
+  data-drop="12.52"
 >
   <td class="stock-cell">
     <div class="name">陕西煤业</div>
@@ -3530,12 +3760,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">周期/煤炭</span></td>
   <td class="num">23.00</td>
-  <td class="num">25.87</td>
+  <td class="num">25.88</td>
   <td class="num">
     <span class="pos">
-      +12.48%
+      +12.52%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:41.6%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:41.7%"></span></span>
   </td>
   <td class="num">
       <span class="roe-high">
@@ -3546,9 +3776,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="002142.SZ"
+  data-buy="31.0"
   data-name="宁波银行 002142.SZ"
   data-category="银行/城商行"
-  data-drop="12.61"
+  data-drop="12.68"
 >
   <td class="stock-cell">
     <div class="name">宁波银行</div>
@@ -3556,12 +3788,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">银行/城商行</span></td>
   <td class="num">31.00</td>
-  <td class="num">34.91</td>
+  <td class="num">34.93</td>
   <td class="num">
     <span class="pos">
-      +12.61%
+      +12.68%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:42.0%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:42.3%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -3572,9 +3804,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="600188.SH"
+  data-buy="17.5"
   data-name="兖矿能源 600188.SH"
   data-category="周期/煤炭"
-  data-drop="12.91"
+  data-drop="12.74"
 >
   <td class="stock-cell">
     <div class="name">兖矿能源</div>
@@ -3582,12 +3816,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">周期/煤炭</span></td>
   <td class="num">17.50</td>
-  <td class="num">19.76</td>
+  <td class="num">19.73</td>
   <td class="num">
     <span class="pos">
-      +12.91%
+      +12.74%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:43.0%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:42.5%"></span></span>
   </td>
   <td class="num">
       <span class="roe-mid">
@@ -3598,6 +3832,8 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="601006.SH"
+  data-buy="4.1"
   data-name="大秦铁路 601006.SH"
   data-category="公用事业/铁路"
   data-drop="12.93"
@@ -3624,6 +3860,8 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="01276.HK"
+  data-buy="40.0"
   data-name="江苏恒瑞医药 01276.HK"
   data-category="医药/创新药"
   data-drop="12.95"
@@ -3642,14 +3880,42 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:43.2%"></span></span>
   </td>
   <td class="num">
+      <span style="color:var(--text-muted)">—</span>
+  </td>
+</tr>
+<tr
+  class="row-far stock-row"
+  data-market="A"
+  data-code="600483.SH"
+  data-buy="9.7"
+  data-name="福能股份 600483.SH"
+  data-category="电力/综合能源"
+  data-drop="13.51"
+>
+  <td class="stock-cell">
+    <div class="name">福能股份</div>
+    <div class="code">600483.SH</div>
+  </td>
+  <td><span class="cat">电力/综合能源</span></td>
+  <td class="num">9.70</td>
+  <td class="num">11.01</td>
+  <td class="num">
+    <span class="pos">
+      +13.51%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:45.0%"></span></span>
+  </td>
+  <td class="num">
       <span class="roe-low">
-        4.04%
+        4.93%
       </span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="01038.HK"
+  data-buy="57.5"
   data-name="长江基建集团 01038.HK"
   data-category="基建/公用"
   data-drop="13.57"
@@ -3674,6 +3940,8 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="00914.HK"
+  data-buy="13.8"
   data-name="安徽海螺水泥股份 00914.HK"
   data-category="周期/建材"
   data-drop="13.7"
@@ -3692,40 +3960,14 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:45.7%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        0.38%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-far stock-row"
-  data-market="A"
-  data-name="福能股份 600483.SH"
-  data-category="电力/综合能源"
-  data-drop="13.81"
->
-  <td class="stock-cell">
-    <div class="name">福能股份</div>
-    <div class="code">600483.SH</div>
-  </td>
-  <td><span class="cat">电力/综合能源</span></td>
-  <td class="num">9.70</td>
-  <td class="num">11.04</td>
-  <td class="num">
-    <span class="pos">
-      +13.81%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:46.0%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-low">
-        4.93%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="06031.HK"
+  data-buy="14.5"
   data-name="三一重工 06031.HK"
   data-category="周期/机械"
   data-drop="14.48"
@@ -3744,14 +3986,14 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:48.3%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        1.46%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="00836.HK"
+  data-buy="16.5"
   data-name="华润电力 00836.HK"
   data-category="电力/公用"
   data-drop="15.09"
@@ -3770,12 +4012,16 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:50.3%"></span></span>
   </td>
   <td class="num">
-      <span style="color:var(--text-muted)">—</span>
+      <span class="roe-low">
+        0.84%
+      </span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="01398.HK"
+  data-buy="6.5"
   data-name="工商银行 01398.HK"
   data-category="银行"
   data-drop="15.62"
@@ -3800,6 +4046,8 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="00939.HK"
+  data-buy="8.2"
   data-name="建设银行 00939.HK"
   data-category="银行"
   data-drop="16.28"
@@ -3824,6 +4072,8 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="01288.HK"
+  data-buy="5.6"
   data-name="农业银行 01288.HK"
   data-category="银行"
   data-drop="16.34"
@@ -3848,6 +4098,8 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="00998.HK"
+  data-buy="7.2"
   data-name="中信银行 00998.HK"
   data-category="银行"
   data-drop="16.67"
@@ -3866,14 +4118,14 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:55.6%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        0.55%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="01071.HK"
+  data-buy="3.4"
   data-name="华电国际电力股份 01071.HK"
   data-category="电力/公用"
   data-drop="16.76"
@@ -3892,14 +4144,14 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:55.9%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        0.83%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="00598.HK"
+  data-buy="3.8"
   data-name="中国外运 00598.HK"
   data-category="交运/物流"
   data-drop="17.5"
@@ -3918,17 +4170,17 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:58.3%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        0.68%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="600023.SH"
+  data-buy="4.4"
   data-name="浙能电力 600023.SH"
   data-category="电力/火电"
-  data-drop="18.18"
+  data-drop="18.64"
 >
   <td class="stock-cell">
     <div class="name">浙能电力</div>
@@ -3936,12 +4188,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">电力/火电</span></td>
   <td class="num">4.40</td>
-  <td class="num">5.20</td>
+  <td class="num">5.22</td>
   <td class="num">
     <span class="pos">
-      +18.18%
+      +18.64%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:60.6%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:62.1%"></span></span>
   </td>
   <td class="num">
       <span class="roe-low">
@@ -3952,6 +4204,8 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="03328.HK"
+  data-buy="6.9"
   data-name="交通银行 03328.HK"
   data-category="银行"
   data-drop="18.77"
@@ -3970,14 +4224,14 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:62.6%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        0.54%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="03988.HK"
+  data-buy="5.0"
   data-name="中国银行 03988.HK"
   data-category="银行"
   data-drop="19.6"
@@ -4002,6 +4256,8 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="03968.HK"
+  data-buy="42.0"
   data-name="招商银行 03968.HK"
   data-category="银行"
   data-drop="20.24"
@@ -4026,6 +4282,8 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="01088.HK"
+  data-buy="36.0"
   data-name="中国神华能源 01088.HK"
   data-category="周期/煤炭"
   data-drop="21.56"
@@ -4044,14 +4302,14 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:71.9%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        1.83%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="02388.HK"
+  data-buy="42.0"
   data-name="中银香港 02388.HK"
   data-category="银行"
   data-drop="21.79"
@@ -4076,6 +4334,8 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="02899.HK"
+  data-buy="26.0"
   data-name="紫金矿业 02899.HK"
   data-category="周期/有色"
   data-drop="25.0"
@@ -4094,14 +4354,14 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:83.3%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        3.63%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="03993.HK"
+  data-buy="12.0"
   data-name="洛阳栾川钼业集团 03993.HK"
   data-category="周期/有色"
   data-drop="25.17"
@@ -4120,17 +4380,17 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:83.9%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        3.06%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="601001.SH"
+  data-buy="14"
   data-name="晋控煤业 601001.SH"
   data-category="周期/煤炭"
-  data-drop="25.5"
+  data-drop="25.79"
 >
   <td class="stock-cell">
     <div class="name">晋控煤业</div>
@@ -4138,12 +4398,12 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">周期/煤炭</span></td>
   <td class="num">14.00</td>
-  <td class="num">17.57</td>
+  <td class="num">17.61</td>
   <td class="num">
     <span class="pos">
-      +25.50%
+      +25.79%
     </span>
-    <span class="drop-visual"><span class="bar orange" style="width:85.0%"></span></span>
+    <span class="drop-visual"><span class="bar orange" style="width:86.0%"></span></span>
   </td>
   <td class="num">
       <span class="roe-low">
@@ -4154,6 +4414,8 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="01919.HK"
+  data-buy="13.0"
   data-name="中远海运控股 01919.HK"
   data-category="周期/航运"
   data-drop="27.62"
@@ -4172,14 +4434,42 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:92.1%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        0.95%
+      <span style="color:var(--text-muted)">—</span>
+  </td>
+</tr>
+<tr
+  class="row-far stock-row"
+  data-market="A"
+  data-code="603658.SH"
+  data-buy="26.5"
+  data-name="安图生物 603658.SH"
+  data-category="医药/IVD"
+  data-drop="28.0"
+>
+  <td class="stock-cell">
+    <div class="name">安图生物</div>
+    <div class="code">603658.SH</div>
+  </td>
+  <td><span class="cat">医药/IVD</span></td>
+  <td class="num">26.50</td>
+  <td class="num">33.92</td>
+  <td class="num">
+    <span class="pos">
+      +28.00%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:93.3%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-mid">
+        5.49%
       </span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="02600.HK"
+  data-buy="6.0"
   data-name="中国铝业 02600.HK"
   data-category="周期/有色"
   data-drop="28.17"
@@ -4198,40 +4488,14 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:93.9%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        1.34%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-far stock-row"
-  data-market="A"
-  data-name="安图生物 603658.SH"
-  data-category="医药/IVD"
-  data-drop="28.34"
->
-  <td class="stock-cell">
-    <div class="name">安图生物</div>
-    <div class="code">603658.SH</div>
-  </td>
-  <td><span class="cat">医药/IVD</span></td>
-  <td class="num">26.50</td>
-  <td class="num">34.01</td>
-  <td class="num">
-    <span class="pos">
-      +28.34%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:94.5%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-mid">
-        5.49%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="01171.HK"
+  data-buy="9.0"
   data-name="兖矿能源 01171.HK"
   data-category="周期/煤炭"
   data-drop="28.67"
@@ -4250,14 +4514,14 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:95.6%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-low">
-        1.32%
-      </span>
+      <span style="color:var(--text-muted)">—</span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="000725.SZ"
+  data-buy="4.5"
   data-name="京东方A 000725.SZ"
   data-category="科技/面板显示"
   data-drop="29.11"
@@ -4284,6 +4548,8 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="HK"
+  data-code="00358.HK"
+  data-buy="25.0"
   data-name="江西铜业股份 00358.HK"
   data-category="周期/有色"
   data-drop="31.76"
@@ -4308,9 +4574,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="300308.SZ"
+  data-buy="600"
   data-name="中际旭创 300308.SZ"
   data-category="科技/光模块"
-  data-drop="35.83"
+  data-drop="36.25"
 >
   <td class="stock-cell">
     <div class="name">中际旭创</div>
@@ -4318,10 +4586,10 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">科技/光模块</span></td>
   <td class="num">600.00</td>
-  <td class="num">814.97</td>
+  <td class="num">817.53</td>
   <td class="num">
     <span class="pos">
-      +35.83%
+      +36.25%
     </span>
     <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
   </td>
@@ -4333,33 +4601,9 @@ tr.hidden { display: none; }
 </tr>
 <tr
   class="row-far stock-row"
-  data-market="A"
-  data-name="新易盛 300502.SZ"
-  data-category="科技/光模块"
-  data-drop="43.0"
->
-  <td class="stock-cell">
-    <div class="name">新易盛</div>
-    <div class="code">300502.SZ</div>
-  </td>
-  <td><span class="cat">科技/光模块</span></td>
-  <td class="num">280.00</td>
-  <td class="num">400.40</td>
-  <td class="num">
-    <span class="pos">
-      +43.00%
-    </span>
-    <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
-  </td>
-  <td class="num">
-      <span class="roe-high">
-        34.86%
-      </span>
-  </td>
-</tr>
-<tr
-  class="row-far stock-row"
   data-market="HK"
+  data-code="03750.HK"
+  data-buy="340"
   data-name="宁德时代 03750.HK"
   data-category="科技/新能源"
   data-drop="43.94"
@@ -4378,17 +4622,45 @@ tr.hidden { display: none; }
     <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
   </td>
   <td class="num">
-      <span class="roe-mid">
-        5.11%
+      <span style="color:var(--text-muted)">—</span>
+  </td>
+</tr>
+<tr
+  class="row-far stock-row"
+  data-market="A"
+  data-code="300502.SZ"
+  data-buy="280"
+  data-name="新易盛 300502.SZ"
+  data-category="科技/光模块"
+  data-drop="44.12"
+>
+  <td class="stock-cell">
+    <div class="name">新易盛</div>
+    <div class="code">300502.SZ</div>
+  </td>
+  <td><span class="cat">科技/光模块</span></td>
+  <td class="num">280.00</td>
+  <td class="num">403.54</td>
+  <td class="num">
+    <span class="pos">
+      +44.12%
+    </span>
+    <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
+  </td>
+  <td class="num">
+      <span class="roe-high">
+        34.86%
       </span>
   </td>
 </tr>
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="002371.SZ"
+  data-buy="350"
   data-name="北方华创 002371.SZ"
   data-category="科技/半导体"
-  data-drop="79.84"
+  data-drop="80.86"
 >
   <td class="stock-cell">
     <div class="name">北方华创</div>
@@ -4396,10 +4668,10 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">科技/半导体</span></td>
   <td class="num">350.00</td>
-  <td class="num">629.43</td>
+  <td class="num">633.00</td>
   <td class="num">
     <span class="pos">
-      +79.84%
+      +80.86%
     </span>
     <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
   </td>
@@ -4412,9 +4684,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="688981.SH"
+  data-buy="60"
   data-name="中芯国际 688981.SH"
   data-category="科技/半导体"
-  data-drop="93.12"
+  data-drop="93.73"
 >
   <td class="stock-cell">
     <div class="name">中芯国际</div>
@@ -4422,10 +4696,10 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">科技/半导体</span></td>
   <td class="num">60.00</td>
-  <td class="num">115.87</td>
+  <td class="num">116.24</td>
   <td class="num">
     <span class="pos">
-      +93.12%
+      +93.73%
     </span>
     <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
   </td>
@@ -4438,9 +4712,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="688256.SH"
+  data-buy="500"
   data-name="寒武纪 688256.SH"
   data-category="科技/AI芯片"
-  data-drop="104.48"
+  data-drop="105.36"
 >
   <td class="stock-cell">
     <div class="name">寒武纪</div>
@@ -4448,10 +4724,10 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">科技/AI芯片</span></td>
   <td class="num">500.00</td>
-  <td class="num">1022.42</td>
+  <td class="num">1026.80</td>
   <td class="num">
     <span class="pos">
-      +104.48%
+      +105.36%
     </span>
     <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
   </td>
@@ -4464,9 +4740,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="688041.SH"
+  data-buy="95"
   data-name="海光信息 688041.SH"
   data-category="科技/芯片"
-  data-drop="153.63"
+  data-drop="153.32"
 >
   <td class="stock-cell">
     <div class="name">海光信息</div>
@@ -4474,10 +4752,10 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">科技/芯片</span></td>
   <td class="num">95.00</td>
-  <td class="num">240.95</td>
+  <td class="num">240.65</td>
   <td class="num">
     <span class="pos">
-      +153.63%
+      +153.32%
     </span>
     <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
   </td>
@@ -4490,9 +4768,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="688012.SH"
+  data-buy="125"
   data-name="中微公司 688012.SH"
   data-category="科技/半导体"
-  data-drop="161.26"
+  data-drop="161.12"
 >
   <td class="stock-cell">
     <div class="name">中微公司</div>
@@ -4500,10 +4780,10 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">科技/半导体</span></td>
   <td class="num">125.00</td>
-  <td class="num">326.58</td>
+  <td class="num">326.40</td>
   <td class="num">
     <span class="pos">
-      +161.26%
+      +161.12%
     </span>
     <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
   </td>
@@ -4516,9 +4796,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="688120.SH"
+  data-buy="90"
   data-name="华海清科 688120.SH"
   data-category="科技/半导体"
-  data-drop="162.48"
+  data-drop="163.33"
 >
   <td class="stock-cell">
     <div class="name">华海清科</div>
@@ -4526,10 +4808,10 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">科技/半导体</span></td>
   <td class="num">90.00</td>
-  <td class="num">236.23</td>
+  <td class="num">237.00</td>
   <td class="num">
     <span class="pos">
-      +162.48%
+      +163.33%
     </span>
     <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
   </td>
@@ -4542,9 +4824,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="301269.SZ"
+  data-buy="32"
   data-name="华大九天 301269.SZ"
   data-category="科技/EDA"
-  data-drop="165.91"
+  data-drop="166.56"
 >
   <td class="stock-cell">
     <div class="name">华大九天</div>
@@ -4552,10 +4836,10 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">科技/EDA</span></td>
   <td class="num">32.00</td>
-  <td class="num">85.09</td>
+  <td class="num">85.30</td>
   <td class="num">
     <span class="pos">
-      +165.91%
+      +166.56%
     </span>
     <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
   </td>
@@ -4568,9 +4852,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="688047.SH"
+  data-buy="35"
   data-name="龙芯中科 688047.SH"
   data-category="科技/芯片"
-  data-drop="186.63"
+  data-drop="187.69"
 >
   <td class="stock-cell">
     <div class="name">龙芯中科</div>
@@ -4578,10 +4864,10 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">科技/芯片</span></td>
   <td class="num">35.00</td>
-  <td class="num">100.32</td>
+  <td class="num">100.69</td>
   <td class="num">
     <span class="pos">
-      +186.63%
+      +187.69%
     </span>
     <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
   </td>
@@ -4594,9 +4880,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="300394.SZ"
+  data-buy="85"
   data-name="天孚通信 300394.SZ"
   data-category="科技/光模块"
-  data-drop="186.94"
+  data-drop="188.04"
 >
   <td class="stock-cell">
     <div class="name">天孚通信</div>
@@ -4604,10 +4892,10 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">科技/光模块</span></td>
   <td class="num">85.00</td>
-  <td class="num">243.90</td>
+  <td class="num">244.83</td>
   <td class="num">
     <span class="pos">
-      +186.94%
+      +188.04%
     </span>
     <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
   </td>
@@ -4620,9 +4908,11 @@ tr.hidden { display: none; }
 <tr
   class="row-far stock-row"
   data-market="A"
+  data-code="688072.SH"
+  data-buy="140"
   data-name="拓荆科技 688072.SH"
   data-category="科技/半导体"
-  data-drop="373.86"
+  data-drop="374.19"
 >
   <td class="stock-cell">
     <div class="name">拓荆科技</div>
@@ -4630,10 +4920,10 @@ tr.hidden { display: none; }
   </td>
   <td><span class="cat">科技/半导体</span></td>
   <td class="num">140.00</td>
-  <td class="num">663.41</td>
+  <td class="num">663.86</td>
   <td class="num">
     <span class="pos">
-      +373.86%
+      +374.19%
     </span>
     <span class="drop-visual"><span class="bar orange" style="width:100.0%"></span></span>
   </td>
@@ -4664,7 +4954,9 @@ tr.hidden { display: none; }
   const showHk = document.getElementById('showHK');
   const hkBox = document.getElementById('hkBox');
   const hkLabel = document.getElementById('hkLabel');
-  const rows = document.querySelectorAll('#stockTable tbody tr');
+  const refreshBtn = document.getElementById('refreshBtn');
+  const updateTimeEl = document.getElementById('updateTime');
+  const rows = Array.from(document.querySelectorAll('#stockTable tbody tr'));
   const headers = document.querySelectorAll('#stockTable th');
 
   let currentSort = { key: 'need_drop', dir: 'asc' };
@@ -4735,16 +5027,167 @@ tr.hidden { display: none; }
     }
   }
 
+  function fmtPrice(p) { return (Math.round(p * 100) / 100).toFixed(2); }
+
+  function updateRowPrice(row, curPrice) {
+    if (!curPrice || curPrice <= 0) return false;
+    const cells = row.children;
+    const buy = parseFloat(row.dataset.buy);
+    cells[3].innerHTML = fmtPrice(curPrice);
+    const nd = ((curPrice - buy) / buy) * 100;
+    const ndRounded = Math.round(nd * 100) / 100;
+    const nd_abs = Math.min(Math.abs(ndRounded), 30);
+    const nd_pct = Math.round(nd_abs / 30.0 * 1000) / 10;
+
+    let bar_color = 'orange', row_class = 'row-far';
+    if (ndRounded < 0) { bar_color = 'green'; row_class = 'row-below'; }
+    else if (ndRounded < 5) { bar_color = 'red'; row_class = 'row-near'; }
+    else if (ndRounded < 10) { bar_color = 'orange'; row_class = 'row-mid'; }
+    else { bar_color = 'orange'; row_class = 'row-far'; }
+
+    row.className = row_class + ' stock-row';
+    row.dataset.drop = ndRounded;
+
+    const sign = ndRounded > 0 ? '+' : '';
+    const cls = ndRounded < 0 ? 'neg' : 'pos';
+    cells[4].innerHTML =
+      '<span class="' + cls + '">' + sign + ndRounded.toFixed(2) + '%</span>' +
+      '<div class="progress"><div class="bar ' + bar_color + '" style="width:' + nd_pct + '%"></div></div>';
+    return true;
+  }
+
+  function codeToSina(code) {
+    const parts = code.split(".");
+    const num = parts[0];
+    const mkt = parts[1];
+    if (mkt === "SH") return "sh" + num;
+    if (mkt === "SZ") return "sz" + num;
+    if (mkt === "HK") return "hk" + num;
+    return "";
+  }
+
+  function mockPriceFor(row) {
+    const buy = parseFloat(row.dataset.buy) || 10;
+    const fixedJitter = (Math.abs(
+      Array.from(row.dataset.code || "").reduce((a, c) => a * 131 + c.charCodeAt(0), 7)
+    ) % 1000) / 1000.0;
+    const scenarios = [-0.22, -0.08, -0.03, 0.02, 0.06, 0.12, 0.25, 0.55];
+    const s = scenarios[Math.floor(fixedJitter * scenarios.length)];
+    return Math.max(0.01, buy * (1.0 + s));
+  }
+
+  function sinaBatchFetch(sinaCodes) {
+    if (window.STOCK_MOCK_REFRESH === true) {
+      const rows = Array.from(document.querySelectorAll('#stockTable tbody tr'));
+      const rowMap = {}; rows.forEach(r => rowMap[r.dataset.code] = r);
+      const out = {};
+      sinaCodes.forEach(sc => {
+        const tail = sc.slice(2);
+        let code;
+        if (sc.startsWith("sh") || sc.startsWith("sz")) code = (sc.startsWith("sh") ? tail + ".SH" : tail + ".SZ");
+        else if (sc.startsWith("hk")) code = tail + ".HK";
+        else code = "";
+        const row = rowMap[code];
+        if (row) out[sc] = mockPriceFor(row);
+      });
+      return new Promise(r => setTimeout(() => r(out), 700));
+    }
+    return new Promise((resolve) => {
+      const list = sinaCodes.join(",");
+      const script = document.createElement("script");
+      const stamp = Date.now() + "_" + Math.floor(Math.random() * 1e6);
+      script.src = "/api/sina?list=" + encodeURIComponent(list) + "&rn=" + stamp;
+      script.onerror = () => {
+        try { document.head.removeChild(script); } catch(e) {}
+        resolve({});
+      };
+      const done = () => {
+        try { document.head.removeChild(script); } catch(e) {}
+        const out = {};
+        sinaCodes.forEach(sc => {
+          const key = "hq_str_" + sc;
+          if (typeof window[key] === "string" && window[key].length > 0) {
+            try {
+              const fields = window[key].split("~");
+              let price = 0;
+              if (sc.startsWith("hk")) {
+                price = parseFloat(fields[6] || fields[2] || "0");
+              } else {
+                price = parseFloat(fields[3] || "0");
+              }
+              if (price > 0) out[sc] = price;
+              try { delete window[key]; } catch(e) { window[key] = undefined; }
+            } catch(e) {}
+          }
+        });
+        resolve(out);
+      };
+      script.onload = done;
+      setTimeout(done, 8000);
+      document.head.appendChild(script);
+    });
+  }
+
+  async function refreshPrices() {
+    if (refreshBtn.disabled) return;
+    refreshBtn.disabled = true;
+    const origText = refreshBtn.textContent;
+    refreshBtn.classList.remove("done");
+
+    const rowMap = {};
+    rows.forEach(r => { rowMap[r.dataset.code] = r; });
+    const pairs = rows.map(r => [codeToSina(r.dataset.code), r.dataset.code]).filter(x => x[0]);
+    const codeMap = {}; pairs.forEach(p => codeMap[p[0]] = p[1]);
+    const sinaList = pairs.map(p => p[0]);
+    const BATCH = 50;
+    const batches = [];
+    for (let i = 0; i < sinaList.length; i += BATCH) batches.push(sinaList.slice(i, i + BATCH));
+
+    let okCount = 0;
+    try {
+      for (let i = 0; i < batches.length; i++) {
+        refreshBtn.textContent = "刷新中 " + (i + 1) + "/" + batches.length + " ...";
+        const res = await sinaBatchFetch(batches[i]);
+        Object.keys(res).forEach(sc => {
+          const code = codeMap[sc];
+          const row = rowMap[code];
+          if (row && updateRowPrice(row, res[sc])) okCount++;
+        });
+        if (i < batches.length - 1) await new Promise(r => setTimeout(r, 350));
+      }
+    } catch(e) {}
+
+    sortTable();
+    applyFilters();
+
+    const now = new Date();
+    const pad = n => String(n).padStart(2, "0");
+    const tz = -now.getTimezoneOffset() / 60;
+    const tzStr = (tz >= 0 ? "+" : "") + tz + ":00";
+    updateTimeEl.textContent = "更新时间: " +
+      now.getFullYear() + "-" + pad(now.getMonth() + 1) + "-" + pad(now.getDate()) + " " +
+      pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds()) +
+      " (UTC" + tzStr + ") · 前端已刷新 " + okCount + "/" + rows.length;
+    refreshBtn.classList.add("done");
+    refreshBtn.textContent = "✅ 刷新完成 " + okCount + "/" + rows.length;
+    setTimeout(() => {
+      refreshBtn.textContent = origText;
+      refreshBtn.classList.remove("done");
+      refreshBtn.disabled = false;
+    }, 2500);
+  }
+
+  refreshBtn.addEventListener('click', refreshPrices);
+
   function sortTable() {
     const tbody = document.querySelector('#stockTable tbody');
-    const arr = Array.from(rows);
-    arr.sort((a, b) => {
+    rows.sort((a, b) => {
       let va = getCellValue(a, currentSort.key);
       let vb = getCellValue(b, currentSort.key);
       if (typeof va === 'string') return currentSort.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
       return currentSort.dir === 'asc' ? va - vb : vb - va;
     });
-    arr.forEach(r => tbody.appendChild(r));
+    rows.forEach(r => tbody.appendChild(r));
 
     headers.forEach(h => {
       h.textContent = h.textContent.replace(/ [↓↑]$/, '');

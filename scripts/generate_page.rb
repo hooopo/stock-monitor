@@ -258,6 +258,25 @@ body {
   transform: rotate(45deg);
 }
 
+.refresh-btn {
+  padding: 0 14px;
+  min-height: 38px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s, transform 0.05s;
+  flex-shrink: 0;
+}
+.refresh-btn:hover { filter: brightness(1.05); }
+.refresh-btn:active { transform: translateY(1px); }
+.refresh-btn:disabled { opacity: 0.6; cursor: wait; filter: grayscale(0.3); }
+.refresh-btn.done { background: #16a34a; border-color: #16a34a; }
+
 .table-wrap {
   background: var(--card);
   border-radius: var(--radius-md);
@@ -503,7 +522,11 @@ tr.hidden { display: none; }
 <div class="container">
 <div class="header">
   <h1>📈 股票监控榜</h1>
-  <div class="meta">更新时间: <%= generated_at %> &nbsp;·&nbsp; 共 <%= stocks.size %> 只股票</div>
+  <div class="meta">
+    <span id="updateTime">更新时间: <%= generated_at %></span>
+    &nbsp;·&nbsp;
+    共 <%= stocks.size %> 只股票
+  </div>
 </div>
 
 <div class="stats">
@@ -536,6 +559,7 @@ tr.hidden { display: none; }
 <div class="filter-bar">
   <input type="text" id="searchInput" placeholder="🔍 搜索名称/代码/分类...">
   <div class="row">
+    <button id="refreshBtn" class="refresh-btn">🔄 刷新现价</button>
     <label class="chk">
       <input type="checkbox" id="showHK" style="display:none">
       <span class="chk-box" id="hkBox"></span>
@@ -609,6 +633,8 @@ tr.hidden { display: none; }
 <tr
   class="<%= row_class %> stock-row"
   data-market="<%= s['code'].end_with?('.HK') ? 'HK' : 'A' %>"
+  data-code="<%= s['code'] %>"
+  data-buy="<%= s['buy_price'] %>"
   data-name="<%= s['name'] %> <%= s['code'] %>"
   data-category="<%= s['category'] %>"
   data-drop="<%= nd ? nd : 999999 %>"
@@ -662,7 +688,9 @@ tr.hidden { display: none; }
   const showHk = document.getElementById('showHK');
   const hkBox = document.getElementById('hkBox');
   const hkLabel = document.getElementById('hkLabel');
-  const rows = document.querySelectorAll('#stockTable tbody tr');
+  const refreshBtn = document.getElementById('refreshBtn');
+  const updateTimeEl = document.getElementById('updateTime');
+  const rows = Array.from(document.querySelectorAll('#stockTable tbody tr'));
   const headers = document.querySelectorAll('#stockTable th');
 
   let currentSort = { key: 'need_drop', dir: 'asc' };
@@ -733,16 +761,167 @@ tr.hidden { display: none; }
     }
   }
 
+  function fmtPrice(p) { return (Math.round(p * 100) / 100).toFixed(2); }
+
+  function updateRowPrice(row, curPrice) {
+    if (!curPrice || curPrice <= 0) return false;
+    const cells = row.children;
+    const buy = parseFloat(row.dataset.buy);
+    cells[3].innerHTML = fmtPrice(curPrice);
+    const nd = ((curPrice - buy) / buy) * 100;
+    const ndRounded = Math.round(nd * 100) / 100;
+    const nd_abs = Math.min(Math.abs(ndRounded), 30);
+    const nd_pct = Math.round(nd_abs / 30.0 * 1000) / 10;
+
+    let bar_color = 'orange', row_class = 'row-far';
+    if (ndRounded < 0) { bar_color = 'green'; row_class = 'row-below'; }
+    else if (ndRounded < 5) { bar_color = 'red'; row_class = 'row-near'; }
+    else if (ndRounded < 10) { bar_color = 'orange'; row_class = 'row-mid'; }
+    else { bar_color = 'orange'; row_class = 'row-far'; }
+
+    row.className = row_class + ' stock-row';
+    row.dataset.drop = ndRounded;
+
+    const sign = ndRounded > 0 ? '+' : '';
+    const cls = ndRounded < 0 ? 'neg' : 'pos';
+    cells[4].innerHTML =
+      '<span class="' + cls + '">' + sign + ndRounded.toFixed(2) + '%</span>' +
+      '<div class="progress"><div class="bar ' + bar_color + '" style="width:' + nd_pct + '%"></div></div>';
+    return true;
+  }
+
+  function codeToSina(code) {
+    const parts = code.split(".");
+    const num = parts[0];
+    const mkt = parts[1];
+    if (mkt === "SH") return "sh" + num;
+    if (mkt === "SZ") return "sz" + num;
+    if (mkt === "HK") return "hk" + num;
+    return "";
+  }
+
+  function mockPriceFor(row) {
+    const buy = parseFloat(row.dataset.buy) || 10;
+    const fixedJitter = (Math.abs(
+      Array.from(row.dataset.code || "").reduce((a, c) => a * 131 + c.charCodeAt(0), 7)
+    ) % 1000) / 1000.0;
+    const scenarios = [-0.22, -0.08, -0.03, 0.02, 0.06, 0.12, 0.25, 0.55];
+    const s = scenarios[Math.floor(fixedJitter * scenarios.length)];
+    return Math.max(0.01, buy * (1.0 + s));
+  }
+
+  function sinaBatchFetch(sinaCodes) {
+    if (window.STOCK_MOCK_REFRESH === true) {
+      const rows = Array.from(document.querySelectorAll('#stockTable tbody tr'));
+      const rowMap = {}; rows.forEach(r => rowMap[r.dataset.code] = r);
+      const out = {};
+      sinaCodes.forEach(sc => {
+        const tail = sc.slice(2);
+        let code;
+        if (sc.startsWith("sh") || sc.startsWith("sz")) code = (sc.startsWith("sh") ? tail + ".SH" : tail + ".SZ");
+        else if (sc.startsWith("hk")) code = tail + ".HK";
+        else code = "";
+        const row = rowMap[code];
+        if (row) out[sc] = mockPriceFor(row);
+      });
+      return new Promise(r => setTimeout(() => r(out), 700));
+    }
+    return new Promise((resolve) => {
+      const list = sinaCodes.join(",");
+      const script = document.createElement("script");
+      const stamp = Date.now() + "_" + Math.floor(Math.random() * 1e6);
+      script.src = "/api/sina?list=" + encodeURIComponent(list) + "&rn=" + stamp;
+      script.onerror = () => {
+        try { document.head.removeChild(script); } catch(e) {}
+        resolve({});
+      };
+      const done = () => {
+        try { document.head.removeChild(script); } catch(e) {}
+        const out = {};
+        sinaCodes.forEach(sc => {
+          const key = "hq_str_" + sc;
+          if (typeof window[key] === "string" && window[key].length > 0) {
+            try {
+              const fields = window[key].split("~");
+              let price = 0;
+              if (sc.startsWith("hk")) {
+                price = parseFloat(fields[6] || fields[2] || "0");
+              } else {
+                price = parseFloat(fields[3] || "0");
+              }
+              if (price > 0) out[sc] = price;
+              try { delete window[key]; } catch(e) { window[key] = undefined; }
+            } catch(e) {}
+          }
+        });
+        resolve(out);
+      };
+      script.onload = done;
+      setTimeout(done, 8000);
+      document.head.appendChild(script);
+    });
+  }
+
+  async function refreshPrices() {
+    if (refreshBtn.disabled) return;
+    refreshBtn.disabled = true;
+    const origText = refreshBtn.textContent;
+    refreshBtn.classList.remove("done");
+
+    const rowMap = {};
+    rows.forEach(r => { rowMap[r.dataset.code] = r; });
+    const pairs = rows.map(r => [codeToSina(r.dataset.code), r.dataset.code]).filter(x => x[0]);
+    const codeMap = {}; pairs.forEach(p => codeMap[p[0]] = p[1]);
+    const sinaList = pairs.map(p => p[0]);
+    const BATCH = 50;
+    const batches = [];
+    for (let i = 0; i < sinaList.length; i += BATCH) batches.push(sinaList.slice(i, i + BATCH));
+
+    let okCount = 0;
+    try {
+      for (let i = 0; i < batches.length; i++) {
+        refreshBtn.textContent = "刷新中 " + (i + 1) + "/" + batches.length + " ...";
+        const res = await sinaBatchFetch(batches[i]);
+        Object.keys(res).forEach(sc => {
+          const code = codeMap[sc];
+          const row = rowMap[code];
+          if (row && updateRowPrice(row, res[sc])) okCount++;
+        });
+        if (i < batches.length - 1) await new Promise(r => setTimeout(r, 350));
+      }
+    } catch(e) {}
+
+    sortTable();
+    applyFilters();
+
+    const now = new Date();
+    const pad = n => String(n).padStart(2, "0");
+    const tz = -now.getTimezoneOffset() / 60;
+    const tzStr = (tz >= 0 ? "+" : "") + tz + ":00";
+    updateTimeEl.textContent = "更新时间: " +
+      now.getFullYear() + "-" + pad(now.getMonth() + 1) + "-" + pad(now.getDate()) + " " +
+      pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds()) +
+      " (UTC" + tzStr + ") · 前端已刷新 " + okCount + "/" + rows.length;
+    refreshBtn.classList.add("done");
+    refreshBtn.textContent = "✅ 刷新完成 " + okCount + "/" + rows.length;
+    setTimeout(() => {
+      refreshBtn.textContent = origText;
+      refreshBtn.classList.remove("done");
+      refreshBtn.disabled = false;
+    }, 2500);
+  }
+
+  refreshBtn.addEventListener('click', refreshPrices);
+
   function sortTable() {
     const tbody = document.querySelector('#stockTable tbody');
-    const arr = Array.from(rows);
-    arr.sort((a, b) => {
+    rows.sort((a, b) => {
       let va = getCellValue(a, currentSort.key);
       let vb = getCellValue(b, currentSort.key);
       if (typeof va === 'string') return currentSort.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
       return currentSort.dir === 'asc' ? va - vb : vb - va;
     });
-    arr.forEach(r => tbody.appendChild(r));
+    rows.forEach(r => tbody.appendChild(r));
 
     headers.forEach(h => {
       h.textContent = h.textContent.replace(/ [↓↑]$/, '');
