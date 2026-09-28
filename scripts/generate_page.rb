@@ -214,6 +214,50 @@ body {
 }
 .filter-bar .row select { flex: 1; }
 
+.chk {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  min-height: 38px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.chk:hover { border-color: var(--accent); }
+.chk-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1.5px solid #9ca3af;
+  background: var(--card);
+  position: relative;
+  display: inline-block;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.chk-box.on {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.chk-box.on::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
 .table-wrap {
   background: var(--card);
   border-radius: var(--radius-md);
@@ -492,6 +536,11 @@ tr.hidden { display: none; }
 <div class="filter-bar">
   <input type="text" id="searchInput" placeholder="🔍 搜索名称/代码/分类...">
   <div class="row">
+    <label class="chk">
+      <input type="checkbox" id="showHK" style="display:none">
+      <span class="chk-box" id="hkBox"></span>
+      <span id="hkLabel">显示港股</span>
+    </label>
     <select id="categoryFilter">
       <option value="">全部分类</option>
       <% categories.each do |c| %>
@@ -558,7 +607,8 @@ tr.hidden { display: none; }
   r = s['roe'] ? s['roe'].round(2) : nil
 %>
 <tr
-  class="<%= row_class %>"
+  class="<%= row_class %> stock-row"
+  data-market="<%= s['code'].end_with?('.HK') ? 'HK' : 'A' %>"
   data-name="<%= s['name'] %> <%= s['code'] %>"
   data-category="<%= s['category'] %>"
   data-drop="<%= nd ? nd : 999999 %>"
@@ -609,6 +659,9 @@ tr.hidden { display: none; }
   const searchInput = document.getElementById('searchInput');
   const categoryFilter = document.getElementById('categoryFilter');
   const dropFilter = document.getElementById('dropFilter');
+  const showHk = document.getElementById('showHK');
+  const hkBox = document.getElementById('hkBox');
+  const hkLabel = document.getElementById('hkLabel');
   const rows = document.querySelectorAll('#stockTable tbody tr');
   const headers = document.querySelectorAll('#stockTable th');
 
@@ -618,13 +671,16 @@ tr.hidden { display: none; }
     const q = searchInput.value.trim().toLowerCase();
     const cat = categoryFilter.value;
     const drop = dropFilter.value;
+    const includeHK = showHk.checked;
 
     rows.forEach(row => {
       const name = row.dataset.name.toLowerCase();
       const category = row.dataset.category;
       const nd = parseFloat(row.dataset.drop);
+      const market = row.dataset.market || 'A';
 
       let ok = true;
+      if (market === 'HK' && !includeHK) ok = false;
       if (q && !name.includes(q) && !category.toLowerCase().includes(q)) ok = false;
       if (cat && category !== cat) ok = false;
       if (drop === 'below' && nd >= 0) ok = false;
@@ -635,6 +691,33 @@ tr.hidden { display: none; }
       row.classList.toggle('hidden', !ok);
     });
   }
+
+  function toggleHkVisual(on) {
+    hkBox.classList.toggle('on', !!on);
+    hkLabel.textContent = on ? '显示全部 (A+H)' : '只显示 A股';
+  }
+
+  showHk.addEventListener('change', function() {
+    toggleHkVisual(showHk.checked);
+    try { localStorage.setItem('showHK', showHk.checked ? '1' : '0'); } catch(e) {}
+    applyFilters();
+  });
+  hkBox.addEventListener('click', function(e) {
+    e.preventDefault();
+    showHk.checked = !showHk.checked;
+    showHk.dispatchEvent(new Event('change'));
+  });
+  hkLabel.addEventListener('click', function(e) {
+    e.preventDefault();
+    showHk.checked = !showHk.checked;
+    showHk.dispatchEvent(new Event('change'));
+  });
+
+  try {
+    const saved = localStorage.getItem('showHK');
+    if (saved === '1') showHk.checked = true;
+  } catch(e) {}
+  toggleHkVisual(showHk.checked);
 
   function getCellValue(row, key) {
     const cells = row.children;
@@ -688,6 +771,7 @@ tr.hidden { display: none; }
   });
 
   sortTable();
+  applyFilters();
 })();
 </script>
 </body>
@@ -910,9 +994,11 @@ def load_data
 
   puts "📊 正在拉取 ROE 数据..."
   roes = fetch_roe_batch(codes)
+  total_a = codes.count { |c| c.end_with?(".SH", ".SZ") }
+  total_h = codes.count { |c| c.end_with?(".HK") }
   a_n  = roes.count { |c, _| c.end_with?(".SH", ".SZ") }
   h_n  = roes.count { |c, _| c.end_with?(".HK") }
-  puts "✅ 获取 #{roes.size} 只 ROE (A股 #{a_n}/112, 港股 #{h_n}/40)"
+  puts "✅ 获取 #{roes.size} 只 ROE (A股 #{a_n}/#{total_a}, 港股 #{h_n}/#{total_h})"
 
   stocks.each do |s|
     code = s["code"]
