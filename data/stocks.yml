@@ -467,6 +467,10 @@
   code: 000933.SZ
   category: 周期/煤炭铝电
   buy_price: 22.5
+- name: 中国平安
+  code: 601318.SH
+  category: 金融/保险
+  buy_price: 50
 - name: 港灯电力投资
   code: 02638.HK
   category: 电力/公用
