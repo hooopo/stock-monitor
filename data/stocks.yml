@@ -542,11 +542,11 @@
 - name: 中国移动
   code: 00941.HK
   category: 通信/运营商
-  buy_price: 83.00
+  buy_price: 73.3
 - name: 中国电信
   code: 00728.HK
   category: 通信/运营商
-  buy_price: 4.50
+  buy_price: 4.150
 - name: 江苏宁沪高速公路
   code: 00177.HK
   category: 交运/高速
