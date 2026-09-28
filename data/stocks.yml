@@ -443,10 +443,18 @@
   code: 600309.SH
   category: 周期/化工
   buy_price: 65
-- name: 恒瑞医药
+- name: 江苏恒瑞医药
   code: 600276.SH
   category: 医药/创新药
-  buy_price: 42
+  buy_price: 41.00
+- name: 贵州茅台
+  code: 600519.SH
+  category: 消费/白酒
+  buy_price: 1200.00
+- name: 中国中铁
+  code: 601390.SH
+  category: 周期/建筑
+  buy_price: 4.1
 - name: 泰格医药
   code: 300347.SZ
   category: 医药/CRO
