@@ -79,6 +79,10 @@
   code: 601899.SH
   category: 周期/有色
   buy_price: 27.5
+- name: 宝钢股份
+  code: 600019.SH
+  category: 周期/钢铁
+  buy_price: 5.4
 - name: 中国外运
   code: 601598.SH
   category: 公用事业/物流
@@ -327,6 +331,10 @@
   code: 600066.SH
   category: 周期/汽车
   buy_price: 25
+- name: 福耀玻璃
+  code: 600660.SH
+  category: 周期/汽车
+  buy_price: 36.00
 - name: 中国建筑
   code: 601668.SH
   category: 周期/建筑
@@ -383,6 +391,18 @@
   code: 300750.SZ
   category: 科技/新能源
   buy_price: 270
+- name: 隆基绿能
+  code: 601012.SH
+  category: 科技/新能源
+  buy_price: 9.5
+- name: 通威股份
+  code: 600438.SH
+  category: 电力/综合能源
+  buy_price: 10
+- name: 牧原股份
+  code: 002714.SZ
+  category: 消费/农业
+  buy_price: 38.5
 - name: 百济神州
   code: 688235.SH
   category: 医药/创新药
@@ -451,6 +471,14 @@
   code: 600519.SH
   category: 消费/白酒
   buy_price: 1200.00
+- name: 五粮液
+  code: 000858.SZ
+  category: 消费/白酒
+  buy_price: 62
+- name: 中国海油
+  code: 600938.SH
+  category: 能源/油气开采
+  buy_price: 21.00
 - name: 中国中铁
   code: 601390.SH
   category: 周期/建筑
@@ -631,3 +659,11 @@
   code: 01276.HK
   category: 医药/创新药
   buy_price: 40.00
+- name: 中国海洋石油
+  code: 00883.HK
+  category: 能源/油气开采
+  buy_price: 20
+- name: 福耀玻璃
+  code: 03606.HK
+  category: 周期/汽车
+  buy_price: 50
