@@ -355,6 +355,10 @@
   code: 600887.SH
   category: 消费/食品
   buy_price: 25.8
+- name: 双汇发展
+  code: 000895.SZ
+  category: 消费/食品
+  buy_price: 22.50
 - name: 四川路桥
   code: 600039.SH
   category: 周期/建筑
