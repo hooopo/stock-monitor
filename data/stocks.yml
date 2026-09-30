@@ -350,7 +350,7 @@
 - name: 皖能电力
   code: 000543.SZ
   category: 电力/综合能源
-  buy_price: 6.8
+  buy_price: 7
 - name: 伊利股份
   code: 600887.SH
   category: 消费/食品
