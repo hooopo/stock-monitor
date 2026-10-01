@@ -750,7 +750,7 @@
 - name: 中国太保
   code: 02601.HK
   category: 金融/保险
-  buy_price: 28.5
+  buy_price: 24.5
 - name: 新华保险
   code: 01336.HK
   category: 金融/保险
