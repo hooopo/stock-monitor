@@ -122,7 +122,7 @@
 - name: 渝农商行
   code: 601077.SH
   category: 银行/农商行
-  buy_price: 6.35
+  buy_price: 6.3
 - name: 宁沪高速
   code: 600377.SH
   category: 公用事业/高速
@@ -179,10 +179,14 @@
   code: 600008.SH
   category: 公用事业/环保
   buy_price: 2.55
+- name: 洪城环境
+  code: 600461.SH
+  category: 公用事业/水务环保
+  buy_price: 8.40
 - name: 青岛港
   code: 601298.SH
   category: 公用事业/港口
-  buy_price: 9.1
+  buy_price: 8.0
 - name: 上港集团
   code: 600018.SH
   category: 公用事业/港口
@@ -246,11 +250,15 @@
 - name: 上海银行
   code: 601229.SH
   category: 银行/城商行
-  buy_price: 8.9
+  buy_price: 8.7
 - name: 大秦铁路
   code: 601006.SH
   category: 公用事业/铁路
   buy_price: 4.1
+- name: 京沪高铁
+  code: 601816.SH
+  category: 公用事业/铁路客运
+  buy_price: 4.40
 - name: 建设银行
   code: 601939.SH
   category: 银行/六大行
@@ -266,7 +274,7 @@
 - name: 中国神华
   code: 601088.SH
   category: 周期/煤炭
-  buy_price: 44.0
+  buy_price: 37.0
 - name: 杭州银行
   code: 600926.SH
   category: 银行/城商行
@@ -307,10 +315,22 @@
   code: 600031.SH
   category: 周期/机械
   buy_price: 15.8
+- name: 豪迈科技
+  code: 002595.SZ
+  category: 周期/机械
+  buy_price: 36.00
+- name: 潍柴动力
+  code: 000338.SZ
+  category: 周期/汽车零部件
+  buy_price: 20.00
 - name: 海螺水泥
   code: 600585.SH
   category: 周期/建材
   buy_price: 15.5
+- name: 北新建材
+  code: 000786.SZ
+  category: 周期/建材
+  buy_price: 15.20
 - name: 中国中免
   code: 601888.SH
   category: 消费/免税
@@ -343,6 +363,10 @@
   code: 000651.SZ
   category: 消费/家电
   buy_price: 38
+- name: 美的集团
+  code: 000333.SZ
+  category: 消费/家电
+  buy_price: 76.00
 - name: 时代电气
   code: 03898.HK
   category: 科技/电子
@@ -391,6 +415,22 @@
   code: 688120.SH
   category: 科技/半导体
   buy_price: 90
+- name: 长电科技
+  code: 600584.SH
+  category: 科技/封测
+  buy_price: 38.00
+- name: 国电南瑞
+  code: 600406.SH
+  category: 电力/电网自动化
+  buy_price: 21.00
+- name: 思源电气
+  code: 002028.SZ
+  category: 电力/一次设备
+  buy_price: 108.00
+- name: 中航光电
+  code: 002179.SZ
+  category: 军工/连接器
+  buy_price: 27.50
 - name: 宁德时代
   code: 300750.SZ
   category: 科技/新能源
@@ -487,6 +527,10 @@
   code: 600938.SH
   category: 能源/油气开采
   buy_price: 21.00
+- name: 杰瑞股份
+  code: 002353.SZ
+  category: 能源/油气设备
+  buy_price: 60.00
 - name: 中国中铁
   code: 601390.SH
   category: 周期/建筑
@@ -514,11 +558,11 @@
 - name: 中国平安
   code: 601318.SH
   category: 金融/保险
-  buy_price: 50
+  buy_price: 49.5
 - name: 中国太保
   code: 601601.SH
   category: 金融/保险
-  buy_price: 29.00
+  buy_price: 28.5
 - name: 新华保险
   code: 601336.SH
   category: 金融/保险
@@ -642,7 +686,7 @@
 - name: 中国神华能源
   code: 01088.HK
   category: 周期/煤炭
-  buy_price: 36.00
+  buy_price: 37.0
 - name: 兖矿能源
   code: 01171.HK
   category: 周期/煤炭
@@ -695,14 +739,18 @@
   code: 03606.HK
   category: 周期/汽车
   buy_price: 50
+- name: 粤海投资
+  code: 00270.HK
+  category: 公用事业/水务综合
+  buy_price: 8.10
 - name: 中国平安
   code: 02318.HK
   category: 金融/保险
-  buy_price: 52.00
+  buy_price: 47.5
 - name: 中国太保
   code: 02601.HK
   category: 金融/保险
-  buy_price: 28.00
+  buy_price: 28.5
 - name: 新华保险
   code: 01336.HK
   category: 金融/保险
