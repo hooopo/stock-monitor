@@ -518,7 +518,7 @@
 - name: 贵州茅台
   code: 600519.SH
   category: 消费/白酒
-  buy_price: 1200.00
+  buy_price: 1180.00
 - name: 五粮液
   code: 000858.SZ
   category: 消费/白酒
@@ -603,6 +603,10 @@
   code: 02388.HK
   category: 银行
   buy_price: 42.00
+- name: 东亚银行
+  code: 00023.HK
+  category: 银行
+  buy_price: 16.30
 - name: 建设银行
   code: 00939.HK
   category: 银行
