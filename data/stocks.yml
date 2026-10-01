@@ -423,6 +423,10 @@
   code: 688256.SH
   category: 科技/AI芯片
   buy_price: 500
+- name: 科大讯飞
+  code: 002230.SZ
+  category: 科技/AI应用
+  buy_price: 30.5
 - name: 海光信息
   code: 688041.SH
   category: 科技/芯片
@@ -511,6 +515,22 @@
   code: 601318.SH
   category: 金融/保险
   buy_price: 50
+- name: 中国太保
+  code: 601601.SH
+  category: 金融/保险
+  buy_price: 29.00
+- name: 新华保险
+  code: 601336.SH
+  category: 金融/保险
+  buy_price: 50.00
+- name: 中国人寿
+  code: 601628.SH
+  category: 金融/保险
+  buy_price: 31
+- name: 中国人保
+  code: 601319.SH
+  category: 金融/保险
+  buy_price: 6.7
 - name: 港灯电力投资
   code: 02638.HK
   category: 电力/公用
@@ -675,3 +695,27 @@
   code: 03606.HK
   category: 周期/汽车
   buy_price: 50
+- name: 中国平安
+  code: 02318.HK
+  category: 金融/保险
+  buy_price: 52.00
+- name: 中国太保
+  code: 02601.HK
+  category: 金融/保险
+  buy_price: 28.00
+- name: 新华保险
+  code: 01336.HK
+  category: 金融/保险
+  buy_price: 44.00
+- name: 中国人寿
+  code: 02628.HK
+  category: 金融/保险
+  buy_price: 26
+- name: 中国人保
+  code: 01339.HK
+  category: 金融/保险
+  buy_price: 5.6
+- name: 中国财险
+  code: 02328.HK
+  category: 金融/保险
+  buy_price: 15.5
