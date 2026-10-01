@@ -562,7 +562,7 @@
 - name: 中国太保
   code: 601601.SH
   category: 金融/保险
-  buy_price: 28.5
+  buy_price: 30
 - name: 新华保险
   code: 601336.SH
   category: 金融/保险
@@ -570,11 +570,11 @@
 - name: 中国人寿
   code: 601628.SH
   category: 金融/保险
-  buy_price: 31
+  buy_price: 34.5
 - name: 中国人保
   code: 601319.SH
   category: 金融/保险
-  buy_price: 6.7
+  buy_price: 7.2
 - name: 港灯电力投资
   code: 02638.HK
   category: 电力/公用
