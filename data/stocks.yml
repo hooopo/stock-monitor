@@ -286,7 +286,7 @@
 - name: 中国广核
   code: '003816.SZ'
   category: 电力/核电
-  buy_price: 3.9
+  buy_price: 3.65
 - name: 中国核电
   code: 601985.SH
   category: 电力/核电
@@ -678,7 +678,7 @@
 - name: 中国广核电力
   code: 01816.HK
   category: 电力/公用
-  buy_price: 2.80
+  buy_price: 2.85
 - name: 华能国际电力股份
   code: 00902.HK
   category: 电力/公用
