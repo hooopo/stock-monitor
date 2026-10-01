@@ -558,7 +558,7 @@
 - name: 中国平安
   code: 601318.SH
   category: 金融/保险
-  buy_price: 49.5
+  buy_price: 50
 - name: 中国太保
   code: 601601.SH
   category: 金融/保险
@@ -566,7 +566,7 @@
 - name: 新华保险
   code: 601336.SH
   category: 金融/保险
-  buy_price: 49.00
+  buy_price: 52
 - name: 中国人寿
   code: 601628.SH
   category: 金融/保险
@@ -766,4 +766,4 @@
 - name: 中国财险
   code: 02328.HK
   category: 金融/保险
-  buy_price: 14.5
+  buy_price: 15
