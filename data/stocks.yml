@@ -311,6 +311,10 @@
   code: 00700.HK
   category: 科技/互联网
   buy_price: 410
+- name: 阿里巴巴-SW
+  code: 09988.HK
+  category: 科技/互联网
+  buy_price: 100.00
 - name: 三一重工
   code: 600031.SH
   category: 周期/机械
