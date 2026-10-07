@@ -775,3 +775,11 @@
   code: 02328.HK
   category: 金融/保险
   buy_price: 15
+- name: 中国宏桥
+  code: 01378.HK
+  category: 周期/有色
+  buy_price: 19.2
+- name: 宏创控股
+  code: 002379.SZ
+  category: 周期/有色
+  buy_price: 14.4
