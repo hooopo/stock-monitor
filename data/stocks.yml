@@ -823,3 +823,7 @@
   code: 002821.SZ
   category: 医药/CRO
   buy_price: 135
+- name: 阳光电源
+  code: 300274.SZ
+  category: 科技/新能源
+  buy_price: 84
