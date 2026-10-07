@@ -254,7 +254,7 @@
 - name: 大秦铁路
   code: 601006.SH
   category: 公用事业/铁路
-  buy_price: 4.1
+  buy_price: 4.44
 - name: 京沪高铁
   code: 601816.SH
   category: 公用事业/铁路客运
@@ -815,3 +815,11 @@
   code: 002294.SZ
   category: 医药/创新药
   buy_price: 28
+- name: 恩华药业
+  code: 002262.SZ
+  category: 医药/创新药
+  buy_price: 21.5
+- name: 凯莱英
+  code: 002821.SZ
+  category: 医药/CRO
+  buy_price: 135
