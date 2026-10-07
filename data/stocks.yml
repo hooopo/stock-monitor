@@ -542,7 +542,7 @@
 - name: 泰格医药
   code: 300347.SZ
   category: 医药/CRO
-  buy_price: 52
+  buy_price: 44
 - name: 老板电器
   code: 002508.SZ
   category: 消费/家电
@@ -803,3 +803,15 @@
   code: 601138.SH
   category: 科技/电子
   buy_price: 55
+- name: 天赐材料
+  code: 002709.SZ
+  category: 科技/新能源
+  buy_price: 30
+- name: 甘李药业
+  code: 603087.SH
+  category: 医药/创新药
+  buy_price: 62
+- name: 信立泰
+  code: 002294.SZ
+  category: 医药/创新药
+  buy_price: 28
