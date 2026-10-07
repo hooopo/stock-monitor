@@ -530,7 +530,7 @@
 - name: 中国海油
   code: 600938.SH
   category: 能源/油气开采
-  buy_price: 21.00
+  buy_price: 27.5
 - name: 杰瑞股份
   code: 002353.SZ
   category: 能源/油气设备
