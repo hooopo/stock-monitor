@@ -566,7 +566,7 @@
 - name: 中国太保
   code: 601601.SH
   category: 金融/保险
-  buy_price: 30
+  buy_price: 29.5
 - name: 新华保险
   code: 601336.SH
   category: 金融/保险
@@ -658,7 +658,7 @@
 - name: 中国移动
   code: 00941.HK
   category: 通信/运营商
-  buy_price: 73.3
+  buy_price: 73
 - name: 中国电信
   code: 00728.HK
   category: 通信/运营商
@@ -758,7 +758,7 @@
 - name: 中国太保
   code: 02601.HK
   category: 金融/保险
-  buy_price: 24.5
+  buy_price: 26
 - name: 新华保险
   code: 01336.HK
   category: 金融/保险
@@ -802,7 +802,7 @@
 - name: 工业富联
   code: 601138.SH
   category: 科技/电子
-  buy_price: 55
+  buy_price: 46
 - name: 天赐材料
   code: 002709.SZ
   category: 科技/新能源
@@ -818,7 +818,7 @@
 - name: 恩华药业
   code: 002262.SZ
   category: 医药/创新药
-  buy_price: 21.5
+  buy_price: 19.8
 - name: 凯莱英
   code: 002821.SZ
   category: 医药/CRO
