@@ -579,10 +579,10 @@
   code: 601319.SH
   category: 金融/保险
   buy_price: 7.2
-- name: 港灯电力投资
+- name: 港灯-SS
   code: 02638.HK
   category: 电力/公用
-  buy_price: 6.00
+  buy_price: 5.8
 - name: 华润电力
   code: 00836.HK
   category: 电力/公用
