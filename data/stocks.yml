@@ -622,7 +622,7 @@
 - name: 中国银行
   code: 03988.HK
   category: 银行
-  buy_price: 5.00
+  buy_price: 5.3
 - name: 农业银行
   code: 01288.HK
   category: 银行
@@ -859,6 +859,10 @@
   code: 601107.SH
   category: 公用事业/高速
   buy_price: 5.4
+- name: 四川成渝高速公路
+  code: 00107.HK
+  category: 公用事业/高速
+  buy_price: 4.5
 - name: 兴蓉环境
   code: 000598.SZ
   category: 公用事业/水务环保
@@ -899,3 +903,27 @@
   code: 06886.HK
   category: 金融/券商
   buy_price: 14.5
+- name: 国信证券
+  code: 002736.SZ
+  category: 金融/券商
+  buy_price: 9.1
+- name: 东吴证券
+  code: 601555.SH
+  category: 金融/券商
+  buy_price: 7.3
+- name: 国泰君安
+  code: 601211.SH
+  category: 金融/券商
+  buy_price: 16.2
+- name: 国泰君安
+  code: 02611.HK
+  category: 金融/券商
+  buy_price: 12.8
+- name: 中国银河
+  code: 601881.SH
+  category: 金融/券商
+  buy_price: 10.5
+- name: 中国银河
+  code: 06881.HK
+  category: 金融/券商
+  buy_price: 6.6
