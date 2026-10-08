@@ -369,6 +369,26 @@ tr.hidden { display: none; }
   border-radius: 4px;
   font-weight: 500;
 }
+.satellite-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #6d28d9;
+  background: #ede9fe;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 4px;
+  line-height: 1.4;
+  vertical-align: middle;
+}
+@media (prefers-color-scheme: dark) {
+  .satellite-badge {
+    color: #c4b5fd;
+    background: #3b2a66;
+  }
+}
 .num {
   font-variant-numeric: tabular-nums;
   font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -638,9 +658,10 @@ tr.hidden { display: none; }
   data-name="<%= s['name'] %> <%= s['code'] %>"
   data-category="<%= s['category'] %>"
   data-drop="<%= nd ? nd : 999999 %>"
+  data-satellite="<%= s['satellite'] ? '1' : '0' %>"
 >
   <td class="stock-cell">
-    <div class="name"><%= s['name'] %></div>
+    <div class="name"><%= s['name'] %><% if s['satellite'] %><span class="satellite-badge" title="卫星仓（高波动/成长风格，非核心红利持仓）">🛰 卫星</span><% end %></div>
     <div class="code"><%= s['code'] %></div>
   </td>
   <td><span class="cat"><%= s['category'] %></span></td>
@@ -1393,6 +1414,15 @@ def process(stocks)
   stocks.sort_by! { |s| s["need_drop_pct"] }
 end
 
+CORE_CATEGORY_PREFIXES = [
+  "银行", "电力/", "公用事业/", "交运/", "金融/保险", "通信/运营商",
+  "能源/油气开采", "周期/煤炭", "基建/公用"
+].freeze
+
+def satellite_category?(category)
+  CORE_CATEGORY_PREFIXES.none? { |p| category.start_with?(p) }
+end
+
 def calc_stats(stocks)
   priced = stocks.select { |s| s["current_price"] }
   below = priced.count { |s| s["current_price"] < s["buy_price"] }
@@ -1417,6 +1447,7 @@ end
 
 stocks = load_data
 process(stocks)
+stocks.each { |s| s["satellite"] = satellite_category?(s["category"]) }
 stats = calc_stats(stocks)
 categories = stocks.map { |s| s["category"] }.uniq.sort
 generated_at = Time.now.getlocal("+08:00").strftime("%Y-%m-%d %H:%M:%S (UTC+8)")
