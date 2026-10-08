@@ -1230,7 +1230,7 @@ def fetch_roe_a_share(codes)
     secid = "#{market}#{num}"
     begin
       url = "/PC_HSF10/NewFinanceAnalysis/ZYZBAjaxNew"
-      params = { "type" => "0", "code" => secid }
+      params = { "type" => "1", "code" => secid }
       resp = nil
       2.times do
         resp = conn.get(url, params)
