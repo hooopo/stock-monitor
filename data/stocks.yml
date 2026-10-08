@@ -350,7 +350,7 @@
 - name: 中远海控
   code: 601919.SH
   category: 周期/航运
-  buy_price: 15.4
+  buy_price: 15
 - name: 宇通客车
   code: 600066.SH
   category: 周期/汽车
@@ -718,7 +718,7 @@
 - name: 中远海运控股
   code: 01919.HK
   category: 周期/航运
-  buy_price: 13.00
+  buy_price: 14.5
 - name: 安徽海螺水泥股份
   code: 00914.HK
   category: 周期/建材
