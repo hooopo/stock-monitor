@@ -847,3 +847,11 @@
   code: 302132.SZ
   category: 军工/航空
   buy_price: 50
+- name: 赣锋锂业
+  code: 002460.SZ
+  category: 科技/新能源
+  buy_price: 35
+- name: 卫星化学
+  code: 002648.SZ
+  category: 周期/化工
+  buy_price: 22.5
