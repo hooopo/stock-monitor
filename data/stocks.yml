@@ -839,3 +839,11 @@
   code: 000690.SZ
   category: 电力/综合能源
   buy_price: 4.4
+- name: 中油工程
+  code: 600339.SH
+  category: 能源/油气设备
+  buy_price: 3.05
+- name: 中航成飞
+  code: 002190.SZ
+  category: 军工/航空
+  buy_price: 50
