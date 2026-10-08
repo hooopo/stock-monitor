@@ -831,3 +831,11 @@
   code: 600219.SH
   category: 周期/有色
   buy_price: 4.15
+- name: 宝丰能源
+  code: 600989.SH
+  category: 周期/化工
+  buy_price: 20.5
+- name: 宝新能源
+  code: 000690.SZ
+  category: 电力/综合能源
+  buy_price: 4.4
