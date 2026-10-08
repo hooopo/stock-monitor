@@ -803,7 +803,7 @@ tr.hidden { display: none; }
     const cells = row.children;
     const buy = parseFloat(row.dataset.buy);
     cells[3].innerHTML = fmtPrice(curPrice);
-    const nd = ((curPrice - buy) / buy) * 100;
+    const nd = ((curPrice - buy) / curPrice) * 100;
     const ndRounded = Math.round(nd * 100) / 100;
     const nd_abs = Math.min(Math.abs(ndRounded), 30);
     const nd_pct = Math.round(nd_abs / 30.0 * 1000) / 10;
@@ -1404,8 +1404,8 @@ def process(stocks)
   stocks.each do |s|
     cur = s["current_price"]
     buy = s["buy_price"]
-    s["need_drop_pct"] = if cur && buy > 0
-                           (cur - buy) / buy * 100.0
+    s["need_drop_pct"] = if cur && cur > 0 && buy > 0
+                           (cur - buy) / cur * 100.0
                          else
                            Float::INFINITY
                          end
