@@ -1337,10 +1337,8 @@ end
 
 def fetch_roe_batch(codes)
   a_codes = codes.select { |c| c.end_with?(".SH", ".SZ") }
-  hk_codes = codes.select { |c| c.end_with?(".HK") }
 
   a_result = {}
-  hk_result = {}
   Thread.report_on_exception = true
 
   threads = []
@@ -1354,21 +1352,11 @@ def fetch_roe_batch(codes)
     end
   end unless a_codes.empty?
 
-  threads << Thread.new do
-    Thread.current.name = "roe-hk"
-    begin
-      hk_result = fetch_roe_hk(hk_codes)
-    rescue StandardError => e
-      $stderr.puts "[ROE:HK] thread FAILED: #{e.class} #{e.message[0..200]}\n#{e.backtrace.first(5).join("\n")}"
-      hk_result = {}
-    end
-  end unless hk_codes.empty?
-
   threads.each(&:join)
 
-  $stderr.puts "[ROE:summary] A=#{a_result.size}/#{a_codes.size}  H=#{hk_result.size}/#{hk_codes.size}  total=#{a_result.size + hk_result.size}"
+  $stderr.puts "[ROE:summary] A=#{a_result.size}/#{a_codes.size}  H=SKIPPED total=#{a_result.size}"
 
-  a_result.merge(hk_result)
+  a_result
 end
 
 def load_data
@@ -1383,13 +1371,11 @@ def load_data
     puts "⚠️  缺失 #{miss} 只价格"
   end
 
-  puts "📊 正在拉取 ROE 数据..."
+  puts "📊 正在拉取 ROE 数据 (仅 A 股)..."
   roes = fetch_roe_batch(codes)
   total_a = codes.count { |c| c.end_with?(".SH", ".SZ") }
-  total_h = codes.count { |c| c.end_with?(".HK") }
   a_n  = roes.count { |c, _| c.end_with?(".SH", ".SZ") }
-  h_n  = roes.count { |c, _| c.end_with?(".HK") }
-  puts "✅ 获取 #{roes.size} 只 ROE (A股 #{a_n}/#{total_a}, 港股 #{h_n}/#{total_h})"
+  puts "✅ 获取 #{roes.size} 只 ROE (A股 #{a_n}/#{total_a}, 港股已跳过)"
 
   stocks.each do |s|
     code = s["code"]
