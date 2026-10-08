@@ -590,11 +590,11 @@
 - name: 电能实业
   code: 00006.HK
   category: 电力/公用
-  buy_price: 54.50
+  buy_price: 51
 - name: 中电控股
   code: 00002.HK
   category: 电力/公用
-  buy_price: 70.50
+  buy_price: 67
 - name: 长江基建集团
   code: 01038.HK
   category: 基建/公用
@@ -682,7 +682,7 @@
 - name: 中国广核电力
   code: 01816.HK
   category: 电力/公用
-  buy_price: 2.85
+  buy_price: 2.75
 - name: 华能国际电力股份
   code: 00902.HK
   category: 电力/公用
@@ -730,7 +730,7 @@
 - name: 海尔智家
   code: 06690.HK
   category: 消费/家电
-  buy_price: 18.50
+  buy_price: 19
 - name: 宁德时代
   code: 03750.HK
   category: 科技/新能源
@@ -754,7 +754,7 @@
 - name: 中国平安
   code: 02318.HK
   category: 金融/保险
-  buy_price: 47.5
+  buy_price: 48
 - name: 中国太保
   code: 02601.HK
   category: 金融/保险
@@ -855,3 +855,31 @@
   code: 002648.SZ
   category: 周期/化工
   buy_price: 22.5
+- name: 四川成渝
+  code: 601107.SH
+  category: 公用事业/高速
+  buy_price: 5.4
+- name: 兴蓉环境
+  code: 000598.SZ
+  category: 公用事业/水务环保
+  buy_price: 6.45
+- name: 分众传媒
+  code: 002027.SZ
+  category: 科技/媒体广告
+  buy_price: 4.4
+- name: 凤凰传媒
+  code: 601928.SH
+  category: 科技/传媒出版
+  buy_price: 7.5
+- name: 云南白药
+  code: 000538.SZ
+  category: 医药/中药
+  buy_price: 49
+- name: 东阿阿胶
+  code: 000423.SZ
+  category: 医药/中药
+  buy_price: 43
+- name: 金杯电工
+  code: 002533.SZ
+  category: 电力/一次设备
+  buy_price: 9.8
