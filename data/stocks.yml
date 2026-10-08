@@ -338,7 +338,7 @@
 - name: 中国中免
   code: 601888.SH
   category: 消费/免税
-  buy_price: 49
+  buy_price: 48
 - name: 安图生物
   code: 603658.SH
   category: 医药/IVD
