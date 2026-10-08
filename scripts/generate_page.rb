@@ -1193,19 +1193,25 @@ def fetch_realtime_prices(codes)
       orig_code = slice.find { |c| sina_code(c) == sc }
       next unless orig_code
 
-      price = fields[3].to_f
+      price = if sc.start_with?("hk")
+                fields[6].to_f
+              else
+                fields[3].to_f
+              end
       name = fields[0]
+      date_idx = sc.start_with?("hk") ? 18 : 30
+      time_idx = sc.start_with?("hk") ? 19 : 31
       results[orig_code] = {
         "name" => name,
         "current_price" => price,
-        "open" => fields[1].to_f,
-        "prev_close" => fields[2].to_f,
-        "high" => fields[4].to_f,
-        "low" => fields[5].to_f,
+        "open" => sc.start_with?("hk") ? fields[2].to_f : fields[1].to_f,
+        "prev_close" => sc.start_with?("hk") ? fields[3].to_f : fields[2].to_f,
+        "high" => sc.start_with?("hk") ? fields[4].to_f : fields[4].to_f,
+        "low" => sc.start_with?("hk") ? fields[5].to_f : fields[5].to_f,
         "volume" => fields[8].to_i,
         "amount" => fields[9].to_f,
-        "date" => fields[30],
-        "time" => fields[31]
+        "date" => fields[date_idx],
+        "time" => fields[time_idx]
       }
     end
     sleep 0.5

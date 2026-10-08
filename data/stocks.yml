@@ -911,11 +911,11 @@
   code: 601555.SH
   category: 金融/券商
   buy_price: 7.3
-- name: 国泰君安
+- name: 国泰海通
   code: 601211.SH
   category: 金融/券商
   buy_price: 16.2
-- name: 国泰君安
+- name: 国泰海通证券
   code: 02611.HK
   category: 金融/券商
   buy_price: 12.8
