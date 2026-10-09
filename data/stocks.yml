@@ -426,7 +426,7 @@
 - name: 国电南瑞
   code: 600406.SH
   category: 电力/电网自动化
-  buy_price: 21.00
+  buy_price: 21.5
 - name: 思源电气
   code: 002028.SZ
   category: 电力/一次设备
