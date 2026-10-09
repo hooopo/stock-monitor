@@ -1080,3 +1080,19 @@
   code: 688050.SH
   category: 医药/器械
   buy_price: 35
+- name: 广汇能源
+  code: 600256.SH
+  category: 周期/油气
+  buy_price: 6
+- name: 古井贡酒
+  code: 000596.SZ
+  category: 消费/白酒
+  buy_price: 85
+- name: 巨化股份
+  code: 600160.SH
+  category: 周期/化工
+  buy_price: 30
+- name: 山煤国际
+  code: 600546.SH
+  category: 周期/煤炭
+  buy_price: 11.2
