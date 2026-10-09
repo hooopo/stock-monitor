@@ -1096,3 +1096,31 @@
   code: 600546.SH
   category: 周期/煤炭
   buy_price: 11.2
+- name: 国瓷材料
+  code: 300285.SZ
+  category: 周期/新材料
+  buy_price: 32
+- name: 华阳股份
+  code: 600348.SH
+  category: 周期/煤炭
+  buy_price: 7.8
+- name: 泽璟制药
+  code: 688266.SH
+  category: 医药/创新药
+  buy_price: 90
+- name: 广钢气体
+  code: 688548.SH
+  category: 公用事业/工业气体
+  buy_price: 23
+- name: 春风动力
+  code: 603129.SH
+  category: 消费/摩托车
+  buy_price: 250
+- name: 东方雨虹
+  code: 002271.SZ
+  category: 周期/建材
+  buy_price: 10.2
+- name: 中国石油
+  code: 601857.SH
+  category: 周期/油气
+  buy_price: 9.3
