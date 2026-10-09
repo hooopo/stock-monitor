@@ -911,11 +911,11 @@
   code: 601555.SH
   category: 金融/券商
   buy_price: 7.3
-- name: 国泰海通
+- name: 国泰君安
   code: 601211.SH
   category: 金融/券商
   buy_price: 16.2
-- name: 国泰海通证券
+- name: 国泰君安
   code: 02611.HK
   category: 金融/券商
   buy_price: 12.8
@@ -927,3 +927,75 @@
   code: 06881.HK
   category: 金融/券商
   buy_price: 6.6
+- name: 四川成渝
+  code: 00107.HK
+  category: 公用事业/高速
+  buy_price: 4.5
+- name: 兴蓉环境
+  code: 000598.SZ
+  category: 公用事业/水务环保
+  buy_price: 6.45
+- name: 分众传媒
+  code: 002027.SZ
+  category: 传媒/广告
+  buy_price: 4.4
+- name: 凤凰传媒
+  code: 601928.SH
+  category: 传媒/出版
+  buy_price: 7.5
+- name: 云南白药
+  code: 000538.SZ
+  category: 医药/中药
+  buy_price: 49
+- name: 东阿阿胶
+  code: 000423.SZ
+  category: 医药/中药
+  buy_price: 43
+- name: 金杯电工
+  code: 002533.SZ
+  category: 一次设备/电线电缆
+  buy_price: 9.8
+- name: 药明康德
+  code: 603259.SH
+  category: 医药/CXO
+  buy_price: 141
+- name: 云天化
+  code: 600096.SH
+  category: 周期/化工
+  buy_price: 25.5
+- name: 三七互娱
+  code: 002555.SZ
+  category: 传媒/游戏
+  buy_price: 14.8
+- name: 许继电气
+  code: 000400.SZ
+  category: 一次设备/电力设备
+  buy_price: 20
+- name: 中国巨石
+  code: 600176.SH
+  category: 周期/建材
+  buy_price: 29
+- name: 比亚迪
+  code: 002594.SZ
+  category: 消费/汽车
+  buy_price: 76
+- name: 东宏股份
+  code: 603856.SH
+  category: 周期/建材
+  buy_price: 10.8
+- name: 羚锐制药
+  code: 600285.SH
+  category: 医药/中药
+  buy_price: 18.5
+- name: 中创智领
+  code: 601717.SH
+  category: 周期/机械
+  buy_price: 12.8
+- name: 广发证券
+  code: 000776.SZ
+  category: 金融/券商
+  buy_price: 17.2
+- name: 东方证券
+  code: 600958.SH
+  category: 金融/券商
+  buy_price: 8.1
