@@ -867,10 +867,6 @@
   code: 000598.SZ
   category: 公用事业/水务环保
   buy_price: 6.45
-- name: 分众传媒
-  code: 002027.SZ
-  category: 科技/媒体广告
-  buy_price: 4.4
 - name: 凤凰传媒
   code: 601928.SH
   category: 科技/传媒出版
@@ -879,18 +875,10 @@
   code: 000538.SZ
   category: 医药/中药
   buy_price: 49
-- name: 东阿阿胶
-  code: 000423.SZ
-  category: 医药/中药
-  buy_price: 43
 - name: 金杯电工
   code: 002533.SZ
   category: 电力/一次设备
   buy_price: 9.8
-- name: 药明康德
-  code: 603259.SH
-  category: 医药/CRO
-  buy_price: 141
 - name: 云天化
   code: 600096.SH
   category: 周期/化工
@@ -943,10 +931,7 @@
   code: 601928.SH
   category: 传媒/出版
   buy_price: 7.5
-- name: 云南白药
-  code: 000538.SZ
-  category: 医药/中药
-  buy_price: 49
+
 - name: 东阿阿胶
   code: 000423.SZ
   category: 医药/中药
@@ -959,10 +944,6 @@
   code: 603259.SH
   category: 医药/CXO
   buy_price: 141
-- name: 云天化
-  code: 600096.SH
-  category: 周期/化工
-  buy_price: 25.5
 - name: 三七互娱
   code: 002555.SZ
   category: 传媒/游戏
