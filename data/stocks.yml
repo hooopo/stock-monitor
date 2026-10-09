@@ -798,7 +798,7 @@
 - name: 中联重科
   code: 000157.SZ
   category: 周期/机械
-  buy_price: 5.6
+  buy_price: 5.7
 - name: 工业富联
   code: 601138.SH
   category: 科技/电子
@@ -1003,3 +1003,27 @@
   code: 600820.SH
   category: 建筑/工程
   buy_price: 5.0
+- name: 华润江中
+  code: 600750.SH
+  category: 医药/中药
+  buy_price: 20.5
+- name: 富安娜
+  code: 002327.SZ
+  category: 消费/家纺
+  buy_price: 5.6
+- name: 泸州老窖
+  code: 000568.SZ
+  category: 消费/白酒
+  buy_price: 68
+- name: 海澜之家
+  code: 600398.SH
+  category: 消费/服装
+  buy_price: 5.45
+- name: 山金国际
+  code: 000975.SZ
+  category: 周期/有色
+  buy_price: 21.5
+- name: 科德数控
+  code: 688305.SH
+  category: 科技/高端制造
+  buy_price: 45
