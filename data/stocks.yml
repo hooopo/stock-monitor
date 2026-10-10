@@ -1164,3 +1164,15 @@
   code: 300748.SZ
   category: 周期/有色
   buy_price: 20
+- name: 重庆水务
+  code: 601158.SH
+  category: 公用事业/水务
+  buy_price: 3.5
+- name: 佛燃能源
+  code: 002911.SZ
+  category: 公用事业/燃气
+  buy_price: 9.8
+- name: 中国铁塔
+  code: 00788.HK
+  category: 公用事业/通信塔
+  buy_price: 8.5
