@@ -1144,3 +1144,23 @@
   code: 600177.SH
   category: 消费/服装
   buy_price: 7.5
+- name: 固德威
+  code: 688390.SH
+  category: 科技/新能源
+  buy_price: 49
+- name: 德业股份
+  code: 605117.SH
+  category: 科技/新能源
+  buy_price: 72
+- name: 宁波韵升
+  code: 600366.SH
+  category: 周期/有色
+  buy_price: 9.4
+- name: 金力永磁
+  code: 06680.HK
+  category: 周期/有色
+  buy_price: 14
+- name: 金力永磁
+  code: 300748.SZ
+  category: 周期/有色
+  buy_price: 20
