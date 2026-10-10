@@ -1124,3 +1124,19 @@
   code: 601857.SH
   category: 周期/油气
   buy_price: 9.3
+- name: 旭升集团
+  code: 603305.SH
+  category: 汽车/零部件
+  buy_price: 10.2
+- name: 上汽集团
+  code: 600104.SH
+  category: 汽车/整车
+  buy_price: 9.8
+- name: 三花智控
+  code: 02050.HK
+  category: 汽车/零部件
+  buy_price: 22
+- name: 三花智控
+  code: 002050.SZ
+  category: 汽车/零部件
+  buy_price: 29
