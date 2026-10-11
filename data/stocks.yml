@@ -1192,3 +1192,11 @@
   code: 688825.SH
   category: 科技/半导体
   buy_price: 39
+- name: 京能电力
+  code: 600578.SH
+  category: 电力/火电
+  buy_price: 4.5
+- name: 粤电力A
+  code: 000539.SZ
+  category: 电力/火电
+  buy_price: 3.9
