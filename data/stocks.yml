@@ -586,7 +586,7 @@
 - name: 华润电力
   code: 00836.HK
   category: 电力/公用
-  buy_price: 16.50
+  buy_price: 18.3
 - name: 电能实业
   code: 00006.HK
   category: 电力/公用
@@ -1180,3 +1180,11 @@
   code: 600026.SH
   category: 交通运输/航运
   buy_price: 18
+- name: 罗莱生活
+  code: 002293.SZ
+  category: 消费/家纺
+  buy_price: 9.6
+- name: 东山精密
+  code: 002384.SZ
+  category: 科技/PCB
+  buy_price: 125
