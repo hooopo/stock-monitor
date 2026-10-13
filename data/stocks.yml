@@ -358,7 +358,7 @@
 - name: 福耀玻璃
   code: 600660.SH
   category: 周期/汽车
-  buy_price: 36.00
+  buy_price: 47
 - name: 中国建筑
   code: 601668.SH
   category: 周期/建筑
@@ -1305,3 +1305,19 @@
   code: 001979.SZ
   category: 地产/开发
   buy_price: 6.6
+- name: 公牛集团
+  code: 603195.SH
+  category: 消费/家电
+  buy_price: 36
+- name: 航发动力
+  code: 600893.SH
+  category: 军工/航空
+  buy_price: 32.8
+- name: 东鹏饮料
+  code: 605499.SH
+  category: 消费/食品
+  buy_price: 105
+- name: 东鹏饮料
+  code: 06136.HK
+  category: 消费/食品
+  buy_price: 95
