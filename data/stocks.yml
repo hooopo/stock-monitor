@@ -919,10 +919,7 @@
   code: 00107.HK
   category: 公用事业/高速
   buy_price: 4.5
-- name: 兴蓉环境
-  code: 000598.SZ
-  category: 公用事业/水务环保
-  buy_price: 6.45
+
 - name: 分众传媒
   code: 002027.SZ
   category: 传媒/广告
