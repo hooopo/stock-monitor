@@ -1200,3 +1200,11 @@
   code: 000539.SZ
   category: 电力/火电
   buy_price: 3.9
+- name: 北方稀土
+  code: 600111.SH
+  category: 周期/有色
+  buy_price: 26
+- name: 国科军工
+  code: 688543.SH
+  category: 军工/军工
+  buy_price: 30
