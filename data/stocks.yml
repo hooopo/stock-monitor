@@ -1221,3 +1221,11 @@
   code: 01347.HK
   category: 科技/半导体
   buy_price: 59
+- name: 申通快递
+  code: 002468.SZ
+  category: 交通运输/快递
+  buy_price: 13.5
+- name: TCL科技
+  code: 000100.SZ
+  category: 科技/面板
+  buy_price: 4.1
