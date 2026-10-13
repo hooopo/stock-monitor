@@ -1205,3 +1205,19 @@
   code: 688543.SH
   category: 军工/军工
   buy_price: 30
+- name: 中国化学
+  code: 601117.SH
+  category: 建筑/工程
+  buy_price: 6.8
+- name: 厦门银行
+  code: 601187.SH
+  category: 银行/城商行
+  buy_price: 5.9
+- name: 青岛银行
+  code: 002948.SZ
+  category: 银行/城商行
+  buy_price: 5.3
+- name: 华虹宏力
+  code: 01347.HK
+  category: 科技/半导体
+  buy_price: 59
