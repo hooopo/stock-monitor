@@ -3,6 +3,7 @@ require "json"
 require "yaml"
 require "erubi"
 require "faraday"
+require "date"
 
 STOCKS_YAML = File.expand_path("../data/stocks.yml", __dir__)
 INDEX_HTML = File.expand_path("../public/index.html", __dir__)
@@ -401,6 +402,10 @@ tr.hidden { display: none; }
 .roe-mid { color: var(--text-secondary); }
 .roe-low { color: var(--red); }
 
+.div-high { color: var(--green); font-weight: 600; }
+.div-mid { color: var(--text-secondary); }
+.div-low { color: var(--red); }
+
 .drop-visual {
   display: block;
   margin-top: 4px;
@@ -574,6 +579,10 @@ tr.hidden { display: none; }
     <div class="label">平均ROE</div>
     <div class="value green"><%= stats[:avg_roe] %>%</div>
   </div>
+  <div class="stat-card">
+    <div class="label">平均股息率</div>
+    <div class="value green"><%= stats[:avg_div] %>%</div>
+  </div>
 </div>
 
 <div class="filter-bar">
@@ -618,6 +627,7 @@ tr.hidden { display: none; }
   <th data-sort="current_price">现价</th>
   <th data-sort="need_drop" class="sorted-asc">需跌幅 ↓</th>
   <th data-sort="roe">ROE%</th>
+  <th data-sort="dividend">股息率%</th>
 </tr>
 </thead>
 <tbody>
@@ -649,6 +659,7 @@ tr.hidden { display: none; }
     end
   end
   r = s['roe'] ? s['roe'].round(2) : nil
+  dy = s['dividend_yield'] ? s['dividend_yield'].round(2) : nil
 %>
 <tr
   class="<%= row_class %> stock-row"
@@ -658,6 +669,7 @@ tr.hidden { display: none; }
   data-name="<%= s['name'] %> <%= s['code'] %>"
   data-category="<%= s['category'] %>"
   data-drop="<%= nd ? nd : 999999 %>"
+  data-dividend="<%= dy ? dy : -1 %>"
   data-satellite="<%= s['satellite'] ? '1' : '0' %>"
 >
   <td class="stock-cell">
@@ -681,6 +693,15 @@ tr.hidden { display: none; }
     <% if r %>
       <span class="<%= r >= 10 ? 'roe-high' : r >= 5 ? 'roe-mid' : 'roe-low' %>">
         <%= '%.2f' % r %>%
+      </span>
+    <% else %>
+      <span style="color:var(--text-muted)">—</span>
+    <% end %>
+  </td>
+  <td class="num">
+    <% if dy %>
+      <span class="<%= dy >= 5 ? 'div-high' : dy >= 3 ? 'div-mid' : 'div-low' %>">
+        <%= '%.2f' % dy %>%
       </span>
     <% else %>
       <span style="color:var(--text-muted)">—</span>
@@ -793,6 +814,8 @@ tr.hidden { display: none; }
       case 'roe':
         const r = cells[5].textContent.trim();
         return r === '—' ? -999 : parseFloat(r);
+      case 'dividend':
+        return parseFloat(row.dataset.dividend);
     }
   }
 
@@ -1359,6 +1382,76 @@ def fetch_roe_batch(codes)
   a_result
 end
 
+def fetch_dividends(codes)
+  a_codes = codes.select { |c| c.end_with?(".SH", ".SZ") }
+  return {} if a_codes.empty?
+
+  code_set = a_codes.map { |c| c.split(".").first }.to_set
+  results = {}
+
+  conn = Faraday.new(url: "https://datacenter-web.eastmoney.com") do |f|
+    f.headers["User-Agent"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36"
+    f.ssl[:verify] = false
+    f.options[:timeout] = 15
+    f.options[:open_timeout] = 8
+  end
+
+  page_size = 500
+  page = 1
+  cutoff = (Date.today << 18).to_s
+
+  today = Date.today
+  target_year = today.month <= 6 ? today.year - 2 : today.year - 1
+  window_start = Date.new(target_year, 7, 1)
+  window_end = Date.new(target_year + 1, 6, 30)
+
+  results = {}
+
+  loop do
+    begin
+      resp = conn.get("/api/data/v1/get", {
+        "reportName" => "RPT_SHAREBONUS_DET",
+        "columns" => "SECURITY_CODE,PRETAX_BONUS_RMB,NOTICE_DATE,EX_DIVIDEND_DATE",
+        "filter" => "(EX_DIVIDEND_DATE>'#{cutoff}')",
+        "pageNumber" => page.to_s,
+        "pageSize" => page_size.to_s,
+        "sortColumns" => "EX_DIVIDEND_DATE",
+        "sortTypes" => "-1"
+      })
+      break unless resp&.success?
+      data = JSON.parse(resp.body) rescue {}
+      rows = data.dig("result", "data") || []
+      break if rows.empty?
+
+      rows.each do |r|
+        sec = r["SECURITY_CODE"].to_s
+        next unless code_set.include?(sec)
+        bonus = r["PRETAX_BONUS_RMB"]
+        next if bonus.nil? || bonus.to_f <= 0
+        ex_date = (r["EX_DIVIDEND_DATE"] || r["NOTICE_DATE"]).to_s[0..9]
+        next if ex_date < cutoff
+        d = Date.parse(ex_date)
+        next if d < window_start || d > window_end
+        results[sec] ||= 0.0
+        results[sec] += bonus.to_f / 10.0
+      end
+
+      count = data.dig("result", "count").to_i
+      break if page * page_size >= count
+      page += 1
+      sleep 0.2
+    rescue StandardError
+      break
+    end
+  end
+
+  $stderr.puts "[DIVIDEND] got #{results.size}/#{a_codes.size} A-share dividends (FY#{target_year}, #{window_start}~#{window_end})"
+  results.each_with_object({}) do |(sec, dps), h|
+    orig = a_codes.find { |c| c.split(".").first == sec }
+    h[orig] = dps if orig
+  end
+end
+
 def load_data
   stocks = YAML.load_file(STOCKS_YAML)
   codes = stocks.map { |s| s["code"] }
@@ -1377,6 +1470,10 @@ def load_data
   a_n  = roes.count { |c, _| c.end_with?(".SH", ".SZ") }
   puts "✅ 获取 #{roes.size} 只 ROE (A股 #{a_n}/#{total_a}, 港股已跳过)"
 
+  puts "💰 正在拉取股息数据 (仅 A 股)..."
+  dividends = fetch_dividends(codes)
+  puts "✅ 获取 #{dividends.size} 只股息 (港股已跳过)"
+
   stocks.each do |s|
     code = s["code"]
     if prices[code] && prices[code]["current_price"] > 0
@@ -1387,6 +1484,9 @@ def load_data
       s["price_date"] = nil
     end
     s["roe"] = roes[code] if roes[code]
+    if dividends[code] && s["current_price"] && s["current_price"] > 0
+      s["dividend_yield"] = dividends[code] / s["current_price"] * 100.0
+    end
   end
 
   stocks
@@ -1423,9 +1523,11 @@ def calc_stats(stocks)
   far = priced.count { |s| s["need_drop_pct"] >= 10 && !s["need_drop_pct"].infinite? }
   roes = stocks.map { |s| s["roe"] }.compact
   drops = priced.map { |s| s["need_drop_pct"] }
+  divs = stocks.map { |s| s["dividend_yield"] }.compact
 
   avg_roe = roes.empty? ? 0.0 : roes.sum / roes.size
   avg_drop = drops.empty? ? 0.0 : drops.sum / drops.size
+  avg_div = divs.empty? ? 0.0 : divs.sum / divs.size
 
   {
     below_count: below,
@@ -1433,7 +1535,8 @@ def calc_stats(stocks)
     mid_count: mid,
     far_count: far,
     avg_roe: "%.2f" % avg_roe,
-    avg_drop: "%.2f" % avg_drop
+    avg_drop: "%.2f" % avg_drop,
+    avg_div: "%.2f" % avg_div
   }
 end
 
@@ -1448,4 +1551,4 @@ template = Erubi::Engine.new(TEMPLATE_ERB, escape: true)
 html = eval(template.src)
 File.write(INDEX_HTML, html)
 puts "页面已生成: #{INDEX_HTML}"
-puts "统计: 跌破#{stats[:below_count]}只 | 平均需跌#{stats[:avg_drop]}% | 平均ROE#{stats[:avg_roe]}%"
+puts "统计: 跌破#{stats[:below_count]}只 | 平均需跌#{stats[:avg_drop]}% | 平均ROE#{stats[:avg_roe]}% | 平均股息率#{stats[:avg_div]}%"
