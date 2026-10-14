@@ -1321,3 +1321,35 @@
   code: 09980.HK
   category: 消费/食品
   buy_price: 95
+- name: 北大荒
+  code: 600598.SH
+  category: 消费/农业
+  buy_price: 10.8
+- name: 华润三九
+  code: 000999.SZ
+  category: 医药/中药
+  buy_price: 24
+- name: 涪陵榨菜
+  code: 002507.SZ
+  category: 消费/食品
+  buy_price: 10.5
+- name: 恒生电子
+  code: 600570.SH
+  category: 科技/软件
+  buy_price: 17
+- name: 同花顺
+  code: 300033.SZ
+  category: 科技/软件
+  buy_price: 155
+- name: 青岛啤酒
+  code: 600600.SH
+  category: 消费/食品
+  buy_price: 48
+- name: 青岛啤酒
+  code: 00168.HK
+  category: 消费/食品
+  buy_price: 40
+- name: 农夫山泉
+  code: 09633.HK
+  category: 消费/食品
+  buy_price: 38
