@@ -1381,3 +1381,7 @@
   code: 300127.SZ
   category: 周期/有色
   buy_price: 17
+- name: 春秋航空
+  code: 601021.SH
+  category: 交通运输/航空
+  buy_price: 35
