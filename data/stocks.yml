@@ -1084,7 +1084,7 @@
 - name: 古井贡酒
   code: 000596.SZ
   category: 消费/白酒
-  buy_price: 85
+  buy_price: 78
 - name: 巨化股份
   code: 600160.SH
   category: 周期/化工
@@ -1357,3 +1357,11 @@
   code: 002128.SZ
   category: 周期/煤炭铝电
   buy_price: 24.5
+- name: 江苏金租
+  code: 600901.SH
+  category: 金融/租赁
+  buy_price: 6
+- name: 陕鼓动力
+  code: 601369.SH
+  category: 周期/机械
+  buy_price: 6.8
