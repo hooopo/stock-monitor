@@ -1353,3 +1353,7 @@
   code: 09633.HK
   category: 消费/食品
   buy_price: 38
+- name: 电投能源
+  code: 002128.SZ
+  category: 周期/煤炭铝电
+  buy_price: 24.5
