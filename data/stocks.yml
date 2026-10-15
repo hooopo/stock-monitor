@@ -1081,10 +1081,6 @@
   code: 600256.SH
   category: 周期/油气
   buy_price: 6
-- name: 古井贡酒
-  code: 000596.SZ
-  category: 消费/白酒
-  buy_price: 78
 - name: 巨化股份
   code: 600160.SH
   category: 周期/化工
