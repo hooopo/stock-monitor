@@ -1365,3 +1365,23 @@
   code: 601369.SH
   category: 周期/机械
   buy_price: 6.8
+- name: 厦门钨业
+  code: 600549.SH
+  category: 周期/有色
+  buy_price: 29
+- name: 盛和资源
+  code: 600392.SH
+  category: 周期/有色
+  buy_price: 14.2
+- name: 中稀有色
+  code: 600259.SH
+  category: 周期/有色
+  buy_price: 27
+- name: 中国稀土
+  code: 000831.SZ
+  category: 周期/有色
+  buy_price: 15
+- name: 银河磁体
+  code: 300127.SZ
+  category: 周期/有色
+  buy_price: 17
