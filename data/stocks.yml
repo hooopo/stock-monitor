@@ -1393,3 +1393,7 @@
   code: 688196.SH
   category: 能源/生物柴油
   buy_price: 27
+- name: 养元饮品
+  code: 603156.SH
+  category: 消费/食品
+  buy_price: 20
