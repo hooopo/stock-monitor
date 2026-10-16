@@ -1385,3 +1385,11 @@
   code: 601021.SH
   category: 交通运输/航空
   buy_price: 35
+- name: 正海磁材
+  code: 300224.SZ
+  category: 周期/有色
+  buy_price: 8
+- name: 卓越新能
+  code: 688196.SH
+  category: 能源/生物柴油
+  buy_price: 27
