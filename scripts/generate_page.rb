@@ -1382,74 +1382,57 @@ def fetch_roe_batch(codes)
   a_result
 end
 
-def fetch_dividends(codes)
+def fetch_dividend_yields(codes)
   a_codes = codes.select { |c| c.end_with?(".SH", ".SZ") }
   return {} if a_codes.empty?
 
-  code_set = a_codes.map { |c| c.split(".").first }.to_set
+  ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36"
   results = {}
+  mutex = Mutex.new
+  queue = a_codes.dup
 
-  conn = Faraday.new(url: "https://datacenter-web.eastmoney.com") do |f|
-    f.headers["User-Agent"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36"
-    f.ssl[:verify] = false
-    f.options[:timeout] = 15
-    f.options[:open_timeout] = 8
-  end
-
-  page_size = 500
-  page = 1
-  cutoff = (Date.today << 18).to_s
-
-  today = Date.today
-  target_year = today.month <= 6 ? today.year - 2 : today.year - 1
-  window_start = Date.new(target_year, 7, 1)
-  window_end = Date.new(target_year + 1, 6, 30)
-
-  results = {}
-
-  loop do
-    begin
-      resp = conn.get("/api/data/v1/get", {
-        "reportName" => "RPT_SHAREBONUS_DET",
-        "columns" => "SECURITY_CODE,PRETAX_BONUS_RMB,NOTICE_DATE,EX_DIVIDEND_DATE",
-        "filter" => "(EX_DIVIDEND_DATE>'#{cutoff}')",
-        "pageNumber" => page.to_s,
-        "pageSize" => page_size.to_s,
-        "sortColumns" => "EX_DIVIDEND_DATE",
-        "sortTypes" => "-1"
-      })
-      break unless resp&.success?
-      data = JSON.parse(resp.body) rescue {}
-      rows = data.dig("result", "data") || []
-      break if rows.empty?
-
-      rows.each do |r|
-        sec = r["SECURITY_CODE"].to_s
-        next unless code_set.include?(sec)
-        bonus = r["PRETAX_BONUS_RMB"]
-        next if bonus.nil? || bonus.to_f <= 0
-        ex_date = (r["EX_DIVIDEND_DATE"] || r["NOTICE_DATE"]).to_s[0..9]
-        next if ex_date < cutoff
-        d = Date.parse(ex_date)
-        next if d < window_start || d > window_end
-        results[sec] ||= 0.0
-        results[sec] += bonus.to_f / 10.0
+  workers = [8, a_codes.size].min
+  threads = workers.times.map do
+    Thread.new do
+      conn = Faraday.new(url: "https://datacenter.eastmoney.com") do |f|
+        f.headers["User-Agent"] = ua
+        f.ssl[:verify] = false
+        f.options[:timeout] = 15
+        f.options[:open_timeout] = 8
       end
-
-      count = data.dig("result", "count").to_i
-      break if page * page_size >= count
-      page += 1
-      sleep 0.2
-    rescue StandardError
-      break
+      loop do
+        code = mutex.synchronize { queue.shift }
+        break unless code
+        begin
+          # 直接取东方财富 F10 提供的股息率（上一财年 LFY）
+          resp = conn.get("/securities/api/data/v1/get", {
+            "reportName" => "RPT_F10_DIVIDEND_CURVE",
+            "columns" => "DIVIDEND_LFYRATIO,DIVIDEND_RATIO_HYY",
+            "quoteColumns" => "",
+            "filter" => "(SECUCODE=\"#{code}\")",
+            "pageNumber" => "1",
+            "pageSize" => "1",
+            "sortTypes" => "-1",
+            "sortColumns" => "TRADE_DATE",
+            "source" => "HSF10"
+          })
+          next unless resp&.success?
+          data = JSON.parse(resp.body) rescue {}
+          row = (data.dig("result", "data") || []).first
+          next unless row
+          val = row["DIVIDEND_LFYRATIO"] || row["DIVIDEND_RATIO_HYY"]
+          next if val.nil?
+          mutex.synchronize { results[code] = val.to_f }
+        rescue StandardError
+          # 单只失败不影响整体
+        end
+      end
     end
   end
+  threads.each(&:join)
 
-  $stderr.puts "[DIVIDEND] got #{results.size}/#{a_codes.size} A-share dividends (FY#{target_year}, #{window_start}~#{window_end})"
-  results.each_with_object({}) do |(sec, dps), h|
-    orig = a_codes.find { |c| c.split(".").first == sec }
-    h[orig] = dps if orig
-  end
+  $stderr.puts "[DIVIDEND] got #{results.size}/#{a_codes.size} A-share dividend yields (eastmoney F10 LFY)"
+  results
 end
 
 def load_data
@@ -1470,9 +1453,9 @@ def load_data
   a_n  = roes.count { |c, _| c.end_with?(".SH", ".SZ") }
   puts "✅ 获取 #{roes.size} 只 ROE (A股 #{a_n}/#{total_a}, 港股已跳过)"
 
-  puts "💰 正在拉取股息数据 (仅 A 股)..."
-  dividends = fetch_dividends(codes)
-  puts "✅ 获取 #{dividends.size} 只股息 (港股已跳过)"
+  puts "💰 正在拉取股息率 (仅 A 股)..."
+  div_yields = fetch_dividend_yields(codes)
+  puts "✅ 获取 #{div_yields.size} 只股息率 (港股已跳过)"
 
   stocks.each do |s|
     code = s["code"]
@@ -1484,9 +1467,7 @@ def load_data
       s["price_date"] = nil
     end
     s["roe"] = roes[code] if roes[code]
-    if dividends[code] && s["current_price"] && s["current_price"] > 0
-      s["dividend_yield"] = dividends[code] / s["current_price"] * 100.0
-    end
+    s["dividend_yield"] = div_yields[code] if div_yields[code]
   end
 
   stocks
