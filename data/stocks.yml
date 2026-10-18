@@ -1397,3 +1397,7 @@
   code: 603156.SH
   category: 消费/食品
   buy_price: 20
+- name: 藏格矿业
+  code: 000408.SZ
+  category: 周期/化工
+  buy_price: 53
