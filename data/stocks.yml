@@ -239,10 +239,6 @@
   code: 600863.SH
   category: 电力/火电
   buy_price: 4.45
-- name: 浙商银行
-  code: 601916.SH
-  category: 银行/股份行
-  buy_price: 2.7
 - name: 农业银行
   code: 601288.SH
   category: 银行/六大行
@@ -362,7 +358,7 @@
 - name: 中国建筑
   code: 601668.SH
   category: 周期/建筑
-  buy_price: 4.18
+  buy_price: 4.2
 - name: 格力电器
   code: 000651.SZ
   category: 消费/家电
@@ -390,7 +386,7 @@
 - name: 四川路桥
   code: 600039.SH
   category: 周期/建筑
-  buy_price: 8.4
+  buy_price: 8.0
 - name: 海尔智家
   code: 600690.SH
   category: 消费/家电
@@ -599,10 +595,6 @@
   code: 02388.HK
   category: 银行
   buy_price: 42.00
-- name: 东亚银行
-  code: 00023.HK
-  category: 银行
-  buy_price: 16.30
 - name: 建设银行
   code: 00939.HK
   category: 银行
@@ -639,10 +631,6 @@
   code: 03618.HK
   category: 银行
   buy_price: 5.60
-- name: 光大银行
-  code: 06818.HK
-  category: 银行
-  buy_price: 2.60
 - name: 浙商银行
   code: 02016.HK
   category: 银行
@@ -1157,10 +1145,6 @@
   code: 002911.SZ
   category: 公用事业/燃气
   buy_price: 9.8
-- name: 中国铁塔
-  code: 00788.HK
-  category: 公用事业/通信塔
-  buy_price: 8.5
 - name: 中远海能
   code: 600026.SH
   category: 交通运输/航运
@@ -1196,7 +1180,7 @@
 - name: 中国化学
   code: 601117.SH
   category: 建筑/工程
-  buy_price: 6.8
+  buy_price: 7.6
 - name: 厦门银行
   code: 601187.SH
   category: 银行/城商行
