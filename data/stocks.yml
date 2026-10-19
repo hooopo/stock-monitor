@@ -35,10 +35,6 @@
   code: 600023.SH
   category: 电力/火电
   buy_price: 5.0
-- name: 贵阳银行
-  code: 601997.SH
-  category: 银行/城商行
-  buy_price: 5.15
 - name: 平安银行
   code: 000001.SZ
   category: 银行/股份行
@@ -446,7 +442,7 @@
 - name: 联影医疗
   code: 688271.SH
   category: 医药/器械
-  buy_price: 98
+  buy_price: 64
 - name: 迈瑞医疗
   code: 300760.SZ
   category: 医药/器械
@@ -530,7 +526,7 @@
 - name: 泰格医药
   code: 300347.SZ
   category: 医药/CRO
-  buy_price: 44
+  buy_price: 23
 - name: 老板电器
   code: 002508.SZ
   category: 消费/家电
@@ -1037,10 +1033,6 @@
   code: 688578.SH
   category: 医药/创新药
   buy_price: 78
-- name: 百利天恒
-  code: 688506.SH
-  category: 医药/创新药
-  buy_price: 205
 - name: 瑞丰新材
   code: 300910.SZ
   category: 周期/化工
@@ -1052,7 +1044,7 @@
 - name: 龙佰集团
   code: 002601.SZ
   category: 周期/化工
-  buy_price: 14
+  buy_price: 10
 - name: 爱博医疗
   code: 688050.SH
   category: 医药/器械
@@ -1060,7 +1052,7 @@
 - name: 广汇能源
   code: 600256.SH
   category: 周期/油气
-  buy_price: 6
+  buy_price: 4.1
 - name: 巨化股份
   code: 600160.SH
   category: 周期/化工
@@ -1072,7 +1064,7 @@
 - name: 国瓷材料
   code: 300285.SZ
   category: 周期/新材料
-  buy_price: 32
+  buy_price: 19
 - name: 华阳股份
   code: 600348.SH
   category: 周期/煤炭
@@ -1101,10 +1093,6 @@
   code: 603305.SH
   category: 汽车/零部件
   buy_price: 10.2
-- name: 上汽集团
-  code: 600104.SH
-  category: 汽车/整车
-  buy_price: 9.8
 - name: 三花智控
   code: 02050.HK
   category: 汽车/零部件
@@ -1128,7 +1116,7 @@
 - name: 宁波韵升
   code: 600366.SH
   category: 周期/有色
-  buy_price: 9.4
+  buy_price: 7
 - name: 金力永磁
   code: 06680.HK
   category: 周期/有色
@@ -1136,7 +1124,7 @@
 - name: 金力永磁
   code: 300748.SZ
   category: 周期/有色
-  buy_price: 20
+  buy_price: 14
 - name: 重庆水务
   code: 601158.SH
   category: 公用事业/水务
@@ -1172,7 +1160,7 @@
 - name: 北方稀土
   code: 600111.SH
   category: 周期/有色
-  buy_price: 26
+  buy_price: 19
 - name: 国科军工
   code: 688543.SH
   category: 军工/军工
@@ -1304,11 +1292,11 @@
 - name: 恒生电子
   code: 600570.SH
   category: 科技/软件
-  buy_price: 17
+  buy_price: 12.5
 - name: 同花顺
   code: 300033.SZ
   category: 科技/软件
-  buy_price: 155
+  buy_price: 120
 - name: 青岛啤酒
   code: 600600.SH
   category: 消费/食品
@@ -1352,7 +1340,7 @@
 - name: 银河磁体
   code: 300127.SZ
   category: 周期/有色
-  buy_price: 17
+  buy_price: 12
 - name: 春秋航空
   code: 601021.SH
   category: 交通运输/航空
