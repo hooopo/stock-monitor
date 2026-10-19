@@ -822,7 +822,7 @@
 - name: 中航成飞
   code: 302132.SZ
   category: 军工/航空
-  buy_price: 50
+  buy_price: 30
 - name: 赣锋锂业
   code: 002460.SZ
   category: 科技/新能源
@@ -1153,10 +1153,6 @@
   code: 600578.SH
   category: 电力/火电
   buy_price: 4.5
-- name: 粤电力A
-  code: 000539.SZ
-  category: 电力/火电
-  buy_price: 3.9
 - name: 北方稀土
   code: 600111.SH
   category: 周期/有色
@@ -1268,7 +1264,7 @@
 - name: 航发动力
   code: 600893.SH
   category: 军工/航空
-  buy_price: 32.8
+  buy_price: 18
 - name: 东鹏饮料
   code: 605499.SH
   category: 消费/食品
