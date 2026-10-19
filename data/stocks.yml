@@ -410,11 +410,11 @@
 - name: 华海清科
   code: 688120.SH
   category: 科技/半导体
-  buy_price: 90
+  buy_price: 70
 - name: 长电科技
   code: 600584.SH
   category: 科技/封测
-  buy_price: 38.00
+  buy_price: 30
 - name: 国电南瑞
   code: 600406.SH
   category: 电力/电网自动化
@@ -875,11 +875,11 @@
   code: 601555.SH
   category: 金融/券商
   buy_price: 7.3
-- name: 国泰君安
+- name: 国泰海通
   code: 601211.SH
   category: 金融/券商
-  buy_price: 16.2
-- name: 国泰君安
+  buy_price: 12.5
+- name: 国泰海通
   code: 02611.HK
   category: 金融/券商
   buy_price: 12.8
@@ -1204,7 +1204,7 @@
 - name: 胜宏科技
   code: 300476.SZ
   category: 科技/PCB
-  buy_price: 180
+  buy_price: 140
 - name: 澜起科技
   code: 688008.SH
   category: 科技/半导体
