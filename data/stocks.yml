@@ -402,7 +402,7 @@
 - name: 中芯国际
   code: 688981.SH
   category: 科技/半导体
-  buy_price: 60
+  buy_price: 40
 - name: 中微公司
   code: 688012.SH
   category: 科技/半导体
@@ -439,14 +439,6 @@
   code: 300750.SZ
   category: 科技/新能源
   buy_price: 270
-- name: 隆基绿能
-  code: 601012.SH
-  category: 科技/新能源
-  buy_price: 9.5
-- name: 通威股份
-  code: 600438.SH
-  category: 电力/综合能源
-  buy_price: 10
 - name: 牧原股份
   code: 002714.SZ
   category: 消费/农业
@@ -952,7 +944,7 @@
 - name: 中国巨石
   code: 600176.SH
   category: 周期/建材
-  buy_price: 29
+  buy_price: 21
 - name: 比亚迪
   code: 002594.SZ
   category: 消费/汽车
@@ -1024,7 +1016,7 @@
 - name: 沪电股份
   code: 002463.SZ
   category: 科技/PCB
-  buy_price: 100
+  buy_price: 75
 - name: 亿联网络
   code: 300628.SZ
   category: 科技/通信设备
@@ -1184,7 +1176,7 @@
 - name: 长鑫科技
   code: 688825.SH
   category: 科技/半导体
-  buy_price: 39
+  buy_price: 30
 - name: 京能电力
   code: 600578.SH
   category: 电力/火电
@@ -1232,7 +1224,7 @@
 - name: 生益科技
   code: 600183.SH
   category: 科技/PCB
-  buy_price: 98
+  buy_price: 72
 - name: 中国船舶
   code: 600150.SH
   category: 军工/船舶
@@ -1261,10 +1253,6 @@
   code: 600030.SH
   category: 金融/券商
   buy_price: 23
-- name: 保利发展
-  code: 600048.SH
-  category: 地产/开发
-  buy_price: 5.1
 - name: 中国石化
   code: 600028.SH
   category: 周期/油气
