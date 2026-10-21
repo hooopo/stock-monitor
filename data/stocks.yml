@@ -417,11 +417,11 @@
   buy_price: 30
 - name: 国电南瑞
   code: 600406.SH
-  category: 电力/电网自动化
+  category: 电力设备/电网自动化
   buy_price: 21.5
 - name: 思源电气
   code: 002028.SZ
-  category: 电力/一次设备
+  category: 电力设备/一次设备
   buy_price: 108.00
 - name: 中航光电
   code: 002179.SZ
@@ -769,7 +769,7 @@
   buy_price: 6.4
 - name: 特变电工
   code: 600089.SH
-  category: 电力/一次设备
+  category: 电力设备/一次设备
   buy_price: 15.5
 - name: 中联重科
   code: 000157.SZ
@@ -853,7 +853,7 @@
   buy_price: 49
 - name: 金杯电工
   code: 002533.SZ
-  category: 电力/一次设备
+  category: 电力设备/一次设备
   buy_price: 9.8
 - name: 云天化
   code: 600096.SH

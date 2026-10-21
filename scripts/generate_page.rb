@@ -594,6 +594,11 @@ tr.hidden { display: none; }
       <span class="chk-box" id="hkBox"></span>
       <span id="hkLabel">显示港股</span>
     </label>
+    <label class="chk">
+      <input type="checkbox" id="showSatellite" style="display:none">
+      <span class="chk-box" id="satBox"></span>
+      <span id="satLabel">显示卫星仓</span>
+    </label>
     <select id="categoryFilter">
       <option value="">全部分类</option>
       <% categories.each do |c| %>
@@ -744,6 +749,9 @@ tr.hidden { display: none; }
   const showHk = document.getElementById('showHK');
   const hkBox = document.getElementById('hkBox');
   const hkLabel = document.getElementById('hkLabel');
+  const showSat = document.getElementById('showSatellite');
+  const satBox = document.getElementById('satBox');
+  const satLabel = document.getElementById('satLabel');
   const refreshBtn = document.getElementById('refreshBtn');
   const updateTimeEl = document.getElementById('updateTime');
   const rows = Array.from(document.querySelectorAll('#stockTable tbody tr'));
@@ -756,15 +764,18 @@ tr.hidden { display: none; }
     const cat = categoryFilter.value;
     const drop = dropFilter.value;
     const includeHK = showHk.checked;
+    const includeSat = showSat.checked;
 
     rows.forEach(row => {
       const name = row.dataset.name.toLowerCase();
       const category = row.dataset.category;
       const nd = parseFloat(row.dataset.drop);
       const market = row.dataset.market || 'A';
+      const satellite = row.dataset.satellite === '1';
 
       let ok = true;
       if (market === 'HK' && !includeHK) ok = false;
+      if (satellite && !includeSat) ok = false;
       if (q && !name.includes(q) && !category.toLowerCase().includes(q)) ok = false;
       if (cat && category !== cat) ok = false;
       if (drop === 'below' && nd >= 0) ok = false;
@@ -802,6 +813,33 @@ tr.hidden { display: none; }
     if (saved === '1') showHk.checked = true;
   } catch(e) {}
   toggleHkVisual(showHk.checked);
+
+  function toggleSatVisual(on) {
+    satBox.classList.toggle('on', !!on);
+    satLabel.textContent = on ? '隐藏卫星仓' : '显示卫星仓';
+  }
+
+  showSat.addEventListener('change', function() {
+    toggleSatVisual(showSat.checked);
+    try { localStorage.setItem('showSatellite', showSat.checked ? '1' : '0'); } catch(e) {}
+    applyFilters();
+  });
+  satBox.addEventListener('click', function(e) {
+    e.preventDefault();
+    showSat.checked = !showSat.checked;
+    showSat.dispatchEvent(new Event('change'));
+  });
+  satLabel.addEventListener('click', function(e) {
+    e.preventDefault();
+    showSat.checked = !showSat.checked;
+    showSat.dispatchEvent(new Event('change'));
+  });
+
+  try {
+    const savedSat = localStorage.getItem('showSatellite');
+    if (savedSat === '1') showSat.checked = true;
+  } catch(e) {}
+  toggleSatVisual(showSat.checked);
 
   function getCellValue(row, key) {
     const cells = row.children;
