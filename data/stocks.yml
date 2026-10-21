@@ -430,7 +430,7 @@
 - name: 宁德时代
   code: 300750.SZ
   category: 科技/新能源
-  buy_price: 270
+  buy_price: 255
 - name: 牧原股份
   code: 002714.SZ
   category: 消费/农业
@@ -710,7 +710,7 @@
 - name: 宁德时代
   code: 03750.HK
   category: 科技/新能源
-  buy_price: 340
+  buy_price: 300
 - name: 江苏恒瑞医药
   code: 01276.HK
   category: 医药/创新药
@@ -806,7 +806,7 @@
 - name: 南山铝业
   code: 600219.SH
   category: 周期/有色
-  buy_price: 4.15
+  buy_price: 3.89
 - name: 宝丰能源
   code: 600989.SH
   category: 周期/化工
