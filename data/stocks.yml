@@ -146,7 +146,7 @@
 - name: 云南铜业
   code: '000878.SZ'
   category: 周期/有色
-  buy_price: 14.8
+  buy_price: 12.6
 - name: 国电电力
   code: 600795.SH
   category: 电力/综合能源
@@ -218,7 +218,7 @@
 - name: 洛阳钼业
   code: 603993.SH
   category: 周期/有色
-  buy_price: 15.5
+  buy_price: 13.5
 - name: 浦发银行
   code: 600000.SH
   category: 银行/股份行
@@ -782,7 +782,7 @@
 - name: 天赐材料
   code: 002709.SZ
   category: 科技/新能源
-  buy_price: 30
+  buy_price: 27
 - name: 甘李药业
   code: 603087.SH
   category: 医药/创新药
