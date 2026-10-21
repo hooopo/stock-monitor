@@ -638,7 +638,7 @@
 - name: 中国电信
   code: 00728.HK
   category: 通信/运营商
-  buy_price: 4.18
+  buy_price: 4.3
 - name: 江苏宁沪高速公路
   code: 00177.HK
   category: 交运/高速
@@ -662,7 +662,7 @@
 - name: 华能国际电力股份
   code: 00902.HK
   category: 电力/公用
-  buy_price: 5.45
+  buy_price: 5.35
 - name: 华电国际电力股份
   code: 01071.HK
   category: 电力/公用
