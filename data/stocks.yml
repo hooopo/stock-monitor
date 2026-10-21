@@ -190,7 +190,7 @@
 - name: 中信银行
   code: 601998.SH
   category: 银行/股份行
-  buy_price: 8.35
+  buy_price: 7.25
 - name: 唐山港
   code: 601000.SH
   category: 公用事业/港口
@@ -842,7 +842,7 @@
 - name: 兴蓉环境
   code: 000598.SZ
   category: 公用事业/水务环保
-  buy_price: 6.45
+  buy_price: 6.6
 - name: 凤凰传媒
   code: 601928.SH
   category: 科技/传媒出版
