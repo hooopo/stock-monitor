@@ -291,10 +291,6 @@
   code: 601001.SH
   category: 周期/煤炭
   buy_price: 14
-- name: 恒源煤电
-  code: 600971.SH
-  category: 周期/煤炭
-  buy_price: 7.5
 - name: 兖矿能源
   code: 600188.SH
   category: 周期/煤炭
