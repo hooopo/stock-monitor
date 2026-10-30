@@ -550,7 +550,7 @@
 - name: 新华保险
   code: 601336.SH
   category: 金融/保险
-  buy_price: 52
+  buy_price: 45
 - name: 中国人寿
   code: 601628.SH
   category: 金融/保险
@@ -734,7 +734,7 @@
 - name: 新华保险
   code: 01336.HK
   category: 金融/保险
-  buy_price: 40.00
+  buy_price: 38
 - name: 中国人寿
   code: 02628.HK
   category: 金融/保险
@@ -1032,7 +1032,7 @@
 - name: 瑞丰新材
   code: 300910.SZ
   category: 周期/化工
-  buy_price: 25.5
+  buy_price: 19
 - name: 传音控股
   code: 688036.SH
   category: 科技/消费电子
