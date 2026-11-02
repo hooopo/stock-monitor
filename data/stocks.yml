@@ -1288,11 +1288,11 @@
 - name: 青岛啤酒
   code: 600600.SH
   category: 消费/食品
-  buy_price: 48
+  buy_price: 46
 - name: 青岛啤酒
   code: 00168.HK
   category: 消费/食品
-  buy_price: 40
+  buy_price: 39
 - name: 农夫山泉
   code: 09633.HK
   category: 消费/食品
