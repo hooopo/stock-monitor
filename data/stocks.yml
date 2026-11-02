@@ -218,7 +218,7 @@
 - name: 洛阳钼业
   code: 603993.SH
   category: 周期/有色
-  buy_price: 13.5
+  buy_price: 12
 - name: 浦发银行
   code: 600000.SH
   category: 银行/股份行
@@ -418,7 +418,7 @@
 - name: 思源电气
   code: 002028.SZ
   category: 电力设备/一次设备
-  buy_price: 108.00
+  buy_price: 104
 - name: 中航光电
   code: 002179.SZ
   category: 军工/连接器
@@ -526,7 +526,7 @@
 - name: 老板电器
   code: 002508.SZ
   category: 消费/家电
-  buy_price: 16
+  buy_price: 13.8
 - name: 京东方A
   code: 000725.SZ
   category: 科技/面板显示
@@ -678,7 +678,7 @@
 - name: 洛阳栾川钼业集团
   code: 03993.HK
   category: 周期/有色
-  buy_price: 12.00
+  buy_price: 11.3
 - name: 江西铜业股份
   code: 00358.HK
   category: 周期/有色
