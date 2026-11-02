@@ -138,7 +138,7 @@
 - name: 江西铜业
   code: 600362.SH
   category: 周期/有色
-  buy_price: 38.0
+  buy_price: 28
 - name: 招商公路
   code: '001965.SZ'
   category: 公用事业/高速
@@ -426,7 +426,7 @@
 - name: 宁德时代
   code: 300750.SZ
   category: 科技/新能源
-  buy_price: 255
+  buy_price: 265
 - name: 牧原股份
   code: 002714.SZ
   category: 消费/农业
@@ -470,11 +470,11 @@
 - name: 新易盛
   code: 300502.SZ
   category: 科技/光模块
-  buy_price: 280
+  buy_price: 195
 - name: 中际旭创
   code: 300308.SZ
   category: 科技/光模块
-  buy_price: 600
+  buy_price: 550
 - name: 天孚通信
   code: 300394.SZ
   category: 科技/光模块
@@ -534,7 +534,7 @@
 - name: 山东黄金
   code: 600547.SH
   category: 黄金有色
-  buy_price: 24.5
+  buy_price: 22
 - name: 神火股份
   code: 000933.SZ
   category: 周期/煤炭铝电
@@ -682,7 +682,7 @@
 - name: 江西铜业股份
   code: 00358.HK
   category: 周期/有色
-  buy_price: 25.00
+  buy_price: 21.5
 - name: 中国铝业
   code: 02600.HK
   category: 周期/有色
@@ -706,7 +706,7 @@
 - name: 宁德时代
   code: 03750.HK
   category: 科技/新能源
-  buy_price: 300
+  buy_price: 313
 - name: 江苏恒瑞医药
   code: 01276.HK
   category: 医药/创新药
