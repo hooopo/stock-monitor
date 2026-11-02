@@ -530,7 +530,7 @@
 - name: 京东方A
   code: 000725.SZ
   category: 科技/面板显示
-  buy_price: 4.5
+  buy_price: 3.7
 - name: 山东黄金
   code: 600547.SH
   category: 黄金有色
@@ -774,11 +774,11 @@
 - name: 工业富联
   code: 601138.SH
   category: 科技/电子
-  buy_price: 46
+  buy_price: 42
 - name: 天赐材料
   code: 002709.SZ
   category: 科技/新能源
-  buy_price: 27
+  buy_price: 24.5
 - name: 甘李药业
   code: 603087.SH
   category: 医药/创新药
@@ -932,7 +932,7 @@
 - name: 东宏股份
   code: 603856.SH
   category: 周期/建材
-  buy_price: 10.8
+  buy_price: 9.3
 - name: 羚锐制药
   code: 600285.SH
   category: 医药/中药
@@ -960,7 +960,7 @@
 - name: 富安娜
   code: 002327.SZ
   category: 消费/家纺
-  buy_price: 5.6
+  buy_price: 4.8
 - name: 泸州老窖
   code: 000568.SZ
   category: 消费/白酒
@@ -972,11 +972,11 @@
 - name: 山金国际
   code: 000975.SZ
   category: 周期/有色
-  buy_price: 21.5
+  buy_price: 19
 - name: 科德数控
   code: 688305.SH
   category: 科技/高端制造
-  buy_price: 45
+  buy_price: 34
 - name: 上海机场
   code: 600009.SH
   category: 公用事业/机场
@@ -1052,7 +1052,7 @@
 - name: 巨化股份
   code: 600160.SH
   category: 周期/化工
-  buy_price: 30
+  buy_price: 25.5
 - name: 山煤国际
   code: 600546.SH
   category: 周期/煤炭
@@ -1068,7 +1068,7 @@
 - name: 泽璟制药
   code: 688266.SH
   category: 医药/创新药
-  buy_price: 90
+  buy_price: 79
 - name: 春风动力
   code: 603129.SH
   category: 消费/摩托车
@@ -1100,7 +1100,7 @@
 - name: 固德威
   code: 688390.SH
   category: 科技/新能源
-  buy_price: 49
+  buy_price: 41
 - name: 德业股份
   code: 605117.SH
   category: 科技/新能源
@@ -1136,7 +1136,7 @@
 - name: 东山精密
   code: 002384.SZ
   category: 科技/PCB
-  buy_price: 120
+  buy_price: 80
 - name: 长鑫科技
   code: 688825.SH
   category: 科技/半导体
@@ -1192,7 +1192,7 @@
 - name: 胜宏科技
   code: 300476.SZ
   category: 科技/PCB
-  buy_price: 140
+  buy_price: 120
 - name: 澜起科技
   code: 688008.SH
   category: 科技/半导体
