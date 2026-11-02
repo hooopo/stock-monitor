@@ -466,7 +466,7 @@
 - name: 汇川技术
   code: 300124.SZ
   category: 周期/机械
-  buy_price: 47
+  buy_price: 49
 - name: 新易盛
   code: 300502.SZ
   category: 科技/光模块
@@ -1228,7 +1228,7 @@
 - name: 中国铁建
   code: 601186.SH
   category: 建筑/工程
-  buy_price: 5.85
+  buy_price: 5.3
 - name: 中国交建
   code: 601800.SH
   category: 建筑/工程
