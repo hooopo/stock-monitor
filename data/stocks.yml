@@ -1028,7 +1028,11 @@
 - name: 君实生物
   code: 688180.SH
   category: 医药/创新药
-  buy_price: 28
+  buy_price: 14
+- name: 君实生物
+  code: 01877.HK
+  category: 医药/创新药
+  buy_price: 15.3
 - name: 艾力斯
   code: 688578.SH
   category: 医药/创新药
