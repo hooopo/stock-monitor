@@ -643,6 +643,10 @@
   code: 00995.HK
   category: 交运/高速
   buy_price: 14.00
+- name: 东莞控股
+  code: 000828.SZ
+  category: 交运/高速
+  buy_price: 9.4
 - name: 青岛港国际
   code: 06198.HK
   category: 交运/港口
