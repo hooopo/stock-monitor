@@ -1128,7 +1128,7 @@
 - name: 中远海能
   code: 600026.SH
   category: 交通运输/航运
-  buy_price: 18
+  buy_price: 15.5
 - name: 罗莱生活
   code: 002293.SZ
   category: 消费/家纺
@@ -1213,6 +1213,10 @@
   code: 600030.SH
   category: 金融/券商
   buy_price: 23
+- name: 中信特钢
+  code: 000708.SZ
+  category: 周期/钢铁
+  buy_price: 11.3
 - name: 中国石化
   code: 600028.SH
   category: 周期/油气
