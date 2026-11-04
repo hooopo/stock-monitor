@@ -314,7 +314,7 @@
 - name: 潍柴动力
   code: 000338.SZ
   category: 周期/汽车零部件
-  buy_price: 20.00
+  buy_price: 18.5
 - name: 海螺水泥
   code: 600585.SH
   category: 周期/建材
@@ -675,6 +675,10 @@
   code: 01171.HK
   category: 周期/煤炭
   buy_price: 9.00
+- name: 中煤能源
+  code: 01898.HK
+  category: 周期/煤炭
+  buy_price: 9.1
 - name: 紫金矿业
   code: 02899.HK
   category: 周期/有色
