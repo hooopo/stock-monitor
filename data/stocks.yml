@@ -266,7 +266,7 @@
 - name: 中国神华
   code: 601088.SH
   category: 周期/煤炭
-  buy_price: 37.0
+  buy_price: 40
 - name: 杭州银行
   code: 600926.SH
   category: 银行/城商行
@@ -286,11 +286,19 @@
 - name: 陕西煤业
   code: 601225.SH
   category: 周期/煤炭
-  buy_price: 23
+  buy_price: 20
 - name: 晋控煤业
   code: 601001.SH
   category: 周期/煤炭
-  buy_price: 14
+  buy_price: 12.4
+- name: 山西焦煤
+  code: 000983.SZ
+  category: 周期/煤炭
+  buy_price: 5.6
+- name: 平煤股份
+  code: 601666.SH
+  category: 周期/煤炭
+  buy_price: 6.6
 - name: 兖矿能源
   code: 600188.SH
   category: 周期/煤炭
@@ -670,7 +678,7 @@
 - name: 中国神华能源
   code: 01088.HK
   category: 周期/煤炭
-  buy_price: 37.0
+  buy_price: 39
 - name: 兖矿能源
   code: 01171.HK
   category: 周期/煤炭
@@ -678,7 +686,11 @@
 - name: 中煤能源
   code: 01898.HK
   category: 周期/煤炭
-  buy_price: 9.1
+  buy_price: 8.6
+- name: 中煤能源
+  code: 601898.SH
+  category: 周期/煤炭
+  buy_price: 10.8
 - name: 紫金矿业
   code: 02899.HK
   category: 周期/有色
@@ -1068,7 +1080,11 @@
 - name: 山煤国际
   code: 600546.SH
   category: 周期/煤炭
-  buy_price: 11.2
+  buy_price: 8.7
+- name: 潞安环能
+  code: 601699.SH
+  category: 周期/煤炭
+  buy_price: 11.8
 - name: 国瓷材料
   code: 300285.SZ
   category: 周期/新材料
