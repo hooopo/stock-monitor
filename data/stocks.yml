@@ -323,6 +323,10 @@
   code: 000338.SZ
   category: 周期/汽车零部件
   buy_price: 18.5
+- name: 赛轮轮胎
+  code: 601058.SH
+  category: 周期/汽车零部件
+  buy_price: 11.2
 - name: 海螺水泥
   code: 600585.SH
   category: 周期/建材
@@ -783,6 +787,14 @@
   code: 000425.SZ
   category: 周期/机械
   buy_price: 6.4
+- name: 浙江鼎力
+  code: 603338.SH
+  category: 周期/机械
+  buy_price: 49
+- name: 博盈特焊
+  code: 301468.SZ
+  category: 周期/机械
+  buy_price: 17.5
 - name: 特变电工
   code: 600089.SH
   category: 电力设备/一次设备
@@ -871,6 +883,10 @@
   code: 002533.SZ
   category: 电力设备/一次设备
   buy_price: 9.8
+- name: 中际联合
+  code: 605305.SH
+  category: 电力设备/风电设备
+  buy_price: 26
 - name: 云天化
   code: 600096.SH
   category: 周期/化工
@@ -1213,6 +1229,10 @@
   code: 600183.SH
   category: 科技/PCB
   buy_price: 72
+- name: 鹏鼎控股
+  code: 002938.SZ
+  category: 科技/PCB
+  buy_price: 39
 - name: 中国船舶
   code: 600150.SH
   category: 军工/船舶
@@ -1337,6 +1357,10 @@
   code: 600901.SH
   category: 金融/租赁
   buy_price: 6
+- name: 渤海租赁
+  code: 000415.SZ
+  category: 金融/租赁
+  buy_price: 3.65
 - name: 陕鼓动力
   code: 601369.SH
   category: 周期/机械
@@ -1381,3 +1405,31 @@
   code: 000408.SZ
   category: 周期/化工
   buy_price: 53
+- name: 长华化学
+  code: 301518.SZ
+  category: 周期/化工
+  buy_price: 12.5
+- name: 钒钛股份
+  code: 000629.SZ
+  category: 周期/钢铁
+  buy_price: 1.65
+- name: 盛屯矿业
+  code: 600711.SH
+  category: 周期/有色
+  buy_price: 7.2
+- name: 招商南油
+  code: 601975.SH
+  category: 交通运输/航运
+  buy_price: 2.95
+- name: 九安医疗
+  code: 002432.SZ
+  category: 医药/器械
+  buy_price: 42
+- name: 安克创新
+  code: 300866.SZ
+  category: 科技/消费电子
+  buy_price: 100
+- name: 安克创新
+  code: 00668.HK
+  category: 科技/消费电子
+  buy_price: 96
