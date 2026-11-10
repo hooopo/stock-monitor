@@ -1437,3 +1437,19 @@
   code: 301606.SZ
   category: 科技/消费电子
   buy_price: 48
+- name: 佐力药业
+  code: 300181.SZ
+  category: 医药/中药
+  buy_price: 11.3
+- name: 丽珠集团
+  code: 000513.SZ
+  category: 医药/化学制药
+  buy_price: 26.5
+- name: 丽珠医药
+  code: 01513.HK
+  category: 医药/化学制药
+  buy_price: 23
+- name: 鱼跃医疗
+  code: 002223.SZ
+  category: 医药/器械
+  buy_price: 24
