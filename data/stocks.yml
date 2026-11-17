@@ -618,7 +618,7 @@
 - name: 招商银行
   code: 03968.HK
   category: 银行
-  buy_price: 39.5
+  buy_price: 44
 - name: 邮储银行
   code: 01658.HK
   category: 银行
@@ -862,11 +862,11 @@
 - name: 四川成渝
   code: 601107.SH
   category: 公用事业/高速
-  buy_price: 5.4
+  buy_price: 5.6
 - name: 四川成渝高速公路
   code: 00107.HK
   category: 公用事业/高速
-  buy_price: 4.5
+  buy_price: 4.7
 - name: 兴蓉环境
   code: 000598.SZ
   category: 公用事业/水务环保
